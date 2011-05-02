@@ -1,0 +1,224 @@
+/*==== @topics-list ====*/
+.topics-list {
+}
+.topics-list .item {
+  position:relative;
+  overflow:hidden;
+  padding:10px 65px 10px 78px;
+  border-top:1px solid #E2E2E2;
+  line-height:180%;
+}
+.topics-list .icon {
+  position:absolute;
+  left:15px;
+}
+.topics-list .icon a {
+  display:block;
+  text-align:center;
+}
+.topics-list .title {
+  font-weight:normal;
+  font-size:16px;
+}
+.topics-list .meta {
+  margin-top:8px;
+  line-height:160%;
+  color:#999;
+}
+.topics-list .tags-list {
+  border-left:1px solid #CCC;
+  padding-left:10px;
+  margin-left:5px;
+}
+.topics-list .reply-count {
+  position:absolute;
+  top:18px;
+  right:15px;
+  text-align:center;
+  font-weight:bold;
+}
+.topics-list .reply-count span {
+  color:#FFF;
+  display:block;
+  margin:0 0 5px 0;
+  padding:2px 12px;
+  line-height:12px;
+  border-radius:12px;
+}
+.topics-list .reply-count:link,
+.topics-list .reply-count:active {
+  color:#555;
+}
+.topics-list .reply-count:visited {
+  color:#CCC;
+}
+.topics-list .reply-count:hover {
+  color:#333;
+}
+.topics-list .reply-count:link span,
+.topics-list .reply-count:active span {
+  background:#AAB0C6;
+}
+.topics-list .reply-count:visited span {
+  background:#EEE;
+}
+.topics-list .reply-count:hover span {
+  background:#969CB1;
+}
+
+/*==== @tags-list ====*/
+.tags-list {
+  display:inline;
+}
+.tags-list li {
+  display:inline;
+  background:#E9E9E9;
+  padding:3px 5px;
+  margin:0 1px;
+  border-radius: 3px;
+}
+
+/*==== @replies-list ====*/
+.replies-list {}
+.replies-list .item {
+  overflow:auto;
+  padding:10px 0;
+  border-top:1px solid #E2E2E2;
+}
+.replies-list .icon {
+  float:left;
+  margin:0 15px;
+}
+.replies-list .meta {}
+.replies-list .content {
+  line-height:160%;
+  margin-left:78px;
+  padding:10px 0;
+}
+
+/*==== @topics#show ====*/
+.topics.show .topic-content {
+  position:relative;
+  padding:5px 15px 15px;
+}
+.topics.show .topic-content .title {
+  margin:0 80px 0 0;
+  font-weight:normal;
+  font-size:19px;
+  line-height:160%;
+  color:#222;
+}
+.topics.show .topic-content a.mark,
+.topics.show .topic-content.marked a.mark:hover {
+  display:inline-block;
+  position:relative;
+  top:3px;
+  width:20px;
+  height:20px;
+  background:transparent url(../images/star-0.png) no-repeat center center;
+  text-indent:-9999px;
+  overflow:hidden;
+}
+
+.topics.show .topic-content.marked a.mark,
+.topics.show .topic-content a.mark:hover {
+  background-image:url(../images/star-4.png);
+}
+
+.topics.show .topic-content .vote {
+  position:absolute;
+  text-align:center;
+  width:80px;
+  right:0;
+  top:10px;
+}
+.topics.show .topic-content .vote .sum
+{
+    font:bold 18px Verdana;
+    margin-bottom:10px;
+}
+.topics.show .topic-content .meta {
+  padding:10px 0;
+  color:#AAA;
+}
+.topics.show .topic-content .meta a {
+  color:#36C;
+}
+.topics.show .topic-content .split {
+  background:#EEE;
+  position:absolute;
+  left:0;
+  height:1px;
+  width:100%;
+}
+.topics.show .topic-content .content {
+  margin:20px 0 30px;
+}
+.topics.show .topic-content .actions {
+  float:right;
+}
+.topics.show .replies-blank {
+  margin-bottom:20px;
+  text-align:center;
+}
+
+.topics.show .author-profile {
+}
+.topics.show .author-profile .icon {
+  float:left;
+  margin:10px 15px;
+}
+.topics.show .author-profile .user {
+  margin-top:10px;
+}
+.topics.show .author-profile .user-link {
+  font-size:16px;
+}
+.topics.show .author-profile .user-stats
+{
+    padding:20px 0 20px;
+    margin:0 auto;
+    overflow:hidden;
+    width:270px;
+}
+.topics.show .author-profile .user-stats dl
+{
+    float:left;
+    width:90px;
+    text-align:center;
+    border-left:1px solid #CCC;
+    margin:0;
+    margin-left:-1px;
+}
+.topics.show .author-profile .user-stats dl .sum
+{
+    font:bold 16px Verdana;
+    margin-bottom:7px;
+}
+
+.topics.show .reply-box {
+  padding:10px 20px;
+}
+
+.editor-preview {
+  background:#EEE;
+  border:1px solid #DDD;
+  margin:10px 0;
+  padding:5px;
+  width:560px;
+  max-height:300px;
+  overflow:auto;
+}
+.editor-button-bar {
+}
+
+
+/*==== @accounts#edit ====*/
+.accounts.edit {}
+.accounts.edit .field {
+  margin:0.5em;
+}
+.accounts.edit label {
+  display:inline-block;
+  width:80px;
+}

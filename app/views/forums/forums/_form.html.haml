@@ -1,0 +1,13 @@
+.field
+  = form.label :name
+  = form.text_field :name, :class => 'text name', :maxlength => 50
+  %span.tips= t '.name_tips'
+.field
+  = form.label :intro
+  = form.text_area :intro, :class => 'text intro'
+  %span.tips= t '.intro_tips'
+.field
+  = form.label :alias
+  = form.text_field :alias, :class => 'text', :maxlength => 50
+  %span.tips= t 'alias_tips'
+

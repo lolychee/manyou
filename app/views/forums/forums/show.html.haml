@@ -1,0 +1,12 @@
+- content_for :page_title do
+  = @forum.name
+
+.widget-box.topics-box
+  = link_to '创建一个新主题', new_forum_topic_path(@forum)
+
+  = render :partial => 'forums/topics/list', :object => @topics
+  = will_paginate @topics
+
+- content_for :aside do
+  .widget-box
+    = render :partial => 'profile_card', :object => @forum

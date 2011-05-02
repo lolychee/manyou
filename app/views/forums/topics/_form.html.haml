@@ -1,0 +1,19 @@
+- if !form.object.errors.blank?
+  = render :partial => 'shared/error_messages', :locals => {:target => form.object}
+.field
+  = form.radio_button :type, 'question'
+  = form.label :type_question, '提问'
+  = form.radio_button :type, 'topic'
+  = form.label :type_topic, '讨论'
+  = form.radio_button :type, 'share'
+  = form.label :type_share, '分享'
+.field
+  = form.text_field :title, :class => 'text title', :maxlength => 50
+  .tips= t '.title_tips'
+.field
+  = render :partial => 'shared/editor', :object => form, :locals => {:field => :content}
+.field
+  = form.label :tags
+  = form.text_field :tag, :value => form.object.tag.join(' '), :class => 'text tags'
+  .meta= t '.tags_tips'
+

@@ -1,0 +1,5 @@
+= form_for @forum do |form|
+  = render :partial => 'form', :object => form
+  .field
+    = form.submit t('.create'), :class => 'button'
+

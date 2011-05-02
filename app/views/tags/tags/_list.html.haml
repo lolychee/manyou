@@ -1,0 +1,6 @@
+%ul.tags-list
+  - list = list.split(' ') if list.is_a? String
+  - list = [] if !list
+  - list.each do |tag|
+    - tag = tag.name if tag.is_a? Tag
+    %li=link_to tag, tag_path(tag)

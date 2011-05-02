@@ -1,0 +1,5 @@
+.name= profile_card.name
+.intro= profile_card.intro
+.action
+  = link_to '修改设置', edit_forum_path(profile_card) if can? :update, profile_card
+

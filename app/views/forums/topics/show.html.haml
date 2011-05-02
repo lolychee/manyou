@@ -1,0 +1,55 @@
+- content_for :page_title do
+  =@topic.title
+
+.widget-box.topic-content{ :class => "#{current_user.marked?(@topic)? 'marked' : nil } #{@topic.liked?(current_user)? 'liked' : nil }"}
+  %h1.title
+    = @topic.title
+    - if logged_in?
+      = link_to '收藏', topic_path(@topic, :act => 'mark'), :title => '收藏该主题', :class => 'mark' unless current_user.marked? @topic
+      = link_to '取消收藏', topic_path(@topic, :act => 'unmark'), :title => '取消收藏该主题', :class => 'mark' if current_user.marked? @topic
+  .meta
+    = link_to_user(@topic.author)
+    %span.date="创建于 #{readability_time_format @topic.created_at}"
+    %span.hits=  "#{@topic.hits}次点击"
+  %dl.vote
+    %dt.sum{:title => "#{@topic.like}人推荐"}= @topic.like
+    %dd.desc
+      = link_to_if logged_in?, "推荐", topic_path(@topic, :act => 'like'), :title => '推荐这个主题' unless @topic.liked? current_user
+      = link_to "取消推荐", topic_path(@topic, :act => 'unlike'), :title => '取消推荐这个主题' if @topic.liked? current_user
+
+  %hr.split
+
+  /.content!= Kramdown::Document.new(strip_tags(@topic.content)).to_html
+  .content= rich_content(@topic.content)
+  = '标签:'
+  = render :partial => 'tags/tags/list', :object => @topic.tag
+  .actions
+    = link_to '修改', edit_topic_path(@topic) if can? :update, @topic
+    = link_to '删除', topic_path(@topic), :method => :delete, :confirm => '您真的要删除这个帖子吗?' if can? :destroy, @topic
+
+    = link_to_if logged_in?, "(#{@topic.like})推荐", topic_path(@topic, :act => 'like'), :title => '推荐这个主题' unless @topic.liked? current_user
+    = link_to "取消推荐", topic_path(@topic, :act => 'unlike'), :title => '取消推荐这个主题' if @topic.liked? current_user
+    = link_to '收藏', topic_path(@topic, :act => 'mark'), :title => '收藏该主题' unless current_user.marked? @topic
+    = link_to '取消收藏', topic_path(@topic, :act => 'unmark'), :title => '取消收藏该主题' if current_user.marked? @topic
+
+
+.widget-box.replies-content
+  = will_paginate @replies
+  = render :partial => 'forums/replies/list', :object => @replies
+  = will_paginate @replies
+
+- if @replies.blank?
+  .replies-blank= '暂无回复'
+
+= widget_box 'reply-box', '留下你的回复'  do
+  = form_for @topic.replies.new, :url => topic_replies_path(@topic) do |form|
+    = render :partial => 'forums/replies/form', :object => form
+    .field= form.submit t('common.submit'), :class => 'button'
+
+
+- content_for :aside do
+  = widget_box 'author-profile' do
+    = render :partial => 'users/users/profile_card', :object => @topic.author
+
+  = widget_box 'related-topics', '相关主题' do
+    /= render :partial => '', :object => @related_topics

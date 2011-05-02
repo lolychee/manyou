@@ -1,0 +1,14 @@
+- content_for :page_title do
+  = @user.name
+
+.widget-box.user-profile
+  .avatar
+    = user_avatar @user
+  %h1.name
+    = "#{@user.name}(#{@user.username})"
+  .date
+    = @user.created_at.strftime("%Y-%m-%d")
+    = '加入'
+  .intro
+    = @user.intro
+  .contact

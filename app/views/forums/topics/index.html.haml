@@ -1,0 +1,5 @@
+- content_for :page_title do
+  = '所有主题'
+= link_to '创建一个新主题', new_forum_topic_path(@forum)
+= render :partial => 'list', :object => @topics
+= will_paginate @topics
