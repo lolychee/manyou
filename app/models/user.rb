@@ -2,6 +2,7 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
   include AutoIncrement
+  include ContactModule
 
   include Gravtastic
   gravtastic :rating => 'G', :size => 48
@@ -39,12 +40,14 @@ class User
   validates_format_of       :email,     :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i, :message => "should be in an email address format (ex: someone@somewhere.com)"
   validates_inclusion_of    :locale,    :in => AppConfig.support_locale, :allow_blank => true
 
-  field :mark_ids,                  :type => Array,     :default => []
-
   #admin field
   field :admin_role,                :type => String
 
-  embeds_one :profile
+  embeds_one :profile,      :class_name => 'UserProfile'
+
+  contact_field :mark
+  contact_field :follow
+
   before_create :build_profile
 
   has_many :topics
@@ -60,29 +63,6 @@ class User
   def self.find_by_username(username)
     first(:conditions => {:username => /^#{username}$/i})
   end
-
-  def mark
-    self.mark_ids
-  end
-
-  def unmark(object)
-    if marked? object
-      self.mark_ids.delete(object.id)
-      save
-    end
-  end
-
-  def mark!(object)
-    unless marked? object
-      self.mark_ids << object.id
-      save
-    end
-  end
-
-  def marked?(object)
-    self.mark_ids.include? object.id unless self.mark_ids.nil?
-  end
-
 
   #authorization methods
   def self.authenticate(login, pass)

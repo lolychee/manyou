@@ -3,4 +3,4 @@
   - list = [] if !list
   - list.each do |tag|
     - tag = tag.name if tag.is_a? Tag
-    %li=link_to tag, tag_path(tag)
+    %li=link_to tag, node_path(tag)

@@ -16,6 +16,10 @@ class Tag
 
   TagRegex = /^[0-9a-zA-Z\u4e00-\u9fa5]$/
 
+  def self.find_by_param(value)
+    first(:conditions => {:name => /#{value}/i })
+  end
+
   def to_param
     self.name
   end

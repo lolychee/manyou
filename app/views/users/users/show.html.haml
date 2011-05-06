@@ -12,3 +12,11 @@
   .intro
     = @user.intro
   .contact
+
+  .action
+    - unless current_user.id == @user.id
+      - if current_user.is_follow? @user
+        = link_to '取消关注', user_path(@user, :act => 'unfollow')
+      - else
+        = link_to '加入关注', user_path(@user, :act => 'follow')
+

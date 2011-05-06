@@ -1,6 +1,0 @@
-= widget_box 'edit-form', '编辑主题' do
-  = form_for @topic, :url => topic_path(@topic) do |f|
-    = render :partial => 'form', :object => f
-    .field
-      = f.submit t('button.save'), :class => 'button'
-

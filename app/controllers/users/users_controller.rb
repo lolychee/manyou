@@ -12,6 +12,19 @@ class Users::UsersController < ApplicationController
   end
 
   def show
+    handle_action params[:act] if params[:act]
+  end
+
+  private
+
+  def handle_action(action)
+    case action
+    when 'follow'
+      current_user.add_follow @user
+    when 'unfollow'
+      current_user.del_follow @user
+    end
+    redirect_to user_path(@user)
   end
 
 end

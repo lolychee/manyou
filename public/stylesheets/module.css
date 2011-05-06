@@ -1,26 +1,27 @@
 /*==== @topics-list ====*/
 .topics-list {
 }
-.topics-list .item {
+.topics-list .topic {
   position:relative;
   overflow:hidden;
   padding:10px 65px 10px 78px;
   border-top:1px solid #E2E2E2;
   line-height:180%;
 }
-.topics-list .icon {
+.topics-list .entry-author {
   position:absolute;
   left:15px;
+  top:10px;
 }
-.topics-list .icon a {
+.topics-list .entry-author a {
   display:block;
   text-align:center;
 }
-.topics-list .title {
+.topics-list .entry-title {
   font-weight:normal;
   font-size:16px;
 }
-.topics-list .meta {
+.topics-list .entry-meta {
   margin-top:8px;
   line-height:160%;
   color:#999;

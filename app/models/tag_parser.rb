@@ -11,13 +11,13 @@ module TagParser
     end
 
     def self.tag_field(_field)
-      field _field, :type => Array, :default => []
+      field _field, :type => String
 
-      #validates_format_of _field, :with => Tag::TagsRegex, :allow_blank => true
+      validates_format_of _field, :with => Tag::TagsRegex
 
-      define_method("#{_field}="){|value|
-        write_attribute _field, Tag.string_to_array(value)
-      }
+      #define_method("#{_field}="){|value|
+      #  write_attribute _field, Tag.string_to_array(value)
+      #}
       set_callback :save, :before do |object|
         _tag_was = eval("object.#{_field}_was")
         _tag = eval("object.#{_field}")

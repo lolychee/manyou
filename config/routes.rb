@@ -1,6 +1,6 @@
 Manyou::Application.routes.draw do
 
-  root :to => 'forums/forums#index'
+  root :to => 'topics/topics#index'
   match "/uploads/*path" => "gridfs#serve"
 
   scope :module => :users do
@@ -28,13 +28,7 @@ Manyou::Application.routes.draw do
 
   end
 
-  scope :module => :forums do
-
-    resources :forums, :only => [:index, :new, :create] do
-    end
-    resources :forums, :path => 'forum', :except => [:index, :new, :create] do
-      resources :topics, :only => [:index, :new, :create, :tagged]
-    end
+  scope :module => :topics do
 
     get "node/:key", :to => 'topics#tagged', :constraints  => { :key => /[^\/]+/ }, :as => :node
     resources :topics, :only => [:index, :new, :create, :tagged] do

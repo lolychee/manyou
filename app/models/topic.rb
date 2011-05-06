@@ -3,6 +3,7 @@ class Topic
   include Mongoid::Timestamps
   include AutoIncrement
   include TagParser
+  include ContactModule
 
   ai_field :nid
 
@@ -17,19 +18,18 @@ class Topic
 
   tag_field :tag
 
-  field :like,                  :type => Integer,   :default => 0
-  field :like_ids,              :type => Array,     :default => []
+  field :mark_count,            :type => Integer,   :default => 0
 
   field :edited_at,             :type => Time,      :default => Time.now
   field :replied_at,            :type => Time,      :default => Time.now
 
   embeds_many :replies
+  contact_field :track
 
-  belongs_to :forum
   belongs_to :author,           :class_name => 'User'
 
-  scope :find_by_forum, ->(id) { where(:forum_id => id) }
-  scope :find_by_auchor, ->(id) { where(:author_id => id) }
+  scope :find_by_author, ->(id) { where(:author_id => id) }
+  scope :find_by_tag, ->(tag) { where(:index_tags => Tag.find_tags(tag).collect{|tag| tag.id} )}
 
   attr_accessible :title, :content, :tag, :type
 
@@ -85,26 +85,6 @@ EOF
   def on_reply
     self.replied_at = Time.now
     save
-  end
-
-  def unlike(user)
-    if liked? user
-      self.like_ids.delete(user.id)
-      self.like = self.like_ids.count
-      save
-    end
-  end
-
-  def like!(user)
-    unless liked? user
-      self.like_ids << user.id
-      self.like = self.like_ids.count
-      save
-    end
-  end
-
-  def liked?(user)
-    self.like_ids.include? user.id unless self.like_ids.nil?
   end
 
 end
