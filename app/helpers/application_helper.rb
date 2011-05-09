@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def readability_time_format(time)
-    time < 1.week.ago ? l(time, :format => :long) : "#{time_ago_in_words time} #{t :ago}"
+    time < 3.month.ago ? l(time, :format => :long) : "#{t 'time.some_times_ago', :time => time_ago_in_words(time)}"
   end
 
   def rich_content(content)
@@ -60,5 +60,20 @@ module ApplicationHelper
     content.html_safe
   end
 
+  def user_page_class(user)
+  end
+
+  def topic_page_class(topic)
+    arr = []
+    arr << 'mark' if current_user.mark_ids.include? topic.id
+    arr << 'track' if topic.tracker_ids.include? current_user.id
+    arr.join(' ')
+  end
+
+  def reply_page_class(reply)
+  end
+
+  def tag_page_class(tag)
+  end
 
 end

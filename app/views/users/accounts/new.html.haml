@@ -31,13 +31,13 @@
       = form.text_field :name, :class => 'text name'
       .tips= t '.name_tips'
     .field
-      = form.submit t('.signup'), :class => 'button'
+      = form.submit t('words.signup'), :class => 'button'
 
 .message
   .tips
     %p
       = t '.already_have_account'
-      = link_to t('.login'), new_session_path
+      = link_to t('words.login'), new_session_path
     %p
       = t '.forgot_password'
       //= link_to t('.reset_password'), new_reset_password_path

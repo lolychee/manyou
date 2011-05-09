@@ -1,26 +1,38 @@
 zh-CN:
   locale:
-    en: 英语(en)
-    zh-CN: 简体中文(zh-CN)
-    zh-TW: 繁体中文(zh-TW)
-  common:
-    login: 登录
-    logout: 登出
-    signup: 注册
-    save: 保存
-    submit: 提交
-    create: 创建
-    update: 更新
+    en: "英语(en)"
+    zh-CN: "简体中文(zh-CN)"
+    zh-TW: "繁体中文(zh-TW)"
 
-    forum: 广场
+  words:
+    login: "登录"
+    logout: "登出"
+    signup: "注册"
 
-  ago: 前
+    edit: "修改"
+    delete: "删除"
+    save: "保存"
+    submit: "提交"
+    create: "创建"
+    update: "更新"
+
+    tag: "标签"
+    forum: "广场"
+
+  time:
+    some_times_ago: "%{time}前"
+    created_at: "创建于 %{time}"
+    updated_at: "更新于 %{time}"
+    edited_at: "最后编辑于 %{time}"
+    replied_at: "回复于 %{time}"
+
   layouts:
     header:
-      settings: 设置
-      logout: 登出
-      login: 登录
-      signup: 注册
+      settings: "设置"
+      logout: "登出"
+      login: "登录"
+      signup: "注册"
+
   users:
     sessions:
       new:
@@ -44,6 +56,7 @@ zh-CN:
         login: 登录
         signup: 注册
         reset_password: 重置密码
+
     accounts:
       edit:
         account_settings: 账户设置
@@ -71,34 +84,36 @@ zh-CN:
 
 
   topics:
+    hits: "%{hits}次点击"
     topics:
       index:
-        page_title: 所有主题
+        page_title: "所有主题"
       new:
-        page_title: 创建新主题
+        page_title: "创建新主题"
+      show:
+        mark: "收藏"
+        unmark: "取消收藏"
+        track: "关注"
+        untrack: "取消关注"
 
   mongoid:
     attributes:
       user:
-        username: 用户名
-        avatar: 头像
-        name: 名称
-        email: 邮箱
-        locale: 语言
-        intro: 个人简介
-        current_password: 当前密码
-        password: 密码
-        password_confirmation: 密码确认
-      profile:
-        homepage: 个人主页
+        username: "用户名"
+        avatar: "头像"
+        name: "名称"
+        email: "邮箱"
+        locale: "语言"
+        intro: "个人简介"
+        current_password: "当前密码"
+        password: "密码"
+        password_confirmation: "密码确认"
+      user_profile:
+        homepage: "个人主页"
 
-      forum:
-        name: 名称
-        intro: 简介
-        alias: URL地址
       topic:
-        title: 标题
-        content: 内容
+        title: "标题"
+        content: "内容"
 
       reply:
 

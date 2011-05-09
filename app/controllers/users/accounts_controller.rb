@@ -1,6 +1,6 @@
 class Users::AccountsController < ApplicationController
 
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:new, :create]
   before_filter :load_user, :only => [:edit, :update, :destroy]
 
   def load_user

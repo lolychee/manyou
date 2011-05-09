@@ -30,7 +30,7 @@
       = form.select :locale, AppConfig.support_locale.collect{|locale| [t("locale.#{locale}"), locale] }, {:include_blank => 'None'}
       %span.tips= t '.locale_tips'
     .submit
-      = form.submit t('common.save'), :class => 'button'
+      = form.submit t('form.save'), :class => 'button'
 
 = widget_box :profile, t('.profile_settings') do
   = form_for @user.profile, :url => account_path do |form|
@@ -39,7 +39,7 @@
       = form.text_field :homepage, :class => 'text homepage'
       %span.tips= t '.homepage_tips'
     .field
-      = form.submit t('common.save'), :class => 'button'
+      = form.submit t('form.save'), :class => 'button'
 
 = widget_box :password, t('.password_settings') do
   = form_for @user, :url => account_path do |form|
@@ -56,5 +56,5 @@
       = form.password_field :password_confirmation, :class => 'text password_confirmation'
       %span.tips= t '.password_confirmation_tips'
     .field
-      = form.submit t('common.save'), :class => 'button'
+      = form.submit t('form.save'), :class => 'button'
 

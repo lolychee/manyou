@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
   end
 
   def login_as_guest
-    User.new
+    @current_user = User.new
   end
 
   def login_from_session
@@ -124,5 +124,30 @@ class ApplicationController < ActionController::Base
     request.compatible_language_from(AppConfig.support_locale)
   end
 
+  def recent_read(object)
+    session[:recent_read] ||= []
+    unless session[:recent_read].include?(object.id)
+      session[:recent_read] << object.id
+      object.hits += 1
+      object.save
+    end
+  end
+
+  #resrouce load helper
+  def load_user(username)
+    @user = User.where(:username => /username/i).first || render_404
+  end
+
+  def load_topic(id)
+    @topic = Topic.where(:nid => id).first || render_404
+  end
+
+  def load_reply(id)
+    @reply = @topic.replies.find id || render_404
+  end
+
+  def load_tags(key)
+    @tags = Tag.find_by_tags key || render_404
+  end
 
 end

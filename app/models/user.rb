@@ -43,21 +43,21 @@ class User
   #admin field
   field :admin_role,                :type => String
 
-  embeds_one :profile,      :class_name => 'UserProfile'
+  embeds_one :profile,              :class_name => 'UserProfile'
 
-  contact_field :mark
-  contact_field :follow
+  has_and_belongs_to_many :mark,    :class_name => 'Topic'
+  has_and_belongs_to_many :follow,  :class_name => 'User', :inverse_of => 'follow'
 
   before_create :build_profile
 
-  has_many :topics
+  has_many :topics, :inverse_of => 'author'
 
   def self.find_by_param(value)
     find_by_username(value)
   end
 
   def to_param
-    self.username
+    username
   end
 
   def self.find_by_username(username)
@@ -71,7 +71,7 @@ class User
   end
 
   def matching_password?(pass)
-    self.crypted_password == encrypt_password(pass)
+    crypted_password == encrypt_password(pass)
   end
 
   def password_required?
@@ -83,21 +83,21 @@ class User
   end
 
   def reset_persistence_token!
-    self.persistence_token = self.class.hex_token
+    persistence_token = self.class.hex_token
     save
   end
 
   def clear_persistence_token!
-    self.persistence_token = nil
+    persistence_token = nil
     save
   end
 
   def admin_role?(role)
-    self.admin_role == role
+    admin_role == role
   end
 
   def is_guest?
-    self.username.nil?
+    username.nil?
   end
 
   private
@@ -116,8 +116,8 @@ class User
 
   def prepare_password
     unless password.blank?
-      self.password_salt = self.class.secure_digest([Time.now, rand])
-      self.crypted_password = encrypt_password(password)
+      password_salt = self.class.secure_digest([Time.now, rand])
+      crypted_password = encrypt_password(password)
     end
   end
 

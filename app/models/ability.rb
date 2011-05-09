@@ -8,8 +8,8 @@ class Ability
     if AppConfig.super_admin.include? user.username
       can :manage, :all
     elsif !user.is_guest?
+      can :update, User, :_id => user.id
       can :update, Topic, :author_id => user.id
-      can :update, Forum, :manager_id => user.id
     else
       can :read, :all
     end

@@ -2,8 +2,6 @@ class Topic
   include Mongoid::Document
   include Mongoid::Timestamps
   include AutoIncrement
-  include TagParser
-  include ContactModule
 
   ai_field :nid
 
@@ -16,20 +14,22 @@ class Topic
   STATUS    = ['normal', 'ban']
   TYPE      = ['topic', 'question', 'share']
 
-  tag_field :tag
+  field :tag
 
   field :mark_count,            :type => Integer,   :default => 0
 
   field :edited_at,             :type => Time,      :default => Time.now
   field :replied_at,            :type => Time,      :default => Time.now
 
-  embeds_many :replies
-  contact_field :track
+  embeds_many :replies,         :class_name => 'TopicReply'
 
-  belongs_to :author,           :class_name => 'User'
+  has_and_belongs_to_many :tracker, :class_name => 'User'
+  has_and_belongs_to_many :tags, :class_name => 'Tag'
+
+  belongs_to :author,           :class_name => 'User', :inverse_of => 'topics'
 
   scope :find_by_author, ->(id) { where(:author_id => id) }
-  scope :find_by_tag, ->(tag) { where(:index_tags => Tag.find_tags(tag).collect{|tag| tag.id} )}
+  scope :find_by_tags, ->(tag) { where(:tag_ids => Tag.find_tags(tag).collect{|tag| tag.id} )}
 
   attr_accessible :title, :content, :tag, :type
 
@@ -37,12 +37,8 @@ class Topic
   validates_inclusion_of    :type,      :in => TYPE, :allow_blank => true
   validates_inclusion_of    :status,    :in => STATUS, :allow_blank => true
 
-  def self.find_by_param(value)
-    first(:conditions => {:nid =>value}) if value != nil
-  end
-
   def to_param
-    self.nid.to_s
+    nid.to_s
   end
 
   def self.tag_could
@@ -71,20 +67,6 @@ EOF
     collection.mapreduce(map, reduce, {:out => 'topic_tag_could'})
     rescue Mongo::OperationFailure
       []
-  end
-
-  def on_view
-    self.hits += 1
-    save
-  end
-
-  def on_edit
-    self.edited_at = Time.now
-  end
-
-  def on_reply
-    self.replied_at = Time.now
-    save
   end
 
 end

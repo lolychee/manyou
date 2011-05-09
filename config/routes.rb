@@ -39,12 +39,12 @@ Manyou::Application.routes.draw do
     resources :topics, :path => 'topic', :except => [:index, :new, :create] do
       resources :replies do
         member do
-          get :agree
+          get :vote
         end
       end
       member do
-        get :like
-        get :unlike
+        get :track
+        get :untrack
         get :mark
         get :unmark
       end
@@ -60,6 +60,11 @@ Manyou::Application.routes.draw do
 
   end
 
+  namespace 'cpanel' do
+    root :to => 'dashboard#index'
+
+    resources :users, :topics, :tags
+  end
 
   match '*path', :to => 'errors#routing'
 
