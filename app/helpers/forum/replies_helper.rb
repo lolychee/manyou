@@ -1,0 +1,2 @@
+module Forum::RepliesHelper
+end
