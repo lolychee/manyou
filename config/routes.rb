@@ -1,4 +1,34 @@
 Manyou::Application.routes.draw do
+
+  root :to => 'home#index'
+  #devise_for :users
+
+  scope :module => :member do
+
+    resource :account
+    resource :session
+
+    resources :user do
+      collection do
+        get "tagged/:key", :action => :tagged, :constraints => { :key => /[^\/]+/ }, :as => :tagged
+      end
+    end
+
+  end
+  scope :module => :forum do
+
+    resources :topics do
+      collection do
+        get "tagged/:key", :action => :tagged, :constraints => { :key => /[^\/]+/ }, :as => :tagged
+      end
+      member do
+        get :track
+      end
+    end
+
+  end
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
