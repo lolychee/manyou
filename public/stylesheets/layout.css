@@ -1,0 +1,351 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background:#E0E6E7;
+    /*background:transparent url(../images/background.png) repeat 0 0;*/
+    font: normal 12px "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
+    text-shadow:#FFF 0 1px 0;
+}
+
+p
+{
+    line-height:180%;
+    margin:1em 0;
+}
+
+a
+{
+    color:#069;
+    text-decoration:none;
+}
+a:link
+{
+}
+a:hover
+{
+    color:#09F;
+}
+a:visited
+{
+}
+a:active
+{
+}
+h1
+{
+    font-size:200%;
+}
+h2
+{
+    font-size:180%;
+}
+h3
+{
+    font-size:160%;
+}
+h4
+{
+    font-size:140%;
+}
+table
+{
+    margin-bottom:1.4em;
+    width:100%;
+}
+tr
+{
+    border-bottom:1px dashed #CCC;
+}
+th
+{
+}
+thead th
+{
+}
+th, td, caption
+{
+    padding:6px 0 7px;
+}
+tbody tr:nth-child(even) td, tbody tr.even td
+{
+
+}
+tfoot {
+
+}
+
+/*=== @form ===*/
+form .field {
+  clear:both;
+  font-size:14px;
+}
+form label {
+}
+form .text, form textarea {
+  padding:5px;
+  border:1px solid #999;
+  border-radius:4px;
+  box-shadow: 0 1px 1px #C3C3C6;
+}
+form .editor {
+  width:560px;
+}
+
+.clear
+{
+    clear:both;
+}
+
+.wrapper
+{
+    width:960px;
+    margin:0 auto;
+    position:relative;
+}
+
+#header
+{
+    background:#FFF;
+    border-bottom:2px solid #33CEE1;
+}
+
+#header a
+{
+    color:#09F;
+}
+#header a:hover
+{
+    color:#00CEE1;
+    background:none;
+}
+#header .header-box
+{
+    padding-top:15px;
+}
+#user-menu
+{
+    position:absolute;
+    right:0;
+    bottom:7px;
+    padding:0 3px;
+}
+#user-menu .info
+{
+    display:inline;
+    line-height:22px;
+}
+#user-menu img
+{
+    float:left;
+    margin-right:10px;
+}
+#user-menu ul
+{
+    display:inline;
+    list-style:none;
+    margin:5px 0;
+}
+#user-menu ul li
+{
+    display:inline;
+    margin:0 0 0 1em;
+}
+#logo
+{
+    font-size: 200%;
+    text-align:center;
+    margin:0 10px 0 0;
+    background:url(../images/logo.png) no-repeat 5px 3px;
+    height:40px;
+    width:240px;
+    text-indent:-9999px;
+    overflow:hidden;
+    float:left;
+}
+#header .search
+{
+    float:left;
+}
+#header .search input
+{
+    padding:3px 5px;
+}
+#search-text
+{
+    width:200px;
+}
+#site-nav
+{
+    overflow:hidden;
+    clear:both;
+}
+
+#site-nav ul
+{
+    list-style:none;
+}
+
+#site-nav ul li
+{
+    float:left;
+    margin:0;
+}
+
+#site-nav ul li a
+{
+    color:#888;
+    background-color:transparent;
+    font-size:14px;
+    font-weight:bold;
+    text-decoration:none;
+    padding:6px 1em;
+    margin:5px 3px;
+    display:block;
+}
+
+#site-nav ul li a:hover, #site-nav ul li.active a
+{
+    color: #00cee1;
+    text-decoration:none;
+}
+
+
+/*===  content  ===*/
+#body
+{
+}
+#body .container
+{
+    padding:0 0 5px 0;
+}
+#body .widget-box
+{
+    position:relative;
+    background:#FFFFFF;
+    margin-bottom:20px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+#body .widget-box .widget-box-title
+{
+    font-size:16px;
+    line-height:180%;
+    margin:0 10px;
+}
+
+#body .article
+{
+    width:620px;
+    float:left;
+}
+#body .aside
+{
+    width:310px;
+    float:right;
+}
+
+#body .aside .widget-box
+{
+    overflow:hidden;
+}
+
+.content
+{
+    font-size:14px;
+    text-shadow:none;
+    line-height:180%;
+}
+
+#footer
+{
+    background:#EEE;
+    border-top:1px solid #CCC;
+    padding: 10px 0 20px;
+    font-size: 0.8em;
+    color:#777;
+    clear:both;
+}
+#footer .copyright
+{
+}
+
+
+
+div.flash-error, div.flash-notice, div.flash-success
+{
+    padding:.8em;
+    margin-bottom:1em;
+    border:2px solid #ddd;
+}
+
+div.flash-error
+{
+    background:#FBE3E4;
+    color:#8a1f11;
+    border-color:#FBC2C4;
+}
+
+div.flash-notice
+{
+    background:#FFF6BF;
+    color:#514721;
+    border-color:#FFD324;
+}
+
+div.flash-success
+{
+    background:#E6EFC2;
+    color:#264409;
+    border-color:#C6D880;
+}
+
+div.flash-error a
+{
+    color:#8a1f11;
+}
+
+div.flash-notice a
+{
+    color:#514721;
+}
+
+div.flash-success a
+{
+    color:#264409;
+}
+
+div.form .rememberMe label
+{
+    display: inline;
+}
+
+div.view
+{
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #C9E0ED;
+}
+
+div.breadcrumbs
+{
+    font-size: 14px;
+    padding: 10px;
+}
+
+div.breadcrumbs span
+{
+    font-weight: bold;
+}
+
+div.search-form
+{
+    padding: 10px;
+    margin: 10px 0;
+    background: #eee;
+}
+
