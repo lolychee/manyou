@@ -8,11 +8,13 @@ Manyou::Application.routes.draw do
     resource :account
     resource :session
 
-    resources :user do
+    resources :users do
       collection do
         get "tagged/:key", :action => :tagged, :constraints => { :key => /[^\/]+/ }, :as => :tagged
       end
     end
+
+    resources :bookmarks
 
   end
   scope :module => :forum do
@@ -28,6 +30,13 @@ Manyou::Application.routes.draw do
 
   end
 
+  namespace :dashboard do
+    root :to => 'home#index'
+
+    resources :users, :topics, :tags, :settings
+  end
+
+  match '*path', :to => 'errors#routing'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
