@@ -1,7 +1,6 @@
 Manyou::Application.routes.draw do
 
   root :to => 'home#index'
-  #devise_for :users
 
   scope :module => :member do
 
