@@ -21,20 +21,27 @@ module Manyou::Authentication
 
     before_save :prepare_password
 
+    def self.find_by_username(username)
+      first(:conditions => {:username => /^#{username}$/i})
+    end
 
-  end
+    def self.authenticate(login, password)
+      user = first(:conditions => {:username => /^#{login}$/i}) || first(:conditions => {:email => /^#{login}$/i})
+      return user if user && user.valid_password?(password)
+    end
 
-  def self.find_by_username(username)
-    first(:conditions => {:username => /^#{username}$/i})
+    def self.hex_token
+      self.class.secure_digest(Time.now, (1..10).map{ rand.to_s })
+    end
+
+    def self.secure_digest(*args)
+      Digest::SHA1.hexdigest(args.flatten.join('--'))
+    end
+
   end
 
   def is_guest?
     username.nil?
-  end
-
-  def self.authenticate(login, password)
-    user = first(:conditions => {:username => /^#{login}$/i}) || first(:conditions => {:email => /^#{login}$/i})
-    return user if user && user.valid_password?(password)
   end
 
   def valid_password?(password)
@@ -51,24 +58,14 @@ module Manyou::Authentication
     save
   end
 
-  private
-
-  def self.hex_token
-    secure_digest(Time.now, (1..10).map{ rand.to_s })
-  end
-
-  def self.secure_digest(*args)
-    Digest::SHA1.hexdigest(args.flatten.join('--'))
-  end
-
-  def encrypt_password(pass)
-    self.class.secure_digest([pass, password_salt])
+  def encrypt_password(password)
+    self.class.secure_digest([password, password_salt])
   end
 
   def prepare_password
     unless password.blank?
-      password_salt = self.class.secure_digest([Time.now, rand])
-      crypted_password = encrypt_password(password)
+      write_attribute :password_salt, self.class.secure_digest([Time.now, rand])
+      write_attribute :crypted_password, encrypt_password(password)
     end
   end
 

@@ -1,0 +1,60 @@
+- content_for :page_title do
+  = "#{t('.account_settings')} - #{AppConfig.app_name}"
+
+- add_breadcrumb '个人中心', edit_account_path
+
+= widget_box :account, t('.account_settings') do
+  = form_for @user, :url => account_path, :html => { :enctype =>  "multipart/form-data" } do |form|
+    = render 'shared/error_messages', :target => @user
+    .field
+      = form.label :avatar
+      = image_tag(@user.avatar.large.url)
+      = form.file_field :avatar
+    .field
+      = form.label :username
+      = @user.username
+    .field
+      = form.label :name
+      = form.text_field :name, :class => 'text name'
+      %span.tips= t '.name_tips'
+    .field
+      = form.label :email
+      = form.text_field :email, :class => 'text email'
+      %span.tips= t '.email_tips'
+    .field
+      = form.label :intro
+      = form.text_area :intro, :class => 'text intro', :rows => 10
+      %span.tips= t '.intro_tips'
+    .field
+      = form.label :locale
+      = form.select :locale, AppConfig.support_locale.collect{|locale| [t("locale.#{locale}"), locale] }, {:include_blank => t('locale.none')}
+      %span.tips= t '.locale_tips'
+    .submit
+      = form.submit t('words.save'), :class => 'button'
+
+= widget_box :profile, t('.profile_settings') do
+  = form_for @user.profile, :url => account_path do |form|
+    .field
+      = form.label :homepage
+      = form.text_field :homepage, :class => 'text homepage'
+      %span.tips= t '.homepage_tips'
+    .field
+      = form.submit t('words.save'), :class => 'button'
+
+= widget_box :password, t('.password_settings') do
+  = form_for @user, :url => account_path do |form|
+    .field
+      = form.label :current_password
+      = form.password_field :current_password, :class => 'text current_password'
+      %span.tips= t '.current_password_tips'
+    .field
+      = form.label :password
+      = form.password_field :password, :class => 'text password'
+      %span.tips= t '.password_tips'
+    .field
+      = form.label :password_confirmation
+      = form.password_field :password_confirmation, :class => 'text password_confirmation'
+      %span.tips= t '.password_confirmation_tips'
+    .field
+      = form.submit t('words.save'), :class => 'button'
+
