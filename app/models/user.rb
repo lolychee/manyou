@@ -19,6 +19,7 @@ class User
   validates_inclusion_of    :locale,    :in => AppConfig.support_locale, :allow_blank => true
 
   embeds_one :profile,              :class_name => 'UserProfile'
+  embeds_many :bookmarks,           :class_name => 'UserBookmark'
 
   #has_and_belongs_to_many :bookmarks
   has_and_belongs_to_many :follow,  :class_name => 'User', :inverse_of => 'follow'
