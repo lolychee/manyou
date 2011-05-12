@@ -1,5 +1,7 @@
 .dialog
-  = form_for :session, :url => session_path(:return_to => params[:return_to]) do |form|
+  = form_for @user_session, :url => session_path(:return_to => params[:return_to]) do |form|
+    - if !form.object.errors.blank?
+      = render :partial => 'shared/error_messages', :locals => {:target => form.object}
     - if flash[:error]
       .error= flash[:error]
     .field

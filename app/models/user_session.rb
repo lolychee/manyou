@@ -1,8 +1,19 @@
 class UserSession
   #include Mongoid::Document
   include ActiveModel::Validations
+  include ActiveModel::Conversion
+  extend ActiveModel::Naming
 
   attr_accessor     :username, :password, :remember_me
+
+  validates_presence_of :username
+  validates_presence_of :password
+  validate :password do |session|
+    session.user = User.authenticate username, password
+    if !session.user
+      errors.add :password, 'Invalid login or password.'
+    end
+  end
 
   def self.controller=(value)
     Thread.current[:user_session_controller] = value
@@ -12,44 +23,53 @@ class UserSession
     Thread.current[:user_session_controller]
   end
 
-  def initialize(username = nil, password = nil, remember_me = false)
-    @username, @password, @remember_me = username, password, remember_me
+  def initialize(attributes = {})
+    attributes.each do |name, value|
+      send("#{name}=", value)
+    end
+    @user ||= restore_from_session || restore_from_cookie || nil if attributes == {}
   end
 
   def self.create(params)
     session = self.new params[:username], params[:password], params[:remember_me]
     session.save
+    session
   end
 
   def save
-    @user = User.authenticate @username, @password
-    if @user
+    if valid?
       save_session!
       remember_me_for 4.weeks, true if @remember_me
-      @user
+      true
+    else
+      false
     end
   end
 
-  def find
-    @user ||= restore_from_session || restore_from_cookie || false if @user != false
+  def self.find
+    self.new
   end
 
   def destroy
     clear_session!
     clear_remember_me_cookie!
-    @user.clear_persistence_token!
-    @user = false
+    user.clear_persistence_token!
+    user = nil
+  end
+
+  def user=(value)
+    @user = value if value == nil || value.is_a?(User)
+  end
+
+  def user
+    @user
+  end
+
+  def persisted?
+    false
   end
 
   private
-
-  def cookies
-    controller.send :cookies
-  end
-
-  def session
-    controller.send :session
-  end
 
   def restore_from_session
     User.find(session[:current_user_id]) if session[:current_user_id]
@@ -57,13 +77,13 @@ class UserSession
 
   def restore_from_cookie
     if cookies[:persistence_token]
-      User.find(:first, :conditions => {:persistence_token => cookies[:persistence_token]})
       remember_me_for 4.weeks
+      User.find(:first, :conditions => {:persistence_token => cookies[:persistence_token]})
     end
   end
 
   def save_session!
-    session[:current_user_id] = @user.id if @user
+    session[:current_user_id] = user.id if user
   end
 
   def clear_session!
@@ -79,11 +99,13 @@ class UserSession
   end
 
   def save_remember_me_cookie!(expires_at, reset = false)
-    @user.reset_persistence_token! if reset
-    cookies[:persistence_token] = {
-      :value => @user.persistence_token,
-      :expires => expires_at
-    }
+    if user
+      user.reset_persistence_token! if reset
+      cookies[:persistence_token] = {
+        :value => user.persistence_token,
+        :expires => expires_at
+      }
+    end
   end
 
   def clear_remember_me_cookie!
@@ -93,7 +115,7 @@ class UserSession
 
 
   module Implementation
-    def self.included(klass) # :nodoc:
+    def self.included(klass)
       if defined?(::ApplicationController)
         raise
       end
@@ -103,7 +125,11 @@ class UserSession
 
     private
       def activate_controller
-        UserSession.controller = self
+        #UserSession.controller = self
+        lsession = session
+        lcookies = cookies
+        UserSession.send :define_method, :session, proc{ return lsession }
+        UserSession.send :define_method, :cookies, proc{ return lcookies }
       end
   end
 

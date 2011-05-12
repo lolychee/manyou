@@ -40,21 +40,17 @@ module Manyou::Authentication
 
   end
 
-  def is_guest?
-    username.nil?
-  end
-
   def valid_password?(password)
     crypted_password == encrypt_password(password)
   end
 
   def reset_persistence_token!
-    persistence_token = self.class.hex_token
+    write_attribute :persistence_token, self.class.hex_token
     save
   end
 
   def clear_persistence_token!
-    persistence_token = nil
+    write_attribute :persistence_token, nil
     save
   end
 

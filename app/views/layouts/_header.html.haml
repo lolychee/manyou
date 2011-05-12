@@ -15,10 +15,10 @@
     #user-menu
       %ul
         /%li= link_to t('.home'), root_path
-        - if false
-          %li= link_to_user(current_user)
+        - if signed_in?
+          %li= link_to current_user.name, user_path(current_user)
           %li= link_to t('.settings'), edit_account_path
-          %li.last= link_to t('.logout'), destroy_session_path
+          /%li.last= link_to t('.logout'), destroy_session_path
         - else
           %li= link_to t('.login'), new_session_path
           %li.last= link_to t('.signup'), new_account_path

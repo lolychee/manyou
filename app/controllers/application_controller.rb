@@ -1,17 +1,21 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  helper_method :current_user, :current_user_session, :signed_in?
+
   #authentication methods
-  def current_user
-    current_user_session.find
-  end
-
-  def current_user_session=(value)
-    @user_session = value
-  end
-
   def current_user_session
-    @user_session
+    return @current_user_session if defined?(@current_user_session)
+    @current_user_session = UserSession.find
+  end
+
+  def current_user
+    return @current_user if defined?(@current_user)
+    @current_user = current_user_session && current_user_session.user
+  end
+
+  def signed_in?
+    !!current_user
   end
 
   def authenticate_user!

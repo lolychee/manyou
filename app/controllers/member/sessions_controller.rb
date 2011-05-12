@@ -1,16 +1,16 @@
 class Member::SessionsController < ApplicationController
 
   def new
-    @session = UserSession.new
+    @user_session = UserSession.new
   end
 
   def create
-    current_user_session = UserSession.create params[:session] if params[:session]
-    if current_user_session
+    @user_session = UserSession.new params[:user_session]
+    if @user_session.save
       flash[:notice] = 'Logged in successfully.'
       redirect_back_or_default root_path
     else
-      flash.now[:error] = 'Invalid login or password.'
+      #flash.now[:error] = 'Invalid login or password.'
       render :new
     end
   end
