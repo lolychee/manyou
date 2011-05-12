@@ -17,6 +17,7 @@ class Member::SessionsController < ApplicationController
 
   def destroy
     current_user_session.destroy
+    redirect_back_or_default root_path
   end
 
 end

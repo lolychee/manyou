@@ -39,7 +39,15 @@ class UserSession
   def save
     if valid?
       save_session!
-      remember_me_for 4.weeks, true if @remember_me
+      if remember_me
+        Rails.logger.info 'remember_me'
+      user.persistence_token = user.class.hex_token
+      user.save
+      Rails.logger.info "token: #{user.persistence_token}"
+      Rails.logger.info "hex_token: #{user.class.hex_token}"
+
+      remember_me_for 4.weeks
+      end
       true
     else
       false
@@ -53,7 +61,8 @@ class UserSession
   def destroy
     clear_session!
     clear_remember_me_cookie!
-    user.clear_persistence_token!
+    user.persistence_token = nil
+    user.save
     user = nil
   end
 
@@ -70,6 +79,14 @@ class UserSession
   end
 
   private
+
+  def cookies
+    controller.send :cookies
+  end
+
+  def session
+    controller.send :session
+  end
 
   def restore_from_session
     User.find(session[:current_user_id]) if session[:current_user_id]
@@ -90,17 +107,16 @@ class UserSession
     session[:current_user_id] = nil
   end
 
-  def remember_me_for(time, reset = false)
-    remember_me_until time.from_now.utc, reset
+  def remember_me_for(time)
+    remember_me_until time.from_now.utc
   end
 
-  def remember_me_until(time,reset = false)
+  def remember_me_until(time)
     save_remember_me_cookie! time
   end
 
-  def save_remember_me_cookie!(expires_at, reset = false)
+  def save_remember_me_cookie!(expires_at)
     if user
-      user.reset_persistence_token! if reset
       cookies[:persistence_token] = {
         :value => user.persistence_token,
         :expires => expires_at
@@ -125,11 +141,7 @@ class UserSession
 
     private
       def activate_controller
-        #UserSession.controller = self
-        lsession = session
-        lcookies = cookies
-        UserSession.send :define_method, :session, proc{ return lsession }
-        UserSession.send :define_method, :cookies, proc{ return lcookies }
+        UserSession.controller = self
       end
   end
 

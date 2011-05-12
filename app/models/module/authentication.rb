@@ -30,12 +30,12 @@ module Manyou::Authentication
       return user if user && user.valid_password?(password)
     end
 
-    def self.hex_token
-      self.class.secure_digest(Time.now, (1..10).map{ rand.to_s })
-    end
-
     def self.secure_digest(*args)
       Digest::SHA1.hexdigest(args.flatten.join('--'))
+    end
+
+    def self.hex_token
+      secure_digest(Time.now, (1..10).map{ rand.to_s })
     end
 
   end
@@ -44,6 +44,8 @@ module Manyou::Authentication
     crypted_password == encrypt_password(password)
   end
 
+# invalid methods
+=begin
   def reset_persistence_token!
     write_attribute :persistence_token, self.class.hex_token
     save
@@ -53,6 +55,7 @@ module Manyou::Authentication
     write_attribute :persistence_token, nil
     save
   end
+=end
 
   def encrypt_password(password)
     self.class.secure_digest([password, password_salt])

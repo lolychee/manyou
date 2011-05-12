@@ -3,7 +3,8 @@
 
 - add_breadcrumb '个人中心', edit_account_path
 
-= widget_box :account, t('.account_settings') do
+.widget.account
+  .widget-title= t('.account_settings')
   = form_for @user, :url => account_path, :html => { :enctype =>  "multipart/form-data" } do |form|
     = render 'shared/error_messages', :target => @user
     .field
@@ -32,7 +33,8 @@
     .submit
       = form.submit t('words.save'), :class => 'button'
 
-= widget_box :profile, t('.profile_settings') do
+.widget.profile
+  .widget-title= t('.profile_settings')
   = form_for @user.profile, :url => account_path do |form|
     .field
       = form.label :homepage
@@ -41,7 +43,8 @@
     .field
       = form.submit t('words.save'), :class => 'button'
 
-= widget_box :password, t('.password_settings') do
+.widget.password
+  .widget-title= t('.password_settings')
   = form_for @user, :url => account_path do |form|
     .field
       = form.label :current_password

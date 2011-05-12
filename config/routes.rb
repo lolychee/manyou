@@ -2,10 +2,14 @@ Manyou::Application.routes.draw do
 
   root :to => 'home#index'
 
+  match "/uploads/*path" => "gridfs#serve"
+
   scope :module => :member do
 
-    resource :account
     resource :session
+    get "logout", :to => "sessions#destroy", :as => :destroy_session
+
+    resource :account
 
     resources :users do
       collection do

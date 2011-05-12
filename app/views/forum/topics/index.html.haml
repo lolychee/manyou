@@ -1,0 +1,5 @@
+.widget.main-list
+  %h3.widget-title= 'Topic List'
+  .widget-content
+    = render :partial => "list_#{@page_info[:list_mode]}", :object => @topics
+

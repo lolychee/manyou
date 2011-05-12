@@ -1,0 +1,16 @@
+- content_for :head do
+  = javascript_include_tag "xheditor/xheditor-1.1.6-#{I18n.locale.downcase}.min"
+  = javascript_include_tag "xheditor/ubb"
+
+= editor.text_area field, :id => "#{editor.object.class.name.downcase}-editor", :class => :editor, :rows => 10, :cols => 60
+:javascript
+  $('##{editor.object.class.name.downcase}-editor').xheditor({
+    tools:'#{defined?(type) ? type : 'Bold,Italic,Underline,Strikethrough,|,Align,List,|,Link,Unlink,Img,Source'}',
+    hoverExecDelay:-1,
+    internalStyle:false,
+    inlineStyle:false,
+    showBlocktag:false,
+    forcePtag:false,
+    beforeSetSource:ubb2html,
+    beforeGetSource:html2ubb
+  });

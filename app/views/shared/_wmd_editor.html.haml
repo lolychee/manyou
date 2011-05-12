@@ -1,0 +1,15 @@
+- content_for :head do
+  = stylesheet_link_tag 'wmd'
+  = javascript_include_tag 'wmd'
+  = javascript_include_tag 'showdown'
+
+%div{:id => "#{editor.object.class.name.downcase}-editor-preview", :class => 'editor-preview'}
+%div{:id => "#{editor.object.class.name.downcase}-editor-button-bar", :class => 'editor-button-bar'}
+= editor.text_area field, :id => "#{editor.object.class.name.downcase}-editor", :rows => 10, :cols => 60
+:javascript
+  setup_wmd({
+    input: "#{editor.object.class.name.downcase}-editor",
+    button_bar: "#{editor.object.class.name.downcase}-editor-button-bar",
+    preview: "#{editor.object.class.name.downcase}-editor-preview",
+  });
+
