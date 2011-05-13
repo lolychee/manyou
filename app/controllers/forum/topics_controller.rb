@@ -14,10 +14,12 @@ class Forum::TopicsController < ApplicationController
   end
 
   def new
+    #authorize! :create, @topic
     @topic = Topic.new
   end
 
   def create
+    #authorize! :create, @topic
     @topic = Topic.new params[:topic]
     @topic.author = current_user
     if @topic.save

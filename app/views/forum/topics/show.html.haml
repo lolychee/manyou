@@ -25,3 +25,10 @@
     = render :partial => 'forum/replies/form', :object => form
     .field= form.submit t('words.submit'), :class => 'button'
 
+
+
+
+
+- content_for :aside do
+  = render :partial => 'user_profile', :object => @topic.author
+

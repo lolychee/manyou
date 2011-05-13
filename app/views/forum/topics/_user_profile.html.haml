@@ -1,0 +1,5 @@
+.widget.user-profile
+  .avatar= link_to_user_avatar(user_profile)
+  .name= link_to_user(user_profile) + "(#{user_profile.username})"
+  .intro= user_profile.intro
+

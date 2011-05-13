@@ -75,7 +75,7 @@ class ApplicationController < ActionController::Base
   end
 
   def load_topic(id)
-    @topic = Topic.first(:conditions => { :_id => id.to_i}) || render_404
+    @topic = Topic.first(:conditions => { :nid => id.to_i}) || render_404
   end
 
   def load_reply(id)

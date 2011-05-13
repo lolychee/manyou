@@ -17,8 +17,8 @@ Manyou::Application.routes.draw do
       end
     end
 
-    get 'bookmarks/add', :to => 'bookmarks#create',     :as => :create_bookmark
-    get 'bookmarks/del', :to => 'bookmarks#destroy',    :as => :destroy_bookmark
+    get 'bookmarks/add:id', :to => 'bookmarks#create',    :constraints => { :id => /.*/ },   :as => :create_bookmark
+    get 'bookmarks/del:id', :to => 'bookmarks#destroy',   :constraints => { :id => /.*/ },   :as => :destroy_bookmark
 
   end
   scope :module => :forum do
@@ -29,6 +29,7 @@ Manyou::Application.routes.draw do
       end
       member do
         get :track
+        get :untrack
       end
 
       resources :replies

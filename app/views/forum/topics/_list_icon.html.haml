@@ -1,8 +1,22 @@
-.topics-list.icon
-  - list_icon.each do |topic|
-    - case topic.type
-    - when 'tweet'
-    - when 'article'
-      = link_to_topic(topic)
-    - when 'media'
+.topics-list.mode-icon
+  - list_icon.each_with_index do |topic, index|
+    .topic{:class => "#{index%2 == 0 ? 'even' : 'odd'} type-#{topic.type}"}
+      .entry-author= link_to_user_avatar(topic.author)
+      - case topic.type
+      - when 'tweet'
+      - when 'article'
+        .entry-title= link_to_topic(topic)
+        .entry-meta
+          = link_to_user(topic.author)
+          - unless topic.replies.count == 0
+            = readability_time_format topic.replied_at
+            = "由"
+            = link_to_user topic.replies.last.author
+            = "回复"
+        .entry-utility
+          %a.reply-count{:href => topic_path(topic, :anchor => "last#{topic.replies.count}")}
+            %span= topic.replies.count
+            = t ".#{topic.type}"
+
+      - when 'media'
 

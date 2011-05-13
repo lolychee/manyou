@@ -21,11 +21,11 @@ module Manyou::AutoIncrement
     collection = db.collection "auto_increment"
     collection_name = self.class.name.downcase.pluralize
 
-    info = collection.find_and_modify({:query => {:id => collection_name}, :update => {"$inc" => {:value => 1}}, :new => true})
+    info = collection.find_and_modify({:query => {:_id => collection_name}, :update => {"$inc" => {:value => 1}}, :new => true})
     write_attribute column, info[:value]
 
   rescue Mongo::OperationFailure
-    collection.save({:id => collection_name, :value => default})
+    collection.save({:_id => collection_name, :value => default})
     write_attribute column, default
   end
 

@@ -5,7 +5,7 @@ class TopicReply
 
   field :content,           :type => String
   field :floor,             :type => Integer
-  field :status,            :type => String
+  field :status,            :type => String,    :default => 'normal'
 
   embedded_in :topic
 
