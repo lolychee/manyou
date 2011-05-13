@@ -29,6 +29,8 @@ Manyou::Application.routes.draw do
       member do
         get :track
       end
+
+      resources :replies
     end
 
   end

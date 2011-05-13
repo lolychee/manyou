@@ -2,8 +2,26 @@
   .head
     %h1.entry-title= @topic.title
     .entry-meta
-      %span.author= ''
+      %span.author= link_to_user(@topic.author)
       %span.entry-date= t 'time.created_at', :time => readability_time_format(@topic.created_at)
   .entry-content
     = rich_content(@topic.content)
   .entry-utility
+    = render :partial => 'utility', :object => @topic
+
+- if @replies.blank?
+  .widget.replies-blank
+- else
+  .widget.replies{:class => ''}
+    .replies-options= ''
+    = will_paginate @replies
+    = render :partial => 'forum/replies/list', :object => @replies
+    = will_paginate @replies
+
+.widget.reply-form
+  .widget-title= ''
+  .widget-content
+  = form_for @topic.replies.new, :url => topic_replies_path(@topic) do |form|
+    = render :partial => 'forum/replies/form', :object => form
+    .field= form.submit t('words.submit'), :class => 'button'
+

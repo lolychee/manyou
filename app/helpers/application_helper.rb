@@ -39,6 +39,7 @@ module ApplicationHelper
   end
 
   def link_to_topic(topic)
+    link_to topic.title, topic_path(topic)
   end
 
 

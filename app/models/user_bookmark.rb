@@ -4,7 +4,7 @@ class UserBookmark
 
   field :rating,        :type => Integer
   field :desc,          :type => String
-  field :type,          :type => String
+  field :collection,    :type => String
 
   embedded_in :user
 

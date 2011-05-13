@@ -1,6 +1,6 @@
 class Forum::RepliesController < ApplicationController
 
-  before_filter :authenticate_user!, :except => [:show]
+  before_filter :authenticate_user!
 
   before_filter do
     load_topic(params[:topic_id] || params[:id])
@@ -11,7 +11,7 @@ class Forum::RepliesController < ApplicationController
   end
 
   def create
-    @reply = @topic.replies.new params[:reply]
+    @reply = @topic.replies.new params[:topic_reply]
     @reply.floor =  @topic.replies.count + 1
     @reply.author = current_user
     if @reply.save
