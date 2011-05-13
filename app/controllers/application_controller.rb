@@ -62,8 +62,8 @@ class ApplicationController < ActionController::Base
 
   def recent_read(object)
     session[:recent_read] ||= []
-    unless session[:recent_read].include?(object.id)
-      session[:recent_read] << object.id
+    unless session[:recent_read].include?(object._id)
+      session[:recent_read] << object._id
       object.hits += 1
       object.save
     end

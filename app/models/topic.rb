@@ -2,6 +2,7 @@ class Topic
   include Mongoid::Document
   include Mongoid::Timestamps
   include Manyou::AutoIncrement
+  include Manyou::Vote
 
   ai_field :_id
 

@@ -17,7 +17,8 @@ Manyou::Application.routes.draw do
       end
     end
 
-    resources :bookmarks
+    get 'bookmarks/add', :to => 'bookmarks#create',     :as => :create_bookmark
+    get 'bookmarks/del', :to => 'bookmarks#destroy',    :as => :destroy_bookmark
 
   end
   scope :module => :forum do

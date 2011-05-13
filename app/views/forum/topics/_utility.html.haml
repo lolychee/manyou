@@ -1,6 +1,7 @@
 - if current_user.bookmarks.where(:id => utility.id).first != nil
+  = link_to t('.unbookmark'), destroy_bookmark_path(:url => topics_path(utility))
 - else
-  = link_to t('.bookmark'), new_bookmark_path(topics_path(utility))
+  = link_to t('.bookmark'), create_bookmark_path(:url => topics_path(utility))
 
 = link_to t('words.edit'), edit_topic_path(utility) if can? :update, utility
 = link_to t('words.delete'), topic_path(utility), :method => :delete, :confirm => '您真的要删除这个主题吗?' if can? :destroy, utility

@@ -1,13 +1,11 @@
 class TopicReply
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Manyou::Vote
 
   field :content,           :type => String
   field :floor,             :type => Integer
   field :status,            :type => String
-
-  field :voteup,            :type => Integer,   :default => 0
-  field :votedown,          :type => Integer,   :default => 0
 
   embedded_in :topic
 
