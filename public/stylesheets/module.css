@@ -81,34 +81,54 @@
 
 /*==== @replies-list ====*/
 .replies-list {}
-.replies-list .item {
+.replies-list .reply {
   overflow:auto;
   padding:10px 0;
   border-top:1px solid #E2E2E2;
 }
-.replies-list .icon {
+.replies-list .reply-author .user-avatar-link {
   float:left;
-  margin:0 15px;
+  margin:0 15px 0 10px;
 }
-.replies-list .meta {}
-.replies-list .content {
+.replies-list .reply-meta,
+.replies-list .reply-utility {
+  padding:0 10px;
+}
+.replies-list .reply-meta {}
+.replies-list .reply-content {
   line-height:160%;
-  margin-left:78px;
+  margin-left:73px;
   padding:10px 0;
+}
+.replies-list .reply-utility {
+  text-align:right;
+}
+.replies-list .reply-utility a {
 }
 
 /*==== @topics#show ====*/
-.topics.show .topic-content {
+.topics.show .topic {
   position:relative;
-  padding:5px 15px 15px;
 }
-.topics.show .topic-content .title {
+.topics.show .topic .head {
+  border-bottom:1px solid #EEE;
+  padding:0 10px;
+}
+.topics.show .topic .entry-title {
   margin:0 80px 0 0;
   font-weight:normal;
   font-size:19px;
   line-height:160%;
   color:#222;
 }
+.topics.show .topic .entry-meta {
+  line-height:200%;
+  color:#AAA;
+}
+.topics.show .topic .entry-meta a {
+  color:#48F;
+}
+/*
 .topics.show .topic-content a.mark,
 .topics.show .topic-content.marked a.mark:hover {
   display:inline-block;
@@ -138,25 +158,16 @@
     font:bold 18px Verdana;
     margin-bottom:10px;
 }
-.topics.show .topic-content .meta {
-  padding:10px 0;
-  color:#AAA;
+*/
+.topics.show .topic .entry-content {
+  margin:20px 15px 30px;
 }
-.topics.show .topic-content .meta a {
-  color:#36C;
+.topics.show .topic .entry-utility {
+  padding:5px;
+  text-align:right;
 }
-.topics.show .topic-content .split {
-  background:#EEE;
-  position:absolute;
-  left:0;
-  height:1px;
-  width:100%;
-}
-.topics.show .topic-content .content {
-  margin:20px 0 30px;
-}
-.topics.show .topic-content .actions {
-  float:right;
+.topics.show .topic .entry-utility a {
+  margin:0 0 0 0.5em;
 }
 .topics.show .replies-blank {
   margin-bottom:20px;
@@ -197,29 +208,16 @@
     margin-bottom:7px;
 }
 
-.topics.show .reply-box {
-  padding:10px 20px;
-}
-
-.editor-preview {
-  background:#EEE;
-  border:1px solid #DDD;
-  margin:10px 0;
-  padding:5px;
-  width:560px;
-  max-height:300px;
-  overflow:auto;
-}
-.editor-button-bar {
+.topics.show .reply-form {
 }
 
 
 /*==== @accounts#edit ====*/
-.accounts.edit {}
-.accounts.edit .field {
+.accounts.edit, .accounts.show {}
+.accounts.edit, .accounts.show .field {
   margin:0.5em;
 }
-.accounts.edit label {
+.accounts.edit, .accounts.show label {
   display:inline-block;
   width:80px;
 }

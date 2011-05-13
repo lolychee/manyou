@@ -1,9 +1,12 @@
+- content_for :title do
+  = @topic.title
+
 .widget.topic{:class => ''}
   .head
     %h1.entry-title= @topic.title
     .entry-meta
       %span.author= link_to_user(@topic.author)
-      %span.entry-date= t 'time.created_at', :time => readability_time_format(@topic.created_at)
+      %span.entry-date{:title => l(@topic.created_at)}= t 'time.created_at', :time => readability_time_format(@topic.created_at)
   .entry-content
     = rich_content(@topic.content)
   .entry-utility
@@ -19,11 +22,11 @@
     = will_paginate @replies
 
 .widget.reply-form
-  .widget-title= ''
+  .widget-title= 'leave your reply'
   .widget-content
-  = form_for @topic.replies.new, :url => topic_replies_path(@topic) do |form|
-    = render :partial => 'forum/replies/form', :object => form
-    .field= form.submit t('words.submit'), :class => 'button'
+    = form_for @topic.replies.new, :url => topic_replies_path(@topic) do |form|
+      = render :partial => 'forum/replies/form', :object => form
+      .field= form.submit t('words.submit'), :class => 'button'
 
 
 

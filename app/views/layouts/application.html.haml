@@ -2,7 +2,7 @@
 %html
   %head
     %meta{ "charset" => "utf-8" }
-    %title= yield :page_title
+    %title= yield :title
     %link{:rel => "shortcut icon", :href => "/favicon.ico"}
     = stylesheet_link_tag 'reset'
     = stylesheet_link_tag 'layout'
@@ -33,7 +33,6 @@
               //= t '.loading'
             = yield
           .aside
-            //= render :partial => 'share/sidebar_profile'
             = yield :aside
     = render :partial => 'layouts/footer'
 

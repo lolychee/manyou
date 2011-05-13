@@ -1,6 +1,6 @@
 Manyou::Application.routes.draw do
 
-  root :to => 'home#index'
+  root :to => 'forum/topics#index'
 
   match "/uploads/*path" => "gridfs#serve"
 
@@ -32,7 +32,12 @@ Manyou::Application.routes.draw do
         get :untrack
       end
 
-      resources :replies
+      resources :replies do
+        member do
+          get :voteup
+          get :votedown
+        end
+      end
     end
 
   end

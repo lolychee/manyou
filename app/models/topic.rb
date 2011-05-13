@@ -4,7 +4,7 @@ class Topic
   include Manyou::AutoIncrement
   include Manyou::Vote
 
-  ai_field :nid
+  ai_field :short_id
 
   field :thumbnail
   #mount_uploader :thumbnail, TopicThumbnailUploader
@@ -42,7 +42,7 @@ class Topic
   validates_inclusion_of    :status,    :in => STATUS, :allow_blank => true
 
   def to_param
-    nid.to_i.to_s
+    short_id.to_i.to_s
   end
 
 end
