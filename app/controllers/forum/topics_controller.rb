@@ -16,6 +16,7 @@ class Forum::TopicsController < ApplicationController
   def new
     #authorize! :create, @topic
     @topic = Topic.new
+    @topic.type = params[:type] if params[:type] && Topic::TYPE.include?(params[:type])
   end
 
   def create

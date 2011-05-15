@@ -82,12 +82,13 @@ form .field {
   font-size:14px;
 }
 form label {
+  font-size:14px;
 }
-form .text, form textarea {
-  padding:5px;
-  border:1px solid #999;
-  border-radius:4px;
-  box-shadow: 0 1px 1px #C3C3C6;
+form input[type="text"],
+form input[type="password"],
+form textarea {
+  padding:5px 0;
+  border:1px solid #CCC;
 }
 form .editor {
   width:560px;
@@ -219,17 +220,19 @@ form .editor {
 #body .container
 {
     padding:0 0 5px 0;
-}
-#body .widget
-{
-    position:relative;
-    background:#FFFFFF;
     margin-bottom:20px;
+    overflow:hidden;
+    background:#FFFFFF;
     border-radius: 5px;
     -moz-border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+#body .widget
+{
+    position:relative;
+    margin-bottom:20px;
 }
 #body .widget .widget-title
 {

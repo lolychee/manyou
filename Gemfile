@@ -31,6 +31,10 @@ gem 'bb-ruby'
 gem "will_paginate"
 gem 'http_accept_language', :git => 'http://github.com/iain/http_accept_language.git'
 
+group :development do
+  gem 'ruby-debug19', :require => 'ruby-debug'
+end
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'http://github.com/rails/rails.git'
 

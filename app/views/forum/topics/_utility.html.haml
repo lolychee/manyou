@@ -1,13 +1,14 @@
-- if current_user.bookmarks.where(:id => utility.id).first != nil
-  = link_to t('.unbookmark'), destroy_bookmark_path(topic_path(utility))
+- topic = utility
+- if current_user.bookmarks.where(:id => topic.id).first != nil
+  = link_to t('.unbookmark'), destroy_bookmark_path(topic_path(topic))
 - else
-  = link_to t('.bookmark'), create_bookmark_path(topic_path(utility))
+  = link_to t('.bookmark'), create_bookmark_path(topic_path(topic))
 
-- if utility.track_ids.include? current_user.id
-  = link_to t('.untrack'), untrack_topic_path(utility)
+- if topic.track_ids.include? current_user.id
+  = link_to t('.untrack'), untrack_topic_path(topic)
 - else
-  = link_to t('.track'), track_topic_path(utility)
+  = link_to t('.track'), track_topic_path(topic)
 
-= link_to t('words.edit'), edit_topic_path(utility) if can? :update, utility
-= link_to t('words.delete'), topic_path(utility), :method => :delete, :confirm => '您真的要删除这个主题吗?' if can? :destroy, utility
+= link_to t('words.edit'), edit_topic_path(topic) if can? :update, topic
+= link_to t('words.delete'), topic_path(topic), :method => :delete, :confirm => '您真的要删除这个主题吗?' if can? :destroy, topic
 

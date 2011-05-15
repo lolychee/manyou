@@ -1,8 +1,8 @@
 class Topic
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Manyou::AutoIncrement
   include Manyou::Vote
+  include Manyou::AutoIncrement
 
   ai_field :short_id
 
@@ -13,7 +13,7 @@ class Topic
   field :content,               :type => String
   field :hits,                  :type => Integer,   :default => 0
   field :status,                :type => String,    :default => 'normal'
-  field :type,                  :type => String,    :default => 'article'
+  field :type,                  :type => String
 
   STATUS    = ['normal', 'ban']
   TYPE      = ['tweet', 'article', 'media']

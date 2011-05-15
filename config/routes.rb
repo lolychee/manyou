@@ -6,14 +6,15 @@ Manyou::Application.routes.draw do
 
   scope :module => :member do
 
-    resource :session
-    get "logout", :to => "sessions#destroy", :as => :destroy_session
+    get     :login,     :to => 'sessions#new',      :as => :new_session
+    post    :login,     :to => 'sessions#create',   :as => :create_session
+    get     :logout,    :to => 'sessions#destroy',  :as => :destroy_session
 
     resource :account
 
     resources :users do
       collection do
-        get "tagged/:key", :action => :tagged, :constraints => { :key => /[^\/]+/ }, :as => :tagged
+        get 'tagged/:key', :action => :tagged, :constraints => { :key => /[^\/]+/ }, :as => :tagged
       end
     end
 
@@ -23,9 +24,10 @@ Manyou::Application.routes.draw do
   end
   scope :module => :forum do
 
-    resources :topics do
+    resources :topics, :constraints => { :id => /[0-9]+/ } do
       collection do
-        get "tagged/:key", :action => :tagged, :constraints => { :key => /[^\/]+/ }, :as => :tagged
+        get 'new/:type',    :action => :new,    :constraints => { :type => /\w+/ },     :as => :new
+        get 'tagged/:key',  :action => :tagged, :constraints => { :key => /[^\/]+/ },   :as => :tagged
       end
       member do
         get :track

@@ -1,16 +1,90 @@
+
 - if !form.object.errors.blank?
   = render :partial => 'shared/error_messages', :locals => {:target => form.object}
-.field
-  - Topic::TYPE.each do |value|
-    = form.radio_button :type, value
-    = form.label "type_#{value}", t(".#{value}")
-.field
-  = form.text_field :title, :class => 'text title', :maxlength => 50
-  .tips= t '.title_tips'
-.field
-  = render :partial => 'shared/editor', :object => form, :locals => {:field => :content}
+/.field
+/  - Topic::TYPE.each do |value|
+/    = form.radio_button :type, value
+/    = form.label "type_#{value}", t(".#{value}")
+
+.block.field-title.type-text{:class => 'can-accordion'}
+  .label= form.label :title
+  .field= form.text_field :title, :maxlength => 50
+.block.field-content.type-textarea{:class => 'can-accordion'}
+  .label= form.label :content
+  .field= render :partial => 'shared/editor', :object => form, :locals => {:field => :content}
+
+.content-box
+  - 5.times do |index|
+    .block.can-move.can-close
+      .field{:style => 'height:50px;'}= index + 1
+      /%a.move-button{:title => '拖动调整照片顺序'}= '移动'
+      /%a.close-button{:title => '移除这个元素'}= '删除'
+
+
 .field
   = form.label :tags
   = form.text_field :tag, :class => 'text tags'
   .meta= t '.tags_tips'
+
+
+
+:javascript
+  jQuery(function($){
+    var content = $('.new_topic');
+    content.find('.content-box').sortable({
+      axis: 'y',
+      opacity: 0.8,
+      handle: '.move-button',
+      cancel: '.title'
+    });
+    content.disableSelection();
+
+    $('.block', content).live('load', function(event){
+      var target = $(this);
+      if(target.hasClass('can-move')){
+        target.append('<a href="javascript:void(0)" class="move-button" title="拖动调整照片顺序">移动</a>');
+      }
+      if(target.hasClass('can-close')){
+        target.append('<a href="javascript:void(0)" class="close-button" title="移除这个元素">移除</a>');
+      }
+      if(target.hasClass('can-accordion')){
+        var label = target.find('.label');
+        var field = target.find('.field');
+        label.attr('title', '点击折叠');
+        label.append('<span class="summary"></span>');
+        var summary = label.find('.summary');
+
+        label.toggle(function(){
+          field.slideUp();
+          summary.html(function(){
+          value = field.find('input, textarea').val();
+
+          return ' : ' + (value == '' ? '空' : value)
+          });
+          target.toggleClass('accordion');
+          label.attr('title', '点击展开');
+        }, function(){
+          field.slideDown();
+          summary.html('');
+          target.toggleClass('accordion');
+          label.attr('title', '点击折叠');
+        });
+
+      }
+    });
+    $('.block', content).trigger('load');
+    content.click(function(event){
+      var target = $(event.target);
+
+      if(target.hasClass('close-button')){
+
+        //do some ajax request
+
+        //if success
+        target.parent().remove();
+        event.preventDefault();
+      }
+
+    });
+  });
 

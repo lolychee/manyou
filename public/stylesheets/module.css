@@ -106,6 +106,49 @@
 .replies-list .reply-utility a {
 }
 
+/*==== @topics#new ====*/
+.topics.new {}
+.topics.new .new_topic {}
+.topics.new .new_topic .block {
+  background:#EEE;
+  padding:10px 30px 10px 20px;
+  margin:10px 0;
+  border-radius:5px;
+  color:#555;
+  position:relative;
+}
+.topics.new .new_topic .block.type-text input {
+  width:100%;
+}
+.topics.new .new_topic .block .field {
+  margin:10px 0;
+}
+.topics.new .new_topic .block .move-button,
+.topics.new .new_topic .block .close-button {
+  background:url(../images/new_topic_button.png) no-repeat 0 0;
+  display:block;
+  overflow:hidden;
+  text-indent:-9999px;
+  height:16px;
+  position:absolute;
+  top:10px;
+}
+.topics.new .new_topic .block .move-button {
+  width:9px;
+  cursor:move;
+  background-position:right 0;
+  left:8px;
+}
+.topics.new .new_topic .block .close-button {
+  width:16px;
+  background-position:-26px 0;
+  right:8px;
+}
+.topics.new .new_topic .block .close-button:hover {
+  background-position:left 0;
+}
+
+
 /*==== @topics#show ====*/
 .topics.show .topic {
   position:relative;
