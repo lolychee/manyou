@@ -1,6 +1,8 @@
 .widget.edit-form
-  = form_for @topic, :url => topic_path(@topic) do |f|
-    = render :partial => 'form', :object => f
-    .field
-      = f.submit t('words.save'), :class => 'button'
+  .widget-title= 'edit topic'
+  .widget-content
+    = form_for @topic, :url => topic_path(@topic) do |f|
+      = render :partial => 'form', :object => f
+      .field
+        = f.submit t('words.save'), :class => 'button'
 

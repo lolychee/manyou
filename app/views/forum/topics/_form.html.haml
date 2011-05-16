@@ -26,65 +26,18 @@
   = form.text_field :tag, :class => 'text tags'
   .meta= t '.tags_tips'
 
+- content_for :aside do
+  .form-utility
+    /= link_to t('reset'), 'javascript:void(0)', :class => 'button cancel', :id => 'form-reset'
+    = link_to t('submit'), 'javascript:void(0)', :class => 'button submit', :id => 'form-submit'
 
+  .form-add-media
+    %li= link_to t('.add_image'), 'javascript:void(0)', :id => 'form-add-image'
+    %li= link_to t('.add_video'), 'javascript:void(0)', :id => 'form-add-video'
+    %li= link_to t('.add_music'), 'javascript:void(0)', :id => 'form-add-music'
 
 :javascript
   jQuery(function($){
-    var content = $('.new_topic');
-    content.find('.content-box').sortable({
-      axis: 'y',
-      opacity: 0.8,
-      handle: '.move-button',
-      cancel: '.title'
-    });
-    content.disableSelection();
-
-    $('.block', content).live('load', function(event){
-      var target = $(this);
-      if(target.hasClass('can-move')){
-        target.append('<a href="javascript:void(0)" class="move-button" title="拖动调整照片顺序">移动</a>');
-      }
-      if(target.hasClass('can-close')){
-        target.append('<a href="javascript:void(0)" class="close-button" title="移除这个元素">移除</a>');
-      }
-      if(target.hasClass('can-accordion')){
-        var label = target.find('.label');
-        var field = target.find('.field');
-        label.attr('title', '点击折叠');
-        label.append('<span class="summary"></span>');
-        var summary = label.find('.summary');
-
-        label.toggle(function(){
-          field.slideUp();
-          summary.html(function(){
-          value = field.find('input, textarea').val();
-
-          return ' : ' + (value == '' ? '空' : value)
-          });
-          target.toggleClass('accordion');
-          label.attr('title', '点击展开');
-        }, function(){
-          field.slideDown();
-          summary.html('');
-          target.toggleClass('accordion');
-          label.attr('title', '点击折叠');
-        });
-
-      }
-    });
-    $('.block', content).trigger('load');
-    content.click(function(event){
-      var target = $(event.target);
-
-      if(target.hasClass('close-button')){
-
-        //do some ajax request
-
-        //if success
-        target.parent().remove();
-        event.preventDefault();
-      }
-
-    });
+    Manyou.topics.edit('.container');
   });
 
