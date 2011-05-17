@@ -15,7 +15,7 @@
     #body
       .wrapper
         .breadcrumbs= render_breadcrumbs
-        .container
+        .container{:class => "#{content_for?(:aside)? 'column2' : 'column1'}"}
           .article
             - if flash[:success]
               .success.flash
@@ -32,7 +32,8 @@
               #loading-notice
               //= t '.loading'
             = yield
-          .aside
-            = yield :aside
+          - if content_for?(:aside)
+            .aside
+              = yield :aside
     = render :partial => 'layouts/footer'
 

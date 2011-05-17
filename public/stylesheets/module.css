@@ -107,12 +107,23 @@
 }
 
 /*==== @topics-form ====*/
-.topics-form {}
-#body .topics-form {
-  background:#FFF url(../images/edit_topic_bg.png) repeat-y 0 0;
+.topics.new .container,
+.topics.edit .container {
+  background:#FFF url(../images/edit_topic_bg.png) repeat-y 0 0 !important;
 }
-.topics-form form {}
-.topics-form form .block {
+.topics.new .main-column,
+.topics.edit .main-column {
+  width:660px;
+  float:left;
+}
+.topics.new .side-column,
+.topics.edit .side-column {
+  width:300px;
+  float:right;
+}
+
+.topics.new .block,
+.topics.edit .block {
   background:#EEE;
   padding:10px 30px 10px 20px;
   margin:10px 0;
@@ -120,17 +131,18 @@
   color:#555;
   position:relative;
 }
-.topics-form form .block.type-text input {
+.topics.new .block.type-text input {
   width:100%;
 }
-.topics-form form .block .field {
+.topics.new .block .field,
+.topics.edit .block .field {
   margin:10px 0 0;
 }
 
-.topics-form .form-utility {
+.topics.new .form-utility {
   padding:10px 0;
 }
-.topics-form .button {
+form .button {
   background:#F2F2F2 url(../images/white-grad.png) repeat-x scroll left top;
   border:1px solid #BBB;
   padding:3px 10px;
@@ -138,10 +150,10 @@
   font-size:11px!important;
   font-family:"Lucida Grande",Verdana,Arial,"Bitstream Vera Sans",sans-serif;
 }
-.topics-form .button:hover {
+form .button:hover {
   border-color:#666;
 }
-.topics-form .submit {
+form .submit {
   background:#21759B url(../images/button-grad.png) repeat-x scroll left top;
   color:#FFF;
   border-color:#298CBA;
@@ -151,8 +163,10 @@
 
 
 
-.topics-form form .block .move-button,
-.topics-form form .block .close-button {
+.topics.new .block .move-button,
+.topics.edit .block .move-button,
+.topics.new .block .close-button,
+.topics.edit .block .close-button {
   background:url(../images/edit_topic_button.png) no-repeat 0 0;
   display:block;
   overflow:hidden;
@@ -161,18 +175,21 @@
   position:absolute;
   top:10px;
 }
-.topics-form form .block .move-button {
+.topics.new .block .move-button,
+.topics.edit .block .move-button {
   width:9px;
   cursor:move;
   background-position:right 0;
   left:8px;
 }
-.topics-form form .block .close-button {
+.topics.new .block .close-button,
+.topics.edit.block .close-button {
   width:16px;
   background-position:-26px 0;
   right:8px;
 }
-.topics-form form .block .close-button:hover {
+.topics.new .block .close-button:hover,
+.topics.edit .block .close-button:hover {
   background-position:left 0;
 }
 

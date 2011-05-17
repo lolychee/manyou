@@ -229,6 +229,7 @@ form .editor {
     -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
+
 #body .widget
 {
     position:relative;
@@ -245,12 +246,12 @@ form .editor {
     padding:15px;
 }
 
-#body .article
+#body .column2 .article
 {
     width:620px;
     float:left;
 }
-#body .aside
+#body .column2 .aside
 {
     width:310px;
     float:right;

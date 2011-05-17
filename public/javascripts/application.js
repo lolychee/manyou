@@ -7,7 +7,6 @@ var Manyou = {
             var container = $(container_string);
             var form = container.find('form');
 
-            container.addClass('topics-form');
             form.find('.content-box').sortable({
                 axis: 'y',
                 opacity: 0.8,

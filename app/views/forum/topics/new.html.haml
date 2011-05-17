@@ -1,15 +1,5 @@
-.widget
-  .widget-title= 'New Topic'
-  .widget-content
-    = form_for @topic do |form|
-      = form.hidden_field :type
-      = render :partial => "form", :object => form
-      .field
-        = form.submit t('words.create'), :class => 'button'
-
-
-- content_for :aside do
-  .form-utility
-    = link_to t('reset'), 'javascript:void(0)', :class => 'button cancel'
-    = link_to t('submit'), 'javascript:$("#new_topic").submit()', :class => 'button submit'
+= form_for @topic do |form|
+  = render :partial => "form", :object => form
+  .field
+    /= form.submit t('words.create'), :class => 'button'
 

@@ -1,40 +1,46 @@
+.main-column.widget.topic-content
+  .widget-title= 'New Topic'
+  .widget-content
+    - if !form.object.errors.blank?
+      = render :partial => 'shared/error_messages', :locals => {:target => form.object}
+      /.field
+      /  - Topic::TYPE.each do |value|
+      /    = form.radio_button :type, value
+      /    = form.label "type_#{value}", t(".#{value}")
 
-- if !form.object.errors.blank?
-  = render :partial => 'shared/error_messages', :locals => {:target => form.object}
-/.field
-/  - Topic::TYPE.each do |value|
-/    = form.radio_button :type, value
-/    = form.label "type_#{value}", t(".#{value}")
+    .block.field-title.type-text{:class => 'can-accordion'}
+      .label= form.label :title
+      .field= form.text_field :title, :maxlength => 50
+    .block.field-content.type-textarea{:class => 'can-accordion'}
+      .label= form.label :content
+      .field= render :partial => 'shared/editor', :object => form, :locals => {:field => :content}
 
-.block.field-title.type-text{:class => 'can-accordion'}
-  .label= form.label :title
-  .field= form.text_field :title, :maxlength => 50
-.block.field-content.type-textarea{:class => 'can-accordion'}
-  .label= form.label :content
-  .field= render :partial => 'shared/editor', :object => form, :locals => {:field => :content}
+    .media-box
+      - 5.times do |index|
+        .block.can-move.can-close
+          .field{:style => 'height:50px;'}= index + 1
+          /%a.move-button{:title => '拖动调整照片顺序'}= '移动'
+          /%a.close-button{:title => '移除这个元素'}= '删除'
 
-.content-box
-  - 5.times do |index|
-    .block.can-move.can-close
-      .field{:style => 'height:50px;'}= index + 1
-      /%a.move-button{:title => '拖动调整照片顺序'}= '移动'
-      /%a.close-button{:title => '移除这个元素'}= '删除'
+.side-column
+  .widget.form-utility
+    .field= form.submit t('words.create'), :class => 'button submit', :id => 'form-submit'
 
+  .widget.form-add-media
+    .widget-content
+      = link_to t('.add_image'), 'javascript:void(0)', :id => 'form-add-image'
+      /=
+      %br
+      = link_to t('.add_video'), 'javascript:void(0)', :id => 'form-add-video'
+      %br
+      = link_to t('.add_music'), 'javascript:void(0)', :id => 'form-add-music'
 
-.field
-  = form.label :tags
-  = form.text_field :tag, :class => 'text tags'
-  .meta= t '.tags_tips'
+  .widget
+    .widget-content
+      .label= form.label :tags
+      .field= form.text_field :tag, :class => 'text tags'
+      .meta= t '.tags_tips'
 
-- content_for :aside do
-  .form-utility
-    /= link_to t('reset'), 'javascript:void(0)', :class => 'button cancel', :id => 'form-reset'
-    = link_to t('submit'), 'javascript:void(0)', :class => 'button submit', :id => 'form-submit'
-
-  .form-add-media
-    %li= link_to t('.add_image'), 'javascript:void(0)', :id => 'form-add-image'
-    %li= link_to t('.add_video'), 'javascript:void(0)', :id => 'form-add-video'
-    %li= link_to t('.add_music'), 'javascript:void(0)', :id => 'form-add-music'
 
 :javascript
   jQuery(function($){

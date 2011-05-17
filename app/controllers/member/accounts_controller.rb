@@ -11,7 +11,7 @@ class Member::AccountsController < ApplicationController
   def create
     @user = User.new params[:user]
     if @user.save
-      current_user_session = UserSession.new @user
+      current_user = @user
       redirect_to root_url
     else
       render :new
