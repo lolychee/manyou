@@ -7,7 +7,7 @@ var Manyou = {
             var container = $(container_string);
             var form = container.find('form');
 
-            form.find('.content-box').sortable({
+            form.find('.media-box').sortable({
                 axis: 'y',
                 opacity: 0.8,
                 handle: '.move-button',
@@ -63,8 +63,39 @@ var Manyou = {
 
             });
 
-            $('#form-submit').click(function(){form.submit()});
-            $('#form-reset').click(function(){form.reset()});
+            //$('#form-submit').click(function(){form.submit()});
+            //$('#form-reset').click(function(){form.reset()});
+
+            $('#add-image-button').click(function(event){
+                $( "#dialog:ui-dialog" ).dialog( "destroy" );
+                $('#add-image-dialog').dialog({
+                    "width" : "480",
+                    "height" : "300",
+                    "modal" : true
+                });
+                $('#add-image-dialog').tabs();
+                event.preventDefault();
+            });
+            $('#add-video-button').click(function(event){
+                $( "#dialog:ui-dialog" ).dialog( "destroy" );
+                $('#add-video-dialog').dialog({
+                    "width" : "480",
+                    "height" : "300",
+                    "modal" : true
+                });
+                //$('#add-video-dialog').tabs();
+                event.preventDefault();
+            });
+            $('#add-music-button').click(function(event){
+                $( "#dialog:ui-dialog" ).dialog( "destroy" );
+                $('#add-music-dialog').dialog({
+                    "width" : "480",
+                    "height" : "300",
+                    "modal" : true
+                });
+                //$('#add-image-dialog').tabs();
+                event.preventDefault();
+            });
         }
     }
 };

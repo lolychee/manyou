@@ -99,6 +99,10 @@ form .editor {
     clear:both;
 }
 
+.hidden {
+  display:none !important;
+}
+
 .wrapper
 {
     width:960px;
