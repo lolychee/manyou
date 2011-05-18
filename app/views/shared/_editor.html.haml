@@ -2,7 +2,7 @@
   = javascript_include_tag "xheditor/xheditor-1.1.6-#{I18n.locale.downcase}.min"
   = javascript_include_tag "xheditor/ubb"
 
-= editor.text_area field, :id => "#{editor.object.class.name.downcase}-editor", :class => :editor, :rows => 10, :cols => 60
+= editor.text_area field, :id => "#{editor.object.class.name.downcase}-editor", :class => :editor
 :javascript
   jQuery(function($){
     $('##{editor.object.class.name.downcase}-editor').xheditor({

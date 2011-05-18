@@ -68,32 +68,35 @@ var Manyou = {
 
             $('#add-image-button').click(function(event){
                 $( "#dialog:ui-dialog" ).dialog( "destroy" );
-                $('#add-image-dialog').dialog({
+                var dialog = $('#add-image-dialog');
+                dialog.dialog({
                     "width" : "480",
                     "height" : "300",
                     "modal" : true
                 });
-                $('#add-image-dialog').tabs();
+                dialog.tabs();
                 event.preventDefault();
             });
             $('#add-video-button').click(function(event){
                 $( "#dialog:ui-dialog" ).dialog( "destroy" );
-                $('#add-video-dialog').dialog({
+                var dialog = $('#add-video-dialog');
+                dialog.dialog({
                     "width" : "480",
                     "height" : "300",
                     "modal" : true
                 });
-                //$('#add-video-dialog').tabs();
+                //dialog.tabs();
                 event.preventDefault();
             });
             $('#add-music-button').click(function(event){
                 $( "#dialog:ui-dialog" ).dialog( "destroy" );
-                $('#add-music-dialog').dialog({
+                var dialog = $('#add-music-dialog');
+                dialog.dialog({
                     "width" : "480",
                     "height" : "300",
                     "modal" : true
                 });
-                //$('#add-image-dialog').tabs();
+                //dialog.tabs();
                 event.preventDefault();
             });
         }

@@ -91,7 +91,7 @@ form textarea {
   border:1px solid #CCC;
 }
 form .editor {
-  width:560px;
+  width:100%;
 }
 
 .clear

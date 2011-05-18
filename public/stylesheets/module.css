@@ -131,7 +131,8 @@
   color:#555;
   position:relative;
 }
-.topics.new .block.type-text input {
+.topics.new .block.type-text input,
+.topics.edit .block.type-text input {
   width:100%;
 }
 .topics.new .block .field,
@@ -139,9 +140,6 @@
   margin:10px 0 0;
 }
 
-.topics.new .form-utility {
-  padding:10px 0;
-}
 form .button {
   background:#F2F2F2 url(../images/white-grad.png) repeat-x scroll left top;
   border:1px solid #BBB;
@@ -183,7 +181,7 @@ form .submit {
   left:8px;
 }
 .topics.new .block .close-button,
-.topics.edit.block .close-button {
+.topics.edit .block .close-button {
   width:16px;
   background-position:-26px 0;
   right:8px;
