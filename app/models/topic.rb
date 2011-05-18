@@ -32,7 +32,7 @@ class Topic
   embeds_many :replies,         :class_name => 'TopicReply'
   embeds_many :media,           :class_name => 'TopicMedium'
 
-  has_and_belongs_to_many :track, :class_name => 'User'
+  has_and_belongs_to_many :track_users, :class_name => 'User'
   has_and_belongs_to_many :tags, :class_name => 'Tag'
 
 

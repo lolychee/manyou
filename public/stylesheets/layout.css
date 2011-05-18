@@ -75,7 +75,10 @@ tbody tr:nth-child(even) td, tbody tr.even td
 tfoot {
 
 }
-
+ol,ul
+{
+    list-style-position:inside;
+}
 /*=== @form ===*/
 form .field {
   clear:both;

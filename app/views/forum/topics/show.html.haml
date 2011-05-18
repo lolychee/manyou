@@ -2,15 +2,20 @@
   = @topic.title
 
 .widget.topic{:class => ''}
-  .head
-    %h1.entry-title= @topic.title
-    .entry-meta
-      %span.author= link_to_user(@topic.author)
-      %span.entry-date{:title => l(@topic.created_at)}= t 'time.created_at', :time => readability_time_format(@topic.created_at)
-  .entry-content
-    = rich_content(@topic.content)
-  .entry-utility
-    = render :partial => 'utility', :object => @topic
+  .widget-content
+    .head
+      %h1.entry-title= @topic.title
+      .entry-meta
+        %span.author= link_to_user(@topic.author)
+        %span.entry-date{:title => l(@topic.created_at)}= t 'time.created_at', :time => readability_time_format(@topic.created_at)
+        .bookmarks
+          %span.sum= @topic.bookmarks
+          = t '.bookmark'
+    - if @topic.content
+      .entry-content
+        = rich_content(@topic.content)
+    .entry-utility
+      = render :partial => 'utility', :object => @topic
 
 - if @replies.blank?
   .widget.replies-blank

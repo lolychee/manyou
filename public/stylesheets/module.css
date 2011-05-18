@@ -198,7 +198,7 @@ form .submit {
 }
 .topics.show .topic .head {
   border-bottom:1px solid #EEE;
-  padding:0 10px;
+  padding:5px 10px 0;
 }
 .topics.show .topic .entry-title {
   margin:0 80px 0 0;
@@ -232,19 +232,20 @@ form .submit {
   background-image:url(../images/star-4.png);
 }
 
-.topics.show .topic-content .vote {
+*/
+.topics.show .topic .bookmarks {
   position:absolute;
   text-align:center;
   width:80px;
   right:0;
   top:10px;
+  color:#888;
 }
-.topics.show .topic-content .vote .sum
+.topics.show .topic .bookmarks .sum
 {
     font:bold 18px Verdana;
-    margin-bottom:10px;
+    display:block;
 }
-*/
 .topics.show .topic .entry-content {
   margin:20px 15px 30px;
 }

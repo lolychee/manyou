@@ -18,13 +18,14 @@ Manyou::Application.routes.draw do
       end
     end
 
-    get 'bookmarks/add:id', :to => 'bookmarks#create',    :constraints => { :id => /.*/ },   :as => :create_bookmark
-    get 'bookmarks/del:id', :to => 'bookmarks#destroy',   :constraints => { :id => /.*/ },   :as => :destroy_bookmark
+    get 'bookmarks/add*path', :to => 'bookmarks#create',    :as => :create_bookmark
+    get 'bookmarks/del*path', :to => 'bookmarks#destroy',   :as => :destroy_bookmark
 
   end
+
   scope :module => :forum do
 
-    resources :topics, :constraints => { :id => /[0-9]+/ } do
+    resources :topics do
       collection do
         get 'new/:type',    :action => :new,    :constraints => { :type => /\w+/ },     :as => :new
         get 'tagged/:key',  :action => :tagged, :constraints => { :key => /[^\/]+/ },   :as => :tagged
