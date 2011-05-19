@@ -4,9 +4,11 @@ class Member::BookmarksController < ApplicationController
     path = env["PATH_INFO"].gsub(/\/bookmarks\/[add|del]/, "")
 
     arg = path.split '/'
-    case arg[1]
+    collection = arg[1]
+    id = arg[2]
+    case collection
     when 'topics'
-      @object = load_topic(arg[2])
+      @object = load_topic(id)
     end
   end
 
@@ -17,7 +19,7 @@ class Member::BookmarksController < ApplicationController
   end
 
   def create
-    if @object && current_user.bookmarks.where(:_id => @object.id).first = nil
+    if @object && current_user.bookmarks.where(:_id => @object.id).first == nil
       @bookmark = current_user.bookmarks.new
       @bookmark.id = @object.id
       @bookmark.collection = @object.collection_name
@@ -45,6 +47,8 @@ class Member::BookmarksController < ApplicationController
   def destroy
     if @object
       current_user.bookmarks.where(:_id => @object.id).destroy_all
+      @object.bookmarks -= 1 if @object.bookmarks > 0
+      @object.save
       redirect_to @object
     else
       redirect_to root_path

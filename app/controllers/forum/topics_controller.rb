@@ -64,4 +64,13 @@ class Forum::TopicsController < ApplicationController
     redirect_to topics_path
   end
 
+  def voteup
+    @topic.vote!(current_user)
+    redirect_to topic_path(@topic)
+  end
+
+  def votedown
+    @topic.vote!(current_user, -1)
+    redirect_to topic_path(@topic)
+  end
 end

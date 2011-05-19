@@ -1,7 +1,7 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Manyou::Authentication
+  include Manyou::DB::Authentication
 
   field :avatar
   mount_uploader :avatar, AvatarUploader

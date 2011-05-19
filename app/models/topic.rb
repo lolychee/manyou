@@ -1,8 +1,8 @@
 class Topic
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Manyou::Vote
-  include Manyou::AutoIncrement
+  include Manyou::DB::Vote
+  include Manyou::DB::AutoIncrement
 
   ai_field :short_id
 
@@ -13,12 +13,12 @@ class Topic
   field :content,               :type => String
   field :hits,                  :type => Integer,   :default => 0
   field :status,                :type => String,    :default => 'normal'
-  field :type,                  :type => String
+  field :type,                  :type => Array,     :default => []
 
   STATUS    = ['normal', 'ban']
-  TYPE      = ['tweet', 'article', 'media']
+  #TYPE      = ['tweet', 'article', 'media']
 
-  attr_accessible :title, :content, :tag, :type
+  attr_accessible :title, :content, :tag
 
   field :tag
 
@@ -33,13 +33,18 @@ class Topic
   embeds_many :media,           :class_name => 'TopicMedium'
 
   has_and_belongs_to_many :track_users, :class_name => 'User'
-  has_and_belongs_to_many :tags, :class_name => 'Tag'
+  has_and_belongs_to_many :relation_tags, :class_name => 'Tag'
 
 
   scope :find_by_author, ->(id) { where(:author_id => id) }
 
-  validates_inclusion_of    :type,      :in => TYPE, :allow_blank => true
+  #validates_inclusion_of    :type,      :in => TYPE, :allow_blank => true
   validates_inclusion_of    :status,    :in => STATUS, :allow_blank => true
+
+  before_save do
+    type.push :title unless title.blank?
+    #type.push :
+  end
 
   def to_param
     short_id.to_i.to_s

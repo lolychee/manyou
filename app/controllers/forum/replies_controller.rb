@@ -28,4 +28,13 @@ class Forum::RepliesController < ApplicationController
     redirect_to topic_path(@topic)
   end
 
+  def voteup
+    @reply.vote!(current_user)
+    redirect_to topic_path(@topic, :anchor => "reply#{@reply.floor}")
+  end
+
+  def votedown
+    @reply.vote!(current_user, -1)
+    redirect_to topic_path(@topic, :anchor => "reply#{@reply.floor}")
+  end
 end

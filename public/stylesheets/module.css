@@ -86,9 +86,12 @@
   padding:10px 0;
   border-top:1px solid #E2E2E2;
 }
-.replies-list .reply-author .user-avatar-link {
+.replies-list .reply-author {
   float:left;
-  margin:0 15px 0 10px;
+  margin:0 20px 0 10px;
+}
+.replies-list .reply-meta .reply-floor {
+  float:right;
 }
 .replies-list .reply-meta,
 .replies-list .reply-utility {
@@ -97,8 +100,8 @@
 .replies-list .reply-meta {}
 .replies-list .reply-content {
   line-height:160%;
-  margin-left:73px;
-  padding:10px 0;
+  margin-left:78px;
+  padding:20px 0 10px;
 }
 .replies-list .reply-utility {
   text-align:right;
@@ -198,7 +201,7 @@ form .submit {
 }
 .topics.show .topic .head {
   border-bottom:1px solid #EEE;
-  padding:5px 10px 0;
+  padding:5px 15px 0;
 }
 .topics.show .topic .entry-title {
   margin:0 80px 0 0;

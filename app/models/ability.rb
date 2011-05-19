@@ -10,6 +10,7 @@ class Ability
     elsif !user.is_guest?
       can :update, User, :_id => user.id
       can :update, Topic, :author_id => user.id
+      can :update, TopicReply, :author_id => user.id
     else
       can :read, :all
     end

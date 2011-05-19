@@ -1,4 +1,5 @@
-module Manyou::Authentication
+module Manyou::DB
+  module Manyou::DB::Authentication
 
   extend ActiveSupport::Concern
 
@@ -68,5 +69,5 @@ module Manyou::Authentication
     end
   end
 
-
+  end
 end

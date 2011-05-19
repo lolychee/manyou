@@ -1,36 +1,34 @@
-module Manyou::Vote
+module Manyou::DB
+  module Manyou::DB::Vote
 
-  extend ActiveSupport::Concern
+    extend ActiveSupport::Concern
 
-  included do
+    included do
 
-    field :vote_up,      :type => Integer,   :default => 0 if !method_defined? :vote_up
-    field :vote_down,    :type => Integer,   :default => 0 if !method_defined? :vote_down
+      field :vote_up,      :type => Integer,   :default => 0
+      field :vote_down,    :type => Integer,   :default => 0
 
-    has_and_belongs_to_many :vote_users, :class_name => 'User' if !method_defined? :vote_users
+      #has_and_belongs_to_many :vote_users, :class_name => 'User'
+      has_many :vote_users, :class_name => 'User'
 
-    class_eval do
-      def vote_up!(user)
-        if !is_vote?(user)
-          vote_user.push(user)
-          write_attribute :vote_up, vote_up+1
-          save
+      class_eval do
+        def vote!(user, type = 1)
+          if !is_vote?(user)
+            vote_user_ids << user._id
+            if type > 0
+              write_attribute :vote_up, vote_up+1
+            else
+              write_attribute :vote_down, vote_down+1
+            end
+            save
+          end
         end
-      end
 
-      def vote_down!(user)
-        if !is_vote?(user)
-          vote_user.push(user)
-          write_attribute :vote_down, vote_down+1
-          save
+        def is_vote?(user)
+          vote_user_ids.include?(user._id)
         end
-      end
-
-      def is_vote?(user)
-        vote_user_ids.include?(user._id)
       end
     end
 
   end
-
 end

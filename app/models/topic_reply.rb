@@ -1,7 +1,7 @@
 class TopicReply
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Manyou::Vote
+  include Manyou::DB::Vote
 
   field :content,           :type => String
   field :floor,             :type => Integer
