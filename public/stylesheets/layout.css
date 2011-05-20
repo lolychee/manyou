@@ -6,7 +6,6 @@ body
     background:#E0E6E7;
     /*background:transparent url(../images/background.png) repeat 0 0;*/
     font: normal 12px "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
-    text-shadow:#FFF 0 1px 0;
 }
 
 p
@@ -226,7 +225,6 @@ form .editor {
 }
 #body .container
 {
-    padding:0 0 5px 0;
     margin-bottom:20px;
     overflow:hidden;
     background:#FFFFFF;

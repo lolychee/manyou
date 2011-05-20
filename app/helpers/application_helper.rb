@@ -5,7 +5,7 @@ module ApplicationHelper
   end
 
   def rich_content(content)
-    auto_mention(auto_link(sanitize(content).bbcode_to_html))
+    auto_mention(auto_link(sanitize(content).bbcode_to_html({}, false, :enable, :image, :bold, :italics, :underline, :strikeout, :delete, :code, :ol, :ul, :link, :quote)))
   end
 
   def auto_mention(text)
@@ -39,7 +39,7 @@ module ApplicationHelper
   end
 
   def link_to_topic(topic)
-    link_to topic.title, topic_path(topic)
+    link_to topic.title, topic_path(topic), :class => 'topic-link'
   end
 
 

@@ -25,6 +25,7 @@ Manyou::Application.routes.draw do
 
   scope :module => :forum do
 
+    get 'node/:id',     :to => 'topics#node',   :as => :node
     resources :topics do
       collection do
         get 'new/:type',    :action => :new,    :constraints => { :type => /\w+/ },     :as => :new

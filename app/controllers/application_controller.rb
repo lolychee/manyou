@@ -78,15 +78,19 @@ class ApplicationController < ActionController::Base
     @topic = Topic.first(:conditions => { :short_id => id.to_i}) || render_404
   end
 
-  def load_reply(id)
-    @reply = @topic.replies.find id || render_404
+  def load_reply(id, topic = nil)
+    topic ||= (@topic || render_404)
+    @reply = topic.replies.find id
+    rescue Mongoid::Errors::DocumentNotFound
+      render_404
   end
 
   def load_tag(tag)
-      @tag = Tag.find_by_tag tag
+    @tag = Tag.find_by_tag tag
   end
 
   def load_tags(arr)
   end
+
 
 end

@@ -42,7 +42,7 @@ class Topic
   validates_inclusion_of    :status,    :in => STATUS, :allow_blank => true
 
   before_save do
-    type.push 'title' unless title.blank? && !type.include('title')
+    #type.push 'title' unless title.blank? && !type.include('title')
     #type.push :
   end
 

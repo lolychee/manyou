@@ -6,7 +6,6 @@
   overflow:hidden;
   padding:10px 65px 10px 78px;
   border-top:1px solid #E2E2E2;
-  line-height:180%;
 }
 .topics-list .entry-author {
   position:absolute;
@@ -17,19 +16,31 @@
   display:block;
   text-align:center;
 }
+.topics-list .entry-author .user-link {
+  position:absolute;
+  bottom:0;
+  width:48px;
+  background:#EEE;
+  visibility:hidden;
+}
+.topics-list .entry-author:hover .user-link {
+  visibility:visible;
+  opacity:0.8;
+}
 .topics-list .entry-title {
   font-weight:normal;
   font-size:16px;
+  line-height:140%;
 }
-.topics-list .entry-meta {
-  margin-top:8px;
+.topics-list .untitled .entry-title .topic-link {
+  color:#444;
+}
+.topics-list .entry-utility {
+  margin-top:10px;
   line-height:160%;
   color:#999;
 }
 .topics-list .tags-list {
-  border-left:1px solid #CCC;
-  padding-left:10px;
-  margin-left:5px;
 }
 .topics-list .reply-count {
   position:absolute;
@@ -77,21 +88,24 @@
   padding:3px 5px;
   margin:0 1px;
   border-radius: 3px;
+  text-shadow:#FFF 0 1px 0;
 }
 
 /*==== @replies-list ====*/
-.replies-list {}
-.replies-list .reply {
-  overflow:auto;
-  padding:10px 0;
+.replies-list {
   border-top:1px solid #E2E2E2;
+}
+.replies-list .reply {
+  position:relative;
+  padding:10px 0;
+  border-bottom:1px solid #E2E2E2;
 }
 .replies-list .reply-author {
   float:left;
   margin:0 20px 0 10px;
 }
-.replies-list .reply-meta .reply-floor {
-  float:right;
+.replies-list .reply-utility .reply-floor {
+  margin-left:15px;
 }
 .replies-list .reply-meta,
 .replies-list .reply-utility {
@@ -100,11 +114,13 @@
 .replies-list .reply-meta {}
 .replies-list .reply-content {
   line-height:160%;
-  margin-left:78px;
-  padding:20px 0 10px;
+  margin:15px 0 10px 78px;
+  font-size:14px;
 }
 .replies-list .reply-utility {
-  text-align:right;
+  position:absolute;
+  top:10px;
+  right:0;
 }
 .replies-list .reply-utility a {
 }
@@ -198,10 +214,15 @@ form .submit {
 /*==== @topics#show ====*/
 .topics.show .topic {
   position:relative;
+  overflow:hidden;
 }
 .topics.show .topic .head {
   border-bottom:1px solid #EEE;
-  padding:5px 15px 0;
+  padding:5px 15px;
+  margin-bottom:10px;
+}
+.topics.show .untitled .head {
+  border:none;
 }
 .topics.show .topic .entry-title {
   margin:0 80px 0 0;
@@ -252,9 +273,13 @@ form .submit {
 .topics.show .topic .entry-content {
   margin:20px 15px 30px;
 }
+.topics.show .topic .entry-tags {
+  padding:5px;
+  float:left;
+}
 .topics.show .topic .entry-utility {
   padding:5px;
-  text-align:right;
+  float:right;
 }
 .topics.show .topic .entry-utility a {
   margin:0 0 0 0.5em;

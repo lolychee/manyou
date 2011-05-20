@@ -4,3 +4,5 @@
     = link_to t('.new_topic'), new_topic_path
   = render :partial => "list_#{@page_info[:list_mode]}", :object => @topics
 
+- content_for :aside do
+  .widget.node-info
