@@ -73,13 +73,13 @@
 }
 
 /*==== @tags-list ====*/
-.tags-list {
+.nodes-list {
     display:inline;
 }
-.tags-list li {
+.nodes-list li {
     display:inline;
 }
-.tags-list li a {
+.nodes-list li a {
     background:#E9E9E9;
     padding:3px 5px;
     margin:2px;
@@ -329,10 +329,10 @@ overflow:hidden;
 
 /*==== @accounts#edit ====*/
 .accounts.edit, .accounts.show {}
-.accounts.edit, .accounts.show .field {
+.accounts.edit .field, .accounts.show .field {
     margin:0.5em;
 }
-.accounts.edit, .accounts.show label {
+.accounts.edit label, .accounts.show label {
     display:inline-block;
     width:80px;
 }

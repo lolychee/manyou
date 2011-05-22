@@ -1,0 +1,13 @@
+.nodes-form
+  = form_for @node, :url => node_path(@node.index) do |form|
+    - if !form.object.errors.blank?
+      = render :partial => 'shared/error_messages', :locals => {:target => form.object}
+    .field
+      = form.label :name
+      = form.text_field :name
+    .field
+      = form.label :intro
+      = form.text_area :intro, :cols => nil, :rows => nil
+    .field
+      = form.submit t('words.save'), :class => 'button submit'
+

@@ -30,8 +30,8 @@
       = form.label :locale
       = form.select :locale, AppConfig.support_locale.collect{|locale| [t("locale.#{locale}"), locale] }, {:include_blank => t('locale.none')}
       %span.tips= t '.locale_tips'
-    .submit
-      = form.submit t('words.save'), :class => 'button'
+    .field
+      = form.submit t('words.save'), :class => 'button submit'
 
 .widget.profile
   .widget-title= t('.profile_settings')

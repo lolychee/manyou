@@ -27,7 +27,7 @@ Manyou::Application.routes.draw do
 
     resources :nodes do
       member do
-        get 'tagged/:key',  :action => :tagged, :constraints => { :key => /[^\/]+/ },   :as => :tagged
+        #get 'tagged/:key',  :action => :tagged, :constraints => { :key => /[^\/]+/ },   :as => :tagged
       end
     end
 
