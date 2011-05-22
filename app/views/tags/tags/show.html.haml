@@ -1,8 +1,0 @@
-- content_for :page_title do
-  = @tag.name + ' - 标签'
-.tag-info
-  %h1.name= @tag.name
-.topics-list
-  %h2= '相关主题'
-  = render :partial => 'topics/topics/list', :object => @topics
-
