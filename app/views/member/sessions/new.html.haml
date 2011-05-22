@@ -1,0 +1,29 @@
+.dialog
+  = form_for @user_session, :url => session_path(:return_to => params[:return_to]) do |form|
+    - if !form.object.errors.blank?
+      = render :partial => 'shared/error_messages', :locals => {:target => form.object}
+    - if flash[:error]
+      .error= flash[:error]
+    .field
+      = form.label :username, t('.username_tips')
+      %br
+      = form.text_field :username, :class => 'text'
+    .field
+      = form.label :password, t('.password')
+      %br
+      = form.password_field :password, :class => 'text'
+    .field
+      = form.submit t('.login'), :class => 'button'
+      = form.check_box :remember_me
+      %span.tips= form.label :remember_me, t('.remember_me_tips')
+
+.message
+  .tips
+    %p
+      = t '.not_have_account_yet'
+      //= link_to t('.signup'), signup_path
+    %p
+      = t '.forgot_password'
+
+/= render :partial => "users/shared/links"
+

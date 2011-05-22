@@ -1,0 +1,40 @@
+!!! 5
+%html
+  %head
+    %meta{ "charset" => "utf-8" }
+    %title= yield :title
+    %link{:rel => "shortcut icon", :href => "/favicon.ico"}
+    = stylesheet_link_tag 'reset'
+    = stylesheet_link_tag 'layout'
+    = stylesheet_link_tag 'module'
+    = stylesheet_link_tag 'jquery-ui'
+    = javascript_include_tag :defaults
+    = yield :head
+    = csrf_meta_tag
+  %body{ :class => page_class }
+    = render :partial => 'layouts/header'
+    #body
+      .wrapper
+        .breadcrumbs= render_breadcrumbs
+        .container{:class => "#{content_for?(:aside)? 'column2' : 'column1'}"}
+          .article
+            - if flash[:success]
+              .success.flash
+                = flash[:success]
+                %span.close x
+            - if flash[:error]
+              .error.flash
+                = flash[:error]
+                %span.close x
+            - if flash[:notice]
+              .notice.flash
+                = flash[:notice]
+                %span.close x
+              #loading-notice
+              //= t '.loading'
+            = yield
+          - if content_for?(:aside)
+            .aside
+              = yield :aside
+    = render :partial => 'layouts/footer'
+

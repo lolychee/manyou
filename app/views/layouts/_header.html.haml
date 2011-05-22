@@ -1,0 +1,24 @@
+#header
+  .wrapper
+    .header-box
+      #logo
+        %a logo
+      .search
+    #site-nav
+      %ul
+        %li{:class => (page_class == 'site index' ? 'active' : nil)}
+          = link_to '首页', root_path
+        %li{:class => (page_class == 'topics index' ? 'active' : nil)}
+          = link_to '广场', topics_path
+
+
+    #user-menu
+      %ul
+        /%li= link_to t('.home'), root_path
+        - if signed_in?
+          %li= link_to current_user.name, user_path(current_user)
+          %li= link_to t('.settings'), edit_account_path
+          %li.last= link_to t('.logout'), destroy_session_path
+        - else
+          %li= link_to t('.login'), new_session_path
+          %li.last= link_to t('.signup'), new_account_path

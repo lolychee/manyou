@@ -5,6 +5,10 @@ tmp/**/*
 doc/api
 doc/app
 db/*.sqlite3
+Gemfile.lock
 *.swp
+*.swo
 *~
 public/uploads/*
+public/javascripts/xheditor/*
+public/javascripts/tinymce/*

@@ -1,0 +1,47 @@
+- content_for :title do
+  = @topic.title
+
+.widget.topic{:class => " #{@topic.title.blank? ? 'untitled' : ''}"}
+  .head
+    %h1.entry-title= @topic.title.blank? ? @topic.content : @topic.title
+    .entry-meta
+      %span.author= link_to_user(@topic.author)
+      %span.entry-date{:title => l(@topic.created_at)}= t 'time.created_at', :time => readability_time_format(@topic.created_at)
+      .bookmarks
+        %span.sum= @topic.bookmarks
+        = t '.bookmark'
+  - if !@topic.title.blank?
+    .entry-content
+      = rich_content(@topic.content)
+  .entry-tags
+    %span= t('.tags') + ':'
+    = render :partial => 'forum/nodes/list', :object => @topic.tag
+  .entry-utility
+    = render :partial => 'utility', :object => @topic
+
+- if @replies.blank?
+  .widget.replies-blank
+- else
+  .widget.replies{:class => ''}
+    .replies-options= ''
+    = will_paginate @replies
+    = render :partial => 'forum/replies/list', :object => @replies
+    = will_paginate @replies
+
+.widget.reply-form
+  .widget-title= 'leave your reply'
+  .widget-content
+    - if signed_in?
+      = form_for @topic.replies.new, :url => topic_replies_path(@topic) do |form|
+        = render :partial => 'forum/replies/form', :object => form
+        .field= form.submit t('words.submit'), :class => 'button'
+    - else
+      = link_to 'sign in', new_session_path
+
+
+
+
+
+- content_for :aside do
+  = render :partial => 'user_profile', :object => @topic.author
+

@@ -1,0 +1,12 @@
+#footer
+  .wrapper
+    #bottom-menu
+      %ul
+    #copyright
+      @ Copyright
+      //= link_to APP_CONFIG['site_name'], root_path
+      |
+      Power by
+      = link_to 'manyou', 'https://github.com/lolychee/manyou', :target => '_blank'
+= yield :last
+
