@@ -8,9 +8,18 @@ class Forum::TopicsController < ApplicationController
     #add_breadcrumb @topic.title, topic_path(@topic)
   end
 
+  before_filter do
+    @page_info[:list_mode] = params[:mode] || 'summary'
+  end
+
   def index
     @page_info[:list_mode] = params[:mode] || 'icon'
     @topics = Topic.desc(:replied_at, :created_at).paginate :per_page => 20, :page => params[:page]
+  end
+
+  def tagged
+    @keys = Tag.find_tags params[:key].split('+')
+    @topics = Topic.where(:tag_ids.all => @keys.collect{|key| key._id }).desc(:replied_at, :created_at).paginate :per_page => 20, :page => params[:page]
   end
 
   def new
@@ -35,17 +44,6 @@ class Forum::TopicsController < ApplicationController
     recent_read @topic
   end
 
-  def track
-    @topic.track_users.push current_user
-    redirect_to topic_path(@topic)
-  end
-
-  def untrack
-    @topic.track_user_ids.delete current_user.id
-    @topic.save
-    redirect_to topic_path(@topic)
-  end
-
   def edit
     authorize! :update, @topic
   end
@@ -62,6 +60,17 @@ class Forum::TopicsController < ApplicationController
 
   def destroy
     redirect_to topics_path
+  end
+
+  def track
+    @topic.track_users.push current_user
+    redirect_to topic_path(@topic)
+  end
+
+  def untrack
+    @topic.track_user_ids.delete current_user.id
+    @topic.save
+    redirect_to topic_path(@topic)
   end
 
   def voteup

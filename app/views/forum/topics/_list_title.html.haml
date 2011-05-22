@@ -1,0 +1,16 @@
+= render :partial => 'forum/topics/list_mode_switch'
+%table.topics-list.mode-title
+  %thead
+    %tr
+      %th.entry-title= t '.title'
+      %th.entry-tags= t '.tags'
+      %th.entry-author= t '.author'
+      %th.replies-count= t '.replies_count'
+      %th.last-reply= t '.last_reply'
+  - list_title.each_with_index do |topic, index|
+    %tr.topic{:class => "#{index%2 == 0 ? 'even' : 'odd'} #{topic.title.blank? ? 'untitled' : ''}"}
+      %td.entry-title= topic.title.blank? ? link_to_topic(topic){|topic| truncate(sanitize(topic.content.bbcode_to_html({}), :tags => %w()), :length => 30, :omission => '...')} : link_to_topic(topic)
+      %td.entry-tags= render :partial => 'forum/nodes/list', :object => topic.tag, :locals => {:display => 1}
+      %td.entry-author= topic.author.name
+      %td.replies-count= topic.replies.count
+      %td.last-reply= readability_time_format(topic.replied_at || topic.create_at)

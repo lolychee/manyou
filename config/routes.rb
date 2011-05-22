@@ -1,6 +1,6 @@
 Manyou::Application.routes.draw do
 
-  root :to => 'forum/topics#index'
+  root :to => 'forum/nodes#index'
 
   match "/uploads/*path" => "gridfs#serve"
 
@@ -18,18 +18,22 @@ Manyou::Application.routes.draw do
       end
     end
 
-    get 'bookmarks/add*path', :to => 'bookmarks#create',    :as => :create_bookmark
-    get 'bookmarks/del*path', :to => 'bookmarks#destroy',   :as => :destroy_bookmark
+    get 'bookmarks/add*path' => 'bookmarks#create',    :as => :create_bookmark
+    get 'bookmarks/del*path' => 'bookmarks#destroy',   :as => :destroy_bookmark
 
   end
 
   scope :module => :forum do
 
-    resources :nodes
+    resources :nodes do
+      member do
+        get 'tagged/:key',  :action => :tagged, :constraints => { :key => /[^\/]+/ },   :as => :tagged
+      end
+    end
 
     resources :topics do
       collection do
-        get 'new/:type',    :action => :new,    :constraints => { :type => /\w+/ },     :as => :new
+        #get 'new/:type',    :action => :new,    :constraints => { :type => /\w+/ },     :as => :new
         get 'tagged/:key',  :action => :tagged, :constraints => { :key => /[^\/]+/ },   :as => :tagged
       end
       member do

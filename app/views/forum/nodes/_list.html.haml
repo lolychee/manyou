@@ -1,6 +1,7 @@
 %ul.tags-list
   - list = Tag.split_to_tags(list) if list.is_a? String
   - list = [] if !list
+  - list = list.slice(0, display) if display
   - list.each do |node|
     - node = node.name if node.is_a? Tag
     %li=link_to node, node_path(node)

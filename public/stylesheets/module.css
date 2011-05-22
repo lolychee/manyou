@@ -1,58 +1,53 @@
 /*==== @topics-list ====*/
 .topics-list {
 }
-.topics-list .topic {
+.topics-list.mode-summary .topic {
     position:relative;
     overflow:hidden;
     padding:10px 65px 10px 78px;
     border-top:1px solid #E2E2E2;
 }
-.topics-list .entry-author {
+.topics-list.mode-summary .entry-author {
     position:absolute;
     left:15px;
     top:10px;
 }
-.topics-list .entry-author a {
+.topics-list.mode-summary .entry-author a {
     display:block;
     text-align:center;
 }
-.topics-list .entry-author .user-link {
+.topics-list.mode-summary .entry-author .user-link {
     position:absolute;
     bottom:0;
     width:48px;
     background:#EEE;
     visibility:hidden;
 }
-.topics-list .entry-author:hover .user-link {
+.topics-list.mode-summary .entry-author:hover .user-link {
     visibility:visible;
     opacity:0.8;
 }
-.topics-list .entry-title {
+.topics-list.mode-summary .entry-title {
     font-weight:normal;
     font-size:16px;
     line-height:140%;
 }
-.topics-list .untitled .entry-title .topic-link {
-    color:#444;
-}
-.topics-list .entry-utility {
+.topics-list.mode-summary .entry-utility {
     margin-top:10px;
     line-height:160%;
     color:#999;
 }
-.topics-list .entry-utility .last-replied {
+.topics-list.mode-summary .entry-utility .last-replied {
     float:right;
 }
-.topics-list .tags-list {
-}
-.topics-list .reply-count {
+.topics-list.mode-summary .replies-count {
     position:absolute;
     top:18px;
     right:15px;
     text-align:center;
     font-weight:bold;
 }
-.topics-list .reply-count span {
+.topics-list.mode-summary .replies-count {
     color:#FFF;
     display:block;
     margin:0 0 5px 0;
@@ -60,25 +55,21 @@
     line-height:12px;
     border-radius:12px;
 }
-.topics-list .reply-count:link,
-.topics-list .reply-count:active {
-    color:#555;
-}
-.topics-list .reply-count:visited {
-    color:#CCC;
-}
-.topics-list .reply-count:hover {
-    color:#333;
-}
-.topics-list .reply-count:link span,
-.topics-list .reply-count:active span {
+.topics-list.mode-summary .replies-count:link,
+.topics-list.mode-summary .replies-count:active {
     background:#AAB0C6;
 }
-.topics-list .reply-count:visited span {
+.topics-list.mode-summary .replies-count:visited {
     background:#EEE;
 }
-.topics-list .reply-count:hover span {
+.topics-list.mode-summary .replies-count:hover {
     background:#969CB1;
+}
+
+
+
+.topics-list.mode-title .topic {
+    padding:3px 0;
 }
 
 /*==== @tags-list ====*/
@@ -87,9 +78,11 @@
 }
 .tags-list li {
     display:inline;
+}
+.tags-list li a {
     background:#E9E9E9;
     padding:3px 5px;
-    margin:0 1px;
+    margin:2px;
     border-radius: 3px;
     text-shadow:#FFF 0 1px 0;
 }
@@ -110,8 +103,12 @@
 .replies-list .reply-utility .reply-floor {
     margin-left:15px;
 }
+.replies-list .reply-meta a,
+.replies-list .reply-utility a {
+}
 .replies-list .reply-meta,
 .replies-list .reply-utility {
+    color:#999;
     padding:0 10px;
 }
 .replies-list .reply-meta {}
@@ -236,7 +233,7 @@ form .submit {
 }
 .topics.show .topic .entry-meta {
     line-height:200%;
-    color:#AAA;
+    color:#999;
 }
 .topics.show .topic .entry-meta a {
     color:#48F;

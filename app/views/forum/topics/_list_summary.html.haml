@@ -1,19 +1,18 @@
-.topics-list.mode-icon
-  - list_icon.each_with_index do |topic, index|
+= render :partial => 'forum/topics/list_mode_switch'
+.topics-list.mode-summary
+  - list_summary.each_with_index do |topic, index|
     .topic{:class => "#{index%2 == 0 ? 'even' : 'odd'} #{topic.title.blank? ? 'untitled' : ''}"}
       .entry-author
         = link_to_user_avatar topic.author
       .entry-title
         = link_to_user topic.author
         = ':'
-        = topic.title.blank? ? link_to(truncate(sanitize(topic.content.bbcode_to_html({}), :tags => %w()), :length => 90, :omission => '...'), topic_path(topic), :class => 'topic-link') : link_to_topic(topic)
+        = topic.title.blank? ? link_to_topic(topic){|topic| truncate(sanitize(topic.content.bbcode_to_html({}), :tags => %w()), :length => 90, :omission => '...')} : link_to_topic(topic)
       .entry-utility
         = render :partial => 'forum/nodes/list', :object => topic.tag
         - if topic.replies != []
           .last-replied
             = link_to_user topic.replies.last.author
             = t 'time.replied_at', :time => readability_time_format(topic.replied_at)
-        %a.reply-count{:href => topic_path(topic, :anchor => "last#{topic.replies.count}")}
-          %span= topic.replies.count
-          /= t ".#{topic.type}"
+        = link_to_topic(topic, {:class => 'replies-count'}){|topic| topic.replies.count}
 

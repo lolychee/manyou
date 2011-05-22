@@ -1,3 +1,6 @@
+- content_for :title do
+  = t('.edit_topic')
+
 = form_for @topic do |form|
   = render :partial => "form", :object => form
   .field

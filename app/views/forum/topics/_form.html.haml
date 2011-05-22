@@ -39,7 +39,7 @@
   .widget
     .widget-content
       .label= form.label :tags
-      .field= form.text_field :tag, :class => 'text tags'
+      .field= form.text_area :tag, :class => 'text tags', :cols => nil, :rows => 3
       .meta= t '.tags_tips'
 
 

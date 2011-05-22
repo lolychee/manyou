@@ -20,8 +20,11 @@ module ApplicationHelper
   end
 
   # resources link helper methods
-  def link_to_user(user)
-    link_to user.name, user_url(user.username), :title => "#{user.name}'s person page", :class => 'user-link'
+  def link_to_user(user, options = {}, &block)
+    name = yield(user) if block
+    options[:class] ||= 'user-link'
+    options[:title] ||= "#{user.name}'s person page"
+    link_to (name || user.name), user_url(user.username), :title => options[:title], :class => options[:class]
   end
 
   def user_avatar(user, options = {})
@@ -38,8 +41,11 @@ module ApplicationHelper
   def link_to_forum(forum)
   end
 
-  def link_to_topic(topic)
-    link_to topic.title, topic_path(topic), :class => 'topic-link'
+  def link_to_topic(topic, options = {}, &block)
+    title = yield(topic) if block
+    options[:class] ||= 'topic-link'
+    link_to (title || topic.title), topic_path(topic, :anchor => "last#{topic.replies.count}"), :class => options[:class]
+
   end
 
 

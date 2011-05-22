@@ -36,9 +36,11 @@ class Topic
   has_and_belongs_to_many :track_users, :class_name => 'User'
   has_and_belongs_to_many :tags, :class_name => 'Tag'
 
+  has_and_belongs_to_many :meta_tags, :class_name => 'Tag'
 
-  scope :find_by_author,    ->(id)  { where(:author_id => id).all }
-  scope :find_by_tags,      ->(tags){ where(:tag_ids.in => tags ).all }
+
+  scope :find_by_author,    ->(id)  { where(:author_id => id) }
+  scope :find_by_tags,      ->(tags){ where(:tag_ids.in => tags ) }
 
   #validates_inclusion_of    :type,      :in => TYPE, :allow_blank => true
   validates_inclusion_of    :status,    :in => STATUS, :allow_blank => true
