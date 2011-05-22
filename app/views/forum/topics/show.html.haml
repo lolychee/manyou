@@ -15,7 +15,7 @@
       = rich_content(@topic.content)
   .entry-tags
     %span= t('.tags') + ':'
-    = render :partial => 'tags', :object => @topic.tag
+    = render :partial => 'forum/nodes/list', :object => @topic.tag
   .entry-utility
     = render :partial => 'utility', :object => @topic
 

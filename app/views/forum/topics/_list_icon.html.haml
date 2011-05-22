@@ -8,7 +8,11 @@
         = ':'
         = topic.title.blank? ? link_to(truncate(sanitize(topic.content.bbcode_to_html({}), :tags => %w()), :length => 90, :omission => '...'), topic_path(topic), :class => 'topic-link') : link_to_topic(topic)
       .entry-utility
-        = render :partial => 'tags', :object => topic.tag
+        = render :partial => 'forum/nodes/list', :object => topic.tag
+        - if topic.replies != []
+          .last-replied
+            = link_to_user topic.replies.last.author
+            = t 'time.replied_at', :time => readability_time_format(topic.replied_at)
         %a.reply-count{:href => topic_path(topic, :anchor => "last#{topic.replies.count}")}
           %span= topic.replies.count
           /= t ".#{topic.type}"

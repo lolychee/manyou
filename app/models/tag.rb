@@ -20,10 +20,10 @@ class Tag
     else
       return []
     end
-    where(:index => {:in => tags.collect{|tag| tag.downcase}}).all
+    tags.collect{|tag| first(:conditions => {:index => tag.downcase}) }.delete_if{|tag| tag.nil?}
   end
 
-  def find_or_create_tags(tags)
+  def self.find_or_create_tags(tags)
     if tags.is_a? String
       tags = split_to_tags(tags)
     elsif tags.is_a? Array
@@ -35,11 +35,12 @@ class Tag
   end
 
   def self.split_to_tags(string)
-    tags = string.split /[\s\+]+/
+    tags = string.split /[\s]+/
     #tags.map! {|tag| tag.gsub "/", ""}
-    tags.delete_if {|tag| tag.size > 20 || tag.empty? }
+    filter_tags(tags)
   end
 
   def self.filter_tags(tags)
+    tags.delete_if {|tag| tag.size > 20 || tag.empty? }
   end
 end

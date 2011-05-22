@@ -1,6 +1,5 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
-
 var Manyou = {
     "topics" : {
         "edit" : function(container_string){
@@ -50,16 +49,16 @@ var Manyou = {
             $('.block', form).trigger('load');
 
             form.click(function(event){
-              var target = $(event.target);
+                var target = $(event.target);
 
-              if(target.hasClass('close-button')){
+                if(target.hasClass('close-button')){
 
-                //do some ajax request
+                    //do some ajax request
 
-                //if success
-                target.parent().remove();
-                event.preventDefault();
-              }// endif
+                    //if success
+                    target.parent().remove();
+                    event.preventDefault();
+                }// endif
 
             });
 
@@ -102,3 +101,4 @@ var Manyou = {
         }
     }
 };
+

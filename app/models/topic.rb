@@ -13,7 +13,7 @@ class Topic
   field :content,               :type => String
   field :hits,                  :type => Integer,   :default => 0
   field :status,                :type => String,    :default => 'normal'
-  field :type,                  :type => Array,     :default => []
+  #field :type,                  :type => Array,     :default => []
 
   STATUS    = ['normal', 'ban']
   #TYPE      = ['tweet', 'article', 'media']
@@ -31,19 +31,20 @@ class Topic
 
   embeds_many :replies,         :class_name => 'TopicReply'
   embeds_many :media,           :class_name => 'TopicMedium'
+  field :media_type,            :type => Array,     :default => []
 
   has_and_belongs_to_many :track_users, :class_name => 'User'
-  has_and_belongs_to_many :relation_tags, :class_name => 'Tag'
+  has_and_belongs_to_many :tags, :class_name => 'Tag'
 
 
-  scope :find_by_author, ->(id) { where(:author_id => id) }
+  scope :find_by_author,    ->(id)  { where(:author_id => id).all }
+  scope :find_by_tags,      ->(tags){ where(:tag_ids.in => tags ).all }
 
   #validates_inclusion_of    :type,      :in => TYPE, :allow_blank => true
   validates_inclusion_of    :status,    :in => STATUS, :allow_blank => true
 
   before_save do
-    #type.push 'title' unless title.blank? && !type.include('title')
-    #type.push :
+    tags.concat Tag.find_or_create_tags(tag) if !tag.blank?
   end
 
   def to_param
