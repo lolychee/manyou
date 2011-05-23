@@ -7,7 +7,7 @@ class Forum::NodesController < ApplicationController
   end
 
   def index
-    @topics = Topic.paginate :per_page => 20, :page => params[:page]
+    @topics = Topic.all.paginate :per_page => 20, :page => params[:page]
     render :show
   end
 
