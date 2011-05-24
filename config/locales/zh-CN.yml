@@ -5,11 +5,7 @@ zh-CN:
     zh-CN: "简体中文(zh-CN)"
     zh-TW: "繁体中文(zh-TW)"
 
-  words:
-    login: "登录"
-    logout: "登出"
-    signup: "注册"
-
+  submit:
     edit: "修改"
     delete: "删除"
     save: "保存"
@@ -17,16 +13,14 @@ zh-CN:
     create: "创建"
     update: "更新"
 
-    tag: "标签"
-    forum: "广场"
-
   time:
     some_times_ago: "%{time}前"
     created_at: "创建于 %{time}"
     updated_at: "更新于 %{time}"
-    edited_at: "最后编辑于 %{time}"
+    edited_at: "编辑于 %{time}"
     replied_at: "回复于 %{time}"
 
+  hits: "%{hits}次点击"
   layouts:
     header:
       settings: "设置"
@@ -34,7 +28,7 @@ zh-CN:
       login: "登录"
       signup: "注册"
 
-  users:
+  member:
     sessions:
       new:
         login_tips: 用户名 或 Email
@@ -84,18 +78,32 @@ zh-CN:
         password_confirmation_tips: s
 
 
-  topics:
-    hits: "%{hits}次点击"
+  forum:
     topics:
       index:
         page_title: "所有主题"
       new:
         page_title: "创建新主题"
       show:
-        mark: "收藏"
-        unmark: "取消收藏"
-        track: "关注"
-        untrack: "取消关注"
+
+
+  resrouces:
+    user_sessions:
+      login: "登陆"
+      logout: "退出"
+      register: "注册"
+
+    users:
+      bookmark: "收藏"
+      unbookmark: "取消收藏"
+
+    topics:
+      hits: "%{hits}次点击"
+      track: "关注"
+      untrack: "取消关注"
+
+
+
 
   mongoid:
     attributes:
@@ -115,6 +123,7 @@ zh-CN:
       topic:
         title: "标题"
         content: "正文"
+        hits: "点击"
 
       reply:
 

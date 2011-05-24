@@ -218,7 +218,7 @@ form .submit {
 }
 .topics.show .topic .head {
     border-bottom:1px solid #EEE;
-    padding:5px 15px;
+    padding:5px 0;
     margin-bottom:10px;
 }
 .topics.show .untitled .head {
@@ -271,7 +271,7 @@ overflow:hidden;
     display:block;
 }
 .topics.show .topic .entry-content {
-    margin:20px 15px 30px;
+    margin:20px 0 30px;
 }
 .topics.show .topic .entry-tags {
     padding:5px;
@@ -289,16 +289,15 @@ overflow:hidden;
     text-align:center;
 }
 
-.topics.show .author-profile {
+.topics.show .user-profile {
 }
-.topics.show .author-profile .icon {
+.topics.show .user-profile .avatar {
     float:left;
-    margin:10px 15px;
+    margin-right:20px;
 }
-.topics.show .author-profile .user {
-    margin-top:10px;
+.topics.show .user-profile .user {
 }
-.topics.show .author-profile .user-link {
+.topics.show .user-profile .user-link {
     font-size:16px;
 }
 .topics.show .author-profile .user-stats

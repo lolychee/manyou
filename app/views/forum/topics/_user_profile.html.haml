@@ -1,6 +1,8 @@
 - user = user_profile
 .widget.user-profile
-  .avatar= link_to_user_avatar(user)
-  .name= link_to_user(user) + "(#{user.username})"
-  .intro= user.intro
+  .widget-content
+    .avatar= link_to_user_avatar(user, {:size => :large})
+    .name= link_to_user(user) + "(#{user.username})"
+    .utility= link_to 'd', 'd'
+    .intro= user.intro
 

@@ -1,0 +1,4 @@
+- mode = ['title', 'summary', 'image'].include?(params[:mode]) ? params[:mode] : 'summary'
+/= render :partial => 'forum/topics/list_mode_switch', :object => mode
+= render :partial => "forum/topics/list_#{mode}", :object => list
+

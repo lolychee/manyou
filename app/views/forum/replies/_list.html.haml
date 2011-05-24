@@ -5,6 +5,7 @@
         = link_to_user_avatar(reply.author)
       .reply-meta
         = link_to_user reply.author
+        = "(#{reply.author.username})"
         %span.date{:title => l(reply.created_at)}= t 'time.replied_at', :time => readability_time_format(reply.created_at)
       .reply-utility
         = link_to '@回复', 'javascript:void(0)', {:class => 'reply-this'}

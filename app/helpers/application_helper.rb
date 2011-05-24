@@ -24,18 +24,22 @@ module ApplicationHelper
     name = yield(user) if block
     options[:class] ||= 'user-link'
     options[:title] ||= "#{user.name}'s person page"
-    link_to (name || user.name), user_url(user.username), :title => options[:title], :class => options[:class]
+    link_to (name || user.name), user_url(user), :title => options[:title], :class => options[:class]
   end
 
-  def user_avatar(user, options = {})
-    options[:size] ||= 48
+  def user_avatar(user, size = :normal)
+    arr = {:small => 16, :normal => 48, :large => 80}
+    img = user.avatar.send size
+    image_tag img.url, :alt => "#{user.name}'s avatar", :class => 'user-avatar', :height => arr[size], :width => arr[size]
     #image_tag(user.gravatar_url(:size => options[:size]), :alt => "#{user.name}'s avatar", :class => 'user-avatar', :height => options[:size], :width => options[:size])
-    image_tag(user.avatar.normal.url, :alt => "#{user.name}'s avatar", :class => 'user-avatar', :height => options[:size], :width => options[:size])
   end
 
   def link_to_user_avatar(user, options = {})
-    options[:size] ||= 48
-    link_to user_avatar(user, options), user_url(user.username), :title => "#{user.name}'s person page", :class => 'user-avatar-link'
+    options[:class] ||= 'user-avatar-link'
+    options[:size]  ||= :normal
+    link_to_user user, options do
+      user_avatar(user, options[:size])
+    end
   end
 
   def link_to_forum(forum)

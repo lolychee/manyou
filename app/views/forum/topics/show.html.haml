@@ -7,6 +7,7 @@
     .entry-meta
       %span.author= link_to_user(@topic.author)
       %span.entry-date{:title => l(@topic.created_at)}= t 'time.created_at', :time => readability_time_format(@topic.created_at)
+      %span.hits= t 'hits', :hits => @topic.hits
       .bookmarks
         %span.sum= @topic.bookmarks
         = t '.bookmark'
@@ -17,7 +18,18 @@
     %span= t('.tags') + ':'
     = render :partial => 'forum/nodes/list', :object => @topic.tag
   .entry-utility
-    = render :partial => 'utility', :object => @topic
+    - if current_user.bookmarks.where(:_id => @topic.id).first != nil
+      = link_to t('.unbookmark'), destroy_bookmark_path(topic_path(@topic))
+    - else
+      = link_to t('.bookmark'), create_bookmark_path(topic_path(@topic))
+
+    - if @topic.track_user_ids.include? current_user.id
+      = link_to t('.untrack'), untrack_topic_path(@topic)
+    - else
+      = link_to t('.track'), track_topic_path(@topic)
+
+    = link_to t('words.edit'), edit_topic_path(@topic) if can? :update, @topic
+    = link_to t('words.delete'), topic_path(@topic), :method => :delete, :confirm => '您真的要删除这个主题吗?' if can? :destroy, @topic
 
 - if @replies.blank?
   .widget.replies-blank

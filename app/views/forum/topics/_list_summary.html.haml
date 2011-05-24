@@ -1,4 +1,3 @@
-= render :partial => 'forum/topics/list_mode_switch'
 .topics-list.mode-summary
   - list_summary.each_with_index do |topic, index|
     .topic{:class => "#{index%2 == 0 ? 'even' : 'odd'} #{topic.title.blank? ? 'untitled' : ''}"}

@@ -7,8 +7,8 @@ class Forum::NodesController < ApplicationController
   end
 
   def index
+    @nodes_could = Topic.nodes_could
     @topics = Topic.all.paginate :per_page => 20, :page => params[:page]
-    render :show
   end
 
 =begin

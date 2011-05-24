@@ -53,4 +53,35 @@ class Topic
     short_id.to_i.to_s
   end
 
+  def self.nodes_could
+    map = <<EOF
+function() {
+    var date=new Date();
+    date.setDate(date.getDate()-30);
+
+    if (!this.node_ids && this.created_at < date) {
+        return;
+    }
+
+    for (index in this.node_ids) {
+        emit(this.node_ids[index], 1);
+    }
+}
+EOF
+    reduce = <<EOF
+function(previous, current) {
+    var count = 0;
+
+    for (index in current) {
+        count += current[index];
+    }
+
+    return count;
+}
+EOF
+    collection.mapreduce(map, reduce, {:out => 'nodes_could'}).find({}, :sort => [:value, :desc]).collect{|node| Node.find node['_id'] }.delete_if{|node| node.nil?}
+    rescue Mongo::OperationFailure
+      []
+  end
+
 end

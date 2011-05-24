@@ -1,4 +1,5 @@
+- mode = list_mode_switch
 %ul.list-mode-switch
-  %li= link_to_if @page_info[:list_mode] != 'title', t('.title'), (@nodes ? node_path(@nodes.join('+'), :mode => 'title') : root_path(:mode => 'title')), :class => 'title'
-  %li= link_to_if @page_info[:list_mode] != 'summary', t('.summary'), (@nodes ? node_path(@nodes.join('+'), :mode => 'summary') : root_path(:mode => 'summary')), :class => 'summary'
-  %li= link_to_if @page_info[:list_mode] != 'image', t('.image'), (@nodes ? node_path(@nodes.join('+'), :mode => 'image') : root_path(:mode => 'image')), :class => 'image'
+  %li= link_to_if mode != 'title', t('.title'), (@nodes ? node_path(@nodes.collect{|node| node.name}.join('+'), :mode => 'title') : root_path(:mode => 'title')), :class => 'title'
+  %li= link_to_if mode != 'summary', t('.summary'), (@nodes ? node_path(@nodes.collect{|node| node.name}.join('+'), :mode => 'summary') : root_path(:mode => 'summary')), :class => 'summary'
+  %li= link_to_if mode != 'image', t('.image'), (@nodes ? node_path(@nodes.collect{|node| node.name}.join('+'), :mode => 'image') : root_path(:mode => 'image')), :class => 'image'
