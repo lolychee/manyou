@@ -1,15 +1,9 @@
 #header
   .wrapper
-    .header-box
-      #logo
-        %a logo
-      .search
-    #site-nav
-      %ul
-        %li{:class => (page_class == 'site index' ? 'active' : nil)}
-          = link_to '首页', root_path
-        %li{:class => (page_class == 'topics index' ? 'active' : nil)}
-          = link_to '广场', topics_path
+    #logo
+      %a logo
+    .search
+      = render :partial => 'layouts/search'
 
 
     #user-menu

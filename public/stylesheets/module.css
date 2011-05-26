@@ -4,12 +4,12 @@
 .topics-list.mode-summary .topic {
     position:relative;
     overflow:hidden;
-    padding:10px 65px 10px 78px;
+    padding:10px 65px 10px 68px;
     border-top:1px solid #E2E2E2;
 }
 .topics-list.mode-summary .entry-author {
     position:absolute;
-    left:15px;
+    left:5px;
     top:10px;
 }
 .topics-list.mode-summary .entry-author a {
@@ -85,6 +85,10 @@
     margin:2px;
     border-radius: 3px;
     text-shadow:#FFF 0 1px 0;
+}
+
+.aside .nodes-list li a {
+    background:#FFF;
 }
 
 /*==== @replies-list ====*/
@@ -323,6 +327,14 @@ overflow:hidden;
 }
 
 .topics.show .reply-form {
+}
+
+
+/*==== @nodes#index ====*/
+.nodes.index .article .widget-utility {
+    position:absolute;
+    right:0;
+    top:10px;
 }
 
 

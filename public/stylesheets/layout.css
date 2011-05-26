@@ -53,7 +53,7 @@ table
     margin-bottom:1.4em;
     width:100%;
 }
-tr
+.list tr
 {
     border-bottom:1px dashed #CCC;
 }
@@ -117,7 +117,10 @@ form .editor {
     background:#FFF;
     border-bottom:2px solid #33CEE1;
 }
-
+#header .wrapper {
+    height:40px;
+    padding:10px 0 0;
+}
 #header a
 {
     color:#09F;
@@ -174,14 +177,7 @@ form .editor {
 #header .search
 {
     float:left;
-}
-#header .search input
-{
-    padding:3px 5px;
-}
-#search-text
-{
-    width:200px;
+    width:320px;
 }
 #site-nav
 {
@@ -222,6 +218,7 @@ form .editor {
 /*===  content  ===*/
 #body
 {
+    clear:both;
 }
 #body .container
 {
