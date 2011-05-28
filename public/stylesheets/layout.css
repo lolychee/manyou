@@ -1,19 +1,89 @@
-body
-{
-    margin: 0;
-    padding: 0;
+/* `Basic HTML
+----------------------------------------------------------------------------------------------------*/
+
+body {
     color: #333;
-    background:#E0E6E7;
-    /*background:transparent url(../images/background.png) repeat 0 0;*/
-    font: normal 12px "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
+    background-color:#E0E6E7;
+    font: 13px/1.5 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
 }
 
-p
-{
+hr {
+    border: 0 #ccc solid;
+    border-top-width: 1px;
+    clear: both;
+    height: 0;
+}
+
+/* `Headings
+----------------------------------------------------------------------------------------------------*/
+
+h1 {
+    font-size: 25px;
+}
+
+h2 {
+    font-size: 23px;
+}
+
+h3 {
+    font-size: 21px;
+}
+
+h4 {
+    font-size: 19px;
+}
+
+h5 {
+    font-size: 17px;
+}
+
+h6 {
+    font-size: 15px;
+}
+
+/* `Spacing
+----------------------------------------------------------------------------------------------------*/
+
+ol,
+ul {
+    list-style-position:inside;
+}
+
+ol {
+    list-style: decimal;
+}
+
+ul {
+    list-style: disc;
+}
+
+li {
+}
+
+p,
+dl,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ol,
+ul,
+pre,
+table,
+address,
+fieldset,
+figure {
+    margin-bottom: 20px;
+}
+
+p {
     line-height:180%;
-    margin:1em 0;
 }
-
+/* `Basic Link
+----------------------------------------------------------------------------------------------------*/
 a
 {
     color:#069;
@@ -32,77 +102,55 @@ a:visited
 a:active
 {
 }
-h1
-{
-    font-size:200%;
-}
-h2
-{
-    font-size:180%;
-}
-h3
-{
-    font-size:160%;
-}
-h4
-{
-    font-size:140%;
-}
-table
-{
-    margin-bottom:1.4em;
-    width:100%;
-}
-.list tr
-{
-    border-bottom:1px dashed #CCC;
-}
-th
-{
-}
-thead th
-{
-}
-th, td, caption
-{
-    padding:6px 0 7px;
-}
-tbody tr:nth-child(even) td, tbody tr.even td
-{
 
-}
-tfoot {
+/* `Clear Floated Elements
+----------------------------------------------------------------------------------------------------*/
 
-}
-ol,ul
-{
-    list-style-position:inside;
-}
-/*=== @form ===*/
-form .field {
-  clear:both;
-  font-size:14px;
-}
-form label {
-  font-size:14px;
-}
-form input[type="text"],
-form input[type="password"],
-form textarea {
-  padding:5px 0;
-  border:1px solid #CCC;
-}
-form .editor {
-  width:100%;
+/* http://sonspring.com/journal/clearing-floats */
+
+.clear {
+    clear: both;
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
 }
 
-.clear
-{
-    clear:both;
+/* http://www.yuiblog.com/blog/2010/09/27/clearfix-reloaded-overflowhidden-demystified */
+
+.clearfix:before,
+.clearfix:after {
+    content: '\0020';
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/*
+    The following zoom:1 rule is specifically for IE6 + IE7.
+    Move to separate stylesheet if invalid CSS is a problem.
+*/
+
+.clearfix {
+    zoom: 1;
+}
+
+/* `Common
+----------------------------------------------------------------------------------------------------*/
+
+.show {
+    display:block !important;
 }
 
 .hidden {
-  display:none !important;
+    display:none !important;
 }
 
 .wrapper
@@ -112,10 +160,34 @@ form .editor {
     position:relative;
 }
 
+/* `Form
+----------------------------------------------------------------------------------------------------*/
+
+form .field {
+    clear:both;
+    font-size:14px;
+}
+form label {
+    font-size:14px;
+}
+form input[type="text"],
+form input[type="password"],
+form textarea {
+    padding:5px 0;
+    border:1px solid #CCC;
+}
+form .editor {
+    width:100%;
+}
+
+/* `Header
+----------------------------------------------------------------------------------------------------*/
+
 #header
 {
     background:#FFF;
     border-bottom:2px solid #33CEE1;
+    margin-bottom:20px;
 }
 #header .wrapper {
     height:40px;
@@ -128,39 +200,6 @@ form .editor {
 #header a:hover
 {
     color:#00CEE1;
-    background:none;
-}
-#header .header-box
-{
-    padding-top:15px;
-}
-#user-menu
-{
-    position:absolute;
-    right:0;
-    bottom:7px;
-    padding:0 3px;
-}
-#user-menu .info
-{
-    display:inline;
-    line-height:22px;
-}
-#user-menu img
-{
-    float:left;
-    margin-right:10px;
-}
-#user-menu ul
-{
-    display:inline;
-    list-style:none;
-    margin:5px 0;
-}
-#user-menu ul li
-{
-    display:inline;
-    margin:0 0 0 1em;
 }
 #logo
 {
@@ -174,7 +213,25 @@ form .editor {
     overflow:hidden;
     float:left;
 }
-#header .search
+#session-menu
+{
+    position:absolute;
+    right:0;
+    bottom:7px;
+    padding:0 3px;
+}
+#session-menu ul
+{
+    display:inline;
+    list-style:none;
+    margin:5px 0;
+}
+#session-menu ul li
+{
+    display:inline;
+    margin:0 0 0 1em;
+}
+#site-search
 {
     float:left;
     width:320px;
@@ -215,16 +272,16 @@ form .editor {
 }
 
 
-/*===  content  ===*/
-#body
+/* `Content
+----------------------------------------------------------------------------------------------------*/
+
+#content
 {
     clear:both;
 }
-#body .container
+#content .container
 {
-    margin-bottom:20px;
-    overflow:hidden;
-    background:#FFFFFF;
+    background:#FFF;
     border-radius: 5px;
     -moz-border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -232,23 +289,20 @@ form .editor {
     -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-#body .widget
-{
+#content .widget {
     position:relative;
     margin-bottom:20px;
 }
-#body .widget .widget-title
+#content .widget .widget-title
 {
-    font-size:16px;
-    line-height:180%;
     margin:0 10px;
 }
-#body .widget .widget-content
+#content .widget .widget-container
 {
     padding:15px;
 }
 
-#body .column2 .article
+#content .column2 .article
 {
     border-right:310px solid #ECF2F3;
     margin-right:-310px;
@@ -256,110 +310,27 @@ form .editor {
     width:620px;
     float:left;
 }
-#body .column2 .aside
+#content .column2 .aside
 {
     background:#ECF2F3;
     width:310px;
     float:right;
 }
 
-#body .aside .widget
-{
-    overflow:hidden;
-}
-
-.content
-{
-    font-size:14px;
-    text-shadow:none;
-    line-height:180%;
-}
+/* `Footer
+----------------------------------------------------------------------------------------------------*/
 
 #footer
 {
     background:#EEE;
+    color:#777;
     border-top:1px solid #CCC;
+    margin-top:20px;
     padding: 10px 0 20px;
     font-size: 0.8em;
-    color:#777;
     clear:both;
 }
 #footer .copyright
 {
-}
-
-
-
-div.flash-error, div.flash-notice, div.flash-success
-{
-    padding:.8em;
-    margin-bottom:1em;
-    border:2px solid #ddd;
-}
-
-div.flash-error
-{
-    background:#FBE3E4;
-    color:#8a1f11;
-    border-color:#FBC2C4;
-}
-
-div.flash-notice
-{
-    background:#FFF6BF;
-    color:#514721;
-    border-color:#FFD324;
-}
-
-div.flash-success
-{
-    background:#E6EFC2;
-    color:#264409;
-    border-color:#C6D880;
-}
-
-div.flash-error a
-{
-    color:#8a1f11;
-}
-
-div.flash-notice a
-{
-    color:#514721;
-}
-
-div.flash-success a
-{
-    color:#264409;
-}
-
-div.form .rememberMe label
-{
-    display: inline;
-}
-
-div.view
-{
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #C9E0ED;
-}
-
-div.breadcrumbs
-{
-    font-size: 14px;
-    padding: 10px;
-}
-
-div.breadcrumbs span
-{
-    font-weight: bold;
-}
-
-div.search-form
-{
-    padding: 10px;
-    margin: 10px 0;
-    background: #eee;
 }
 

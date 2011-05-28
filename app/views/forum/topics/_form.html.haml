@@ -3,10 +3,6 @@
   .widget-content
     - if !form.object.errors.blank?
       = render :partial => 'shared/error_messages', :locals => {:target => form.object}
-      /.field
-      /  - Topic::TYPE.each do |value|
-      /    = form.radio_button :type, value
-      /    = form.label "type_#{value}", t(".#{value}")
 
     .block.field-title.type-text{:class => 'can-accordion'}
       .label= form.label :title
@@ -58,7 +54,7 @@
   #add-music-dialog{:title => t('.add_music')}
 
 
-:javascript
+//:javascript
   jQuery(function($){
     Manyou.topics.edit('.container');
   });

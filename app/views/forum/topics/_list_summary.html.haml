@@ -6,8 +6,8 @@
       .entry-title
         = link_to_user topic.author
         = ':'
-        = topic.title.blank? ? link_to_topic(topic){|topic| truncate(sanitize(topic.content.bbcode_to_html({}), :tags => %w()), :length => 90, :omission => '...')} : link_to_topic(topic)
-      .entry-utility
+        = link_to_topic(topic, {:length => 90, :omission => '...'})
+      .entry-meta
         = render :partial => 'forum/nodes/list', :object => topic.tag
         - if topic.replies != []
           .last-replied

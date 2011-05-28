@@ -1,13 +1,13 @@
 .widget.main-list
-  %h3.widget-title= 'Topic List'
-  .widget-utility
+  %h2.widget-title= t '.hot_topics'
+  .topics-utility
     = link_to t('.new_topic'), new_topic_path
   = render :partial => "forum/topics/list_#{@page_info[:list_mode]}", :object => @topics
 
 - content_for :aside do
-  .widget.node-info= ''
+  /.widget.node-info= ''
   .widget.nodes-could
-    %h3.widget-title= t '.hot_nodes'
-    .widget-content
+    %h2.widget-title= t '.hot_nodes'
+    .widget-container
       = render :partial => 'forum/nodes/list', :object => @nodes_could, :locals => {:display => 20}
 

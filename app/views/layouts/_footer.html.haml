@@ -1,5 +1,8 @@
+= yield :footer_before
 #footer
   .wrapper
+    = yield :footer_prepend
+
     #bottom-menu
       %ul
     #copyright
@@ -8,5 +11,8 @@
       |
       Power by
       = link_to 'manyou', 'https://github.com/lolychee/manyou', :target => '_blank'
-= yield :last
+
+    = yield :footer_append
+
+= yield :footer_after
 

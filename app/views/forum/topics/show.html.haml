@@ -1,17 +1,17 @@
 - content_for :title do
-  = @topic.title
+  = @topic.title(30, '...')
 
-.widget.topic{:class => " #{@topic.title.blank? ? 'untitled' : ''}"}
+#topic.widget{:class => " #{topic_class(@topic)}"}
   .head
-    %h1.entry-title= @topic.title.blank? ? @topic.content : @topic.title
+    %h1.entry-title=@topic.title
     .entry-meta
       %span.author= link_to_user(@topic.author)
-      %span.entry-date{:title => l(@topic.created_at)}= t 'time.created_at', :time => readability_time_format(@topic.created_at)
+      %span.date{:title => l(@topic.created_at)}= t 'time.created_at', :time => readability_time_format(@topic.created_at)
       %span.hits= t 'hits', :hits => @topic.hits
       .bookmarks
         %span.sum= @topic.bookmarks
-        = t '.bookmark'
-  - if !@topic.title.blank?
+        %span= t '.bookmark'
+  - if !@topic[:title].blank?
     .entry-content
       = rich_content(@topic.content)
   .entry-tags
@@ -28,32 +28,32 @@
     - else
       = link_to t('.track'), track_topic_path(@topic)
 
-    = link_to t('words.edit'), edit_topic_path(@topic) if can? :update, @topic
-    = link_to t('words.delete'), topic_path(@topic), :method => :delete, :confirm => '您真的要删除这个主题吗?' if can? :destroy, @topic
+    = link_to t('.edit'), edit_topic_path(@topic) if can? :update, @topic
+    = link_to t('.delete'), topic_path(@topic), :method => :delete, :confirm => '您真的要删除这个主题吗?' if can? :destroy, @topic
 
 - if @replies.blank?
-  .widget.replies-blank
+  #replies-blank.widget
 - else
-  .widget.replies{:class => ''}
+  #replies.widget{:class => ''}
     .replies-options= ''
     = will_paginate @replies
     = render :partial => 'forum/replies/list', :object => @replies
     = will_paginate @replies
 
-.widget.reply-form
-  .widget-title= 'leave your reply'
-  .widget-content
+#reply-form.widget
+  %h2.widget-title= t '.leave_your_reply'
+  .widget-container
     - if signed_in?
       = form_for @topic.replies.new, :url => topic_replies_path(@topic) do |form|
         = render :partial => 'forum/replies/form', :object => form
-        .field= form.submit t('words.submit'), :class => 'button'
+        .field= form.submit t('submit.submit'), :class => 'button submit'
     - else
-      = link_to 'sign in', new_session_path
+      = link_to t '.sign_in', new_session_path
 
 
 
 
 
 - content_for :aside do
-  = render :partial => 'user_profile', :object => @topic.author
+  = render :partial => 'aside', :object => @topic
 

@@ -5,16 +5,16 @@
         = link_to_user_avatar(reply.author)
       .reply-meta
         = link_to_user reply.author
-        = "(#{reply.author.username})"
+        %span.username= "(#{reply.author.username})"
         %span.date{:title => l(reply.created_at)}= t 'time.replied_at', :time => readability_time_format(reply.created_at)
       .reply-utility
-        = link_to '@回复', 'javascript:void(0)', {:class => 'reply-this'}
+        = link_to "@#{t '.reply'}", 'javascript:void(0)', {:class => 'reply-this'}
         %span.vote-up
           = "(#{reply.vote_up})"
-          = link_to '支持', voteup_topic_reply_path(reply.topic, reply)
+          = link_to t('.vote_up'), voteup_topic_reply_path(reply.topic, reply)
         %span.vote-down
           = "(#{reply.vote_down})"
-          = link_to '反对', votedown_topic_reply_path(reply.topic, reply)
+          = link_to t('.vote_down'), votedown_topic_reply_path(reply.topic, reply)
         = link_to "##{reply.floor}", topic_path(reply.topic, :anchor => "reply#{reply.floor}"), {:name => "reply#{reply.floor}", :class => 'reply-floor'}
       .reply-content= rich_content(reply.content)
 

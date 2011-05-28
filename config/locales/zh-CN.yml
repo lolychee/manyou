@@ -85,24 +85,19 @@ zh-CN:
       new:
         page_title: "创建新主题"
       show:
+        bookmark: "收藏"
+        unbookmark: "取消收藏"
+        track: "关注"
+        untrack: "取消关注"
+        tags: "标签"
+        edit: "编辑"
+        delete: "删除"
 
-
-  resrouces:
-    user_sessions:
-      login: "登陆"
-      logout: "退出"
-      register: "注册"
-
-    users:
-      bookmark: "收藏"
-      unbookmark: "取消收藏"
-
-    topics:
-      hits: "%{hits}次点击"
-      track: "关注"
-      untrack: "取消关注"
-
-
+    replies:
+      list:
+        reply: "回复"
+        vote_up: "支持"
+        vote_down: "反对"
 
 
   mongoid:

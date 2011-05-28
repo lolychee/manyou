@@ -9,34 +9,33 @@
     = stylesheet_link_tag 'module'
     = stylesheet_link_tag 'jquery-ui'
     = javascript_include_tag :defaults
-    = javascript_include_tag "http://www.google.com/jsapi"
+    /= javascript_include_tag "http://www.google.com/jsapi"
     = yield :head
     = csrf_meta_tag
+
   %body{ :class => page_class }
+    /#header
     = render :partial => 'layouts/header'
-    #body
+
+    #content
       .wrapper
-        .breadcrumbs= render_breadcrumbs
-        .container{:class => "#{content_for?(:aside)? 'column2' : 'column1'}"}
-          #cse
-          .article
-            - if flash[:success]
-              .success.flash
-                = flash[:success]
-                %span.close x
-            - if flash[:error]
-              .error.flash
-                = flash[:error]
-                %span.close x
-            - if flash[:notice]
-              .notice.flash
-                = flash[:notice]
-                %span.close x
-              #loading-notice
-              //= t '.loading'
-            = yield
+        = yield :content_prepend
+
+        #page-tools
+
+        #breadcrumbs= render_breadcrumbs
+
+        .container.clearfix{:class => "#{content_for?(:aside)? 'column2' : 'column1'}"}
+          .article.clearfix= yield
+
           - if content_for?(:aside)
-            .aside
-              = yield :aside
+            .aside.clearfix= yield :aside
+
+        = yield :content_append
+
+
+    /#footer
     = render :partial => 'layouts/footer'
+
+    = yield :page_bottom
 

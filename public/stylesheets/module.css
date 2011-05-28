@@ -32,24 +32,22 @@
     font-size:16px;
     line-height:140%;
 }
-.topics-list.mode-summary .entry-utility {
+.topics-list.mode-summary .entry-meta {
     margin-top:10px;
     line-height:160%;
     color:#999;
 }
-.topics-list.mode-summary .entry-utility .last-replied {
+.topics-list.mode-summary .entry-meta .last-replied {
     float:right;
 }
 .topics-list.mode-summary .replies-count {
+    color:#FFF;
+    display:block;
     position:absolute;
     top:18px;
     right:15px;
     text-align:center;
     font-weight:bold;
-}
-.topics-list.mode-summary .replies-count {
-    color:#FFF;
-    display:block;
     margin:0 0 5px 0;
     padding:2px 12px;
     line-height:12px;
@@ -93,12 +91,11 @@
 
 /*==== @replies-list ====*/
 .replies-list {
-    border-top:1px solid #E2E2E2;
 }
 .replies-list .reply {
     position:relative;
     padding:10px 0;
-    border-bottom:1px solid #E2E2E2;
+    border-top:1px solid #E2E2E2;
 }
 .replies-list .reply-author {
     float:left;
@@ -118,13 +115,14 @@
 .replies-list .reply-meta {}
 .replies-list .reply-content {
     line-height:160%;
-    margin:15px 0 10px 78px;
+    margin:10px 0 10px 78px;
     font-size:14px;
 }
 .replies-list .reply-utility {
     position:absolute;
     top:10px;
     right:0;
+    display:none;
 }
 .replies-list .reply-utility a {
 }
@@ -216,30 +214,30 @@ form .submit {
 
 
 /*==== @topics#show ====*/
-.topics.show .topic {
+.topics.show #topic {
     position:relative;
     overflow:hidden;
 }
-.topics.show .topic .head {
+.topics.show #topic .head {
     border-bottom:1px solid #EEE;
     padding:5px 0;
     margin-bottom:10px;
 }
-.topics.show .untitled .head {
+.topics.show #topic.untitled .head {
     border:none;
 }
-.topics.show .topic .entry-title {
+.topics.show #topic .entry-title {
     margin:0 80px 0 0;
     font-weight:normal;
     font-size:19px;
     line-height:160%;
     color:#222;
 }
-.topics.show .topic .entry-meta {
+.topics.show #topic .entry-meta {
     line-height:200%;
     color:#999;
 }
-.topics.show .topic .entry-meta a {
+.topics.show #topic .entry-meta a {
     color:#48F;
 }
 /*
@@ -261,7 +259,7 @@ overflow:hidden;
 }
 
  */
-.topics.show .topic .bookmarks {
+.topics.show #topic .entry-meta .bookmarks {
     position:absolute;
     text-align:center;
     width:80px;
@@ -269,49 +267,52 @@ overflow:hidden;
     top:10px;
     color:#888;
 }
-.topics.show .topic .bookmarks .sum
+.topics.show #topic .entry-meta .bookmarks .sum
 {
     font:bold 18px Verdana;
     display:block;
 }
-.topics.show .topic .entry-content {
+.topics.show #topic .entry-content {
     margin:20px 0 30px;
 }
-.topics.show .topic .entry-tags {
+.topics.show #topic .entry-tags {
     padding:5px;
     float:left;
 }
-.topics.show .topic .entry-utility {
+.topics.show #topic .entry-utility {
     padding:5px;
     float:right;
 }
-.topics.show .topic .entry-utility a {
+.topics.show #topic .entry-utility a {
     margin:0 0 0 0.5em;
 }
-.topics.show .replies-blank {
+.topics.show #replies-blank {
     margin-bottom:20px;
     text-align:center;
 }
-
-.topics.show .user-profile {
+.topics.show #reply-form {
 }
-.topics.show .user-profile .avatar {
+
+
+.topics.show #author-profile {
+}
+.topics.show #author-profile .avatar {
     float:left;
     margin-right:20px;
 }
-.topics.show .user-profile .user {
+.topics.show #author-profile .user {
 }
-.topics.show .user-profile .user-link {
+.topics.show #author-profile .user-link {
     font-size:16px;
 }
-.topics.show .author-profile .user-stats
+.topics.show #author-profile .user-stats
 {
     padding:20px 0 20px;
     margin:0 auto;
     overflow:hidden;
     width:270px;
 }
-.topics.show .author-profile .user-stats dl
+.topics.show #author-profile .user-stats dl
 {
     float:left;
     width:90px;
@@ -320,14 +321,12 @@ overflow:hidden;
     margin:0;
     margin-left:-1px;
 }
-.topics.show .author-profile .user-stats dl .sum
+.topics.show #author-profile .user-stats dl .sum
 {
     font:bold 16px Verdana;
     margin-bottom:7px;
 }
 
-.topics.show .reply-form {
-}
 
 
 /*==== @nodes#index ====*/

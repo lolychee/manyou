@@ -48,30 +48,33 @@ module ApplicationHelper
   def link_to_topic(topic, options = {}, &block)
     title = yield(topic) if block
     options[:class] ||= 'topic-link'
-    link_to (title || topic.title), topic_path(topic, :anchor => "last#{topic.replies.count}"), :class => options[:class]
+    options[:length] ||= 90
+    options[:omission] ||= '...'
+    link_to (title || topic.title(options[:length], options[:omission] )), topic_path(topic, :anchor => "last#{topic.replies.count}"), :class => options[:class]
 
   end
 
 
 
-  def user_page_class(user)
+  def user_class(user)
     arr = []
     arr << 'follow' if current_user.follow_ids.include? user.id
     arr.join ' '
   end
 
-  def topic_page_class(topic)
+  def topic_class(topic)
     arr = []
-    arr << "type-#{topic.type}"
-    arr << 'mark' if current_user.mark_ids.include? topic.id
-    arr << 'track' if topic.tracker_ids.include? current_user.id
+    #arr << "type-#{topic.type}"
+    #arr << 'mark' if current_user.mark_ids.include? topic.id
+    #arr << 'track' if topic.tracker_ids.include? current_user.id
+    arr << 'untitled' if topic[:title].blank?
     arr.join ' '
   end
 
-  def reply_page_class(reply)
+  def reply_class(reply)
   end
 
-  def tag_page_class(tag)
+  def tag_class(tag)
   end
 
 end

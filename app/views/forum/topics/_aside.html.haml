@@ -1,0 +1,10 @@
+- topic = aside
+#author-profile.widget
+  .widget-container
+    .avatar= link_to_user_avatar(topic.author, {:size => :large})
+    .name
+      = link_to_user(topic.author)
+      %span.username="(#{topic.author.username})"
+    .utility= link_to 'd', 'd'
+    .intro= topic.author.intro
+
