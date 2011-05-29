@@ -22,6 +22,10 @@ class Node
     name
   end
 
+  def topics
+    Topic.find_by_nodes([_id])
+  end
+
   def self.find_nodes(nodes)
     if nodes.is_a? String
       nodes = split_to_nodes(nodes)

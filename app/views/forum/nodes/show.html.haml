@@ -1,5 +1,8 @@
-.widget.main-list
-  %h3.widget-title= @node.name
+- content_for :title do
+  = @node.name
+
+.widget.topics
+  %h1.widget-title= @node.name
   .widget-utility
     = link_to t('.new_topic'), new_topic_path
   = render :partial => "forum/topics/list", :object => @topics

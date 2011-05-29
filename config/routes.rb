@@ -25,6 +25,8 @@ Manyou::Application.routes.draw do
 
   scope :module => :forum do
 
+    resource :search
+
     resources :nodes do
       member do
         #get 'tagged/:key',  :action => :tagged, :constraints => { :key => /[^\/]+/ },   :as => :tagged

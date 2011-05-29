@@ -3,7 +3,7 @@
 
 body {
     color: #333;
-    background-color:#E0E6E7;
+    background:#E0E6E7 url(../images/bg.jpg) repeat 0 0;
     font: 13px/1.5 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
 }
 
@@ -84,23 +84,18 @@ p {
 }
 /* `Basic Link
 ----------------------------------------------------------------------------------------------------*/
-a
-{
+a {
     color:#069;
     text-decoration:none;
 }
-a:link
-{
+a:link {
 }
-a:hover
-{
+a:hover {
     color:#09F;
 }
-a:visited
-{
+a:visited {
 }
-a:active
-{
+a:active {
 }
 
 /* `Clear Floated Elements
@@ -134,9 +129,9 @@ a:active
 }
 
 /*
-    The following zoom:1 rule is specifically for IE6 + IE7.
-    Move to separate stylesheet if invalid CSS is a problem.
-*/
+The following zoom:1 rule is specifically for IE6 + IE7.
+Move to separate stylesheet if invalid CSS is a problem.
+ */
 
 .clearfix {
     zoom: 1;
@@ -153,8 +148,7 @@ a:active
     display:none !important;
 }
 
-.wrapper
-{
+.wrapper {
     width:960px;
     margin:0 auto;
     position:relative;
@@ -183,78 +177,113 @@ form .editor {
 /* `Header
 ----------------------------------------------------------------------------------------------------*/
 
-#header
-{
-    background:#FFF;
-    border-bottom:2px solid #33CEE1;
-    margin-bottom:20px;
+#header {
+    background:-webkit-gradient(linear,left top,left bottom,from(#444),to(#222));
+    box-shadow:0 1px 2px rgba(0, 0, 0, 0.5);
+    border-bottom:3px solid #F06;
+
+    position:fixed;
+    top:0;
+    width:100%;
+    height:40px;
+    z-index:999;
 }
 #header .wrapper {
     height:40px;
-    padding:10px 0 0;
 }
-#header a
-{
-    color:#09F;
+#header a {
+    color:#FFF;
 }
-#header a:hover
-{
-    color:#00CEE1;
+#header a:hover {
+    color:#ff90bc;
 }
-#logo
-{
-    font-size: 200%;
-    text-align:center;
-    margin:0 10px 0 0;
-    background:url(../images/logo.png) no-repeat 5px 3px;
-    height:40px;
-    width:240px;
+#logo a {
+    /*
+    background:url(../images/logo.png) no-repeat center center;
     text-indent:-9999px;
-    overflow:hidden;
-    float:left;
+     */
+font-size: 200%;
+margin:0 20px 0 0;
+height:40px;
+width:160px;
+overflow:hidden;
+float:left;
 }
-#session-menu
-{
+#site-search {
+    line-height:40px;
+}
+#site-search #search-query {
+    border:1px solid black;
+    border-radius:4px;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    font:13px Arial,sans-serif;
+    width:215px;
+    padding:6px 25px 4px 6px;
+    color:#ccc;
+    background:#666;
+    -webkit-box-shadow:0 1px 0 #444;
+    -moz-box-shadow:0 1px 0 #444;
+    box-shadow:0 1px 0 #444;
+}
+#site-search #search-query:hover {
+background:#777;
+color:#fff;
+}
+#site-search #search-query:focus,
+#site-search #search-query.focused {
+    outline:none;
+    background:#eee;
+    color:#333;
+    text-shadow:0 1px 0 #fff;
+    border:1px solid #eee;
+    -webkit-box-shadow:0 0 3px #000;
+    -moz-box-shadow:0 0 3px #000;
+    box-shadow:0 0 3px #000;
+}
+#site-search .search-button {
+    background:-webkit-gradient(linear,left top,left bottom,from(#777),to(#444));
+    color:#FFF;
+    padding:5px 6px;
+    border:1px solid black;
+    border-radius:4px;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+}
+#session-menu {
     position:absolute;
     right:0;
     bottom:7px;
     padding:0 3px;
 }
-#session-menu ul
-{
+#session-menu ul {
     display:inline;
     list-style:none;
     margin:5px 0;
 }
-#session-menu ul li
-{
+#session-menu ul li {
     display:inline;
     margin:0 0 0 1em;
 }
-#site-search
-{
+#site-search {
     float:left;
     width:320px;
 }
-#site-nav
-{
+#site-nav {
     overflow:hidden;
     clear:both;
 }
 
-#site-nav ul
-{
+#site-nav ul {
     list-style:none;
 }
 
-#site-nav ul li
-{
+#site-nav ul li {
     float:left;
     margin:0;
 }
 
-#site-nav ul li a
-{
+#site-nav ul li a {
     color:#888;
     background-color:transparent;
     font-size:14px;
@@ -265,8 +294,8 @@ form .editor {
     display:block;
 }
 
-#site-nav ul li a:hover, #site-nav ul li.active a
-{
+#site-nav ul li a:hover,
+#site-nav ul li.active a {
     color: #00cee1;
     text-decoration:none;
 }
@@ -275,12 +304,11 @@ form .editor {
 /* `Content
 ----------------------------------------------------------------------------------------------------*/
 
-#content
-{
+#content {
     clear:both;
+    padding-top:70px;
 }
-#content .container
-{
+#content .container {
     background:#FFF;
     border-radius: 5px;
     -moz-border-radius: 5px;
@@ -293,25 +321,21 @@ form .editor {
     position:relative;
     margin-bottom:20px;
 }
-#content .widget .widget-title
-{
+#content .widget .widget-title {
     margin:0 10px;
 }
-#content .widget .widget-container
-{
-    padding:15px;
+#content .widget .widget-container {
+    padding:10px;
 }
 
-#content .column2 .article
-{
+#content .column2 .article {
     border-right:310px solid #ECF2F3;
     margin-right:-310px;
     padding:0 15px;
     width:620px;
     float:left;
 }
-#content .column2 .aside
-{
+#content .column2 .aside {
     background:#ECF2F3;
     width:310px;
     float:right;
@@ -320,17 +344,16 @@ form .editor {
 /* `Footer
 ----------------------------------------------------------------------------------------------------*/
 
-#footer
-{
+#footer {
     background:#EEE;
     color:#777;
     border-top:1px solid #CCC;
     margin-top:20px;
     padding: 10px 0 20px;
     font-size: 0.8em;
-    clear:both;
 }
-#footer .copyright
-{
+#footer .wrapper {
+}
+#footer .copyright {
 }
 

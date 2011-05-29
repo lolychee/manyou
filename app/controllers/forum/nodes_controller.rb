@@ -1,14 +1,12 @@
 class Forum::NodesController < ApplicationController
 
-  before_filter do
-    @page_info[:list_mode] = params[:mode] || 'summary'
-    @nodes = Node.find_nodes params[:id].split('+') if params[:id]
-    @node = @nodes.first if @nodes != nil
+  before_filter :except => [:index, :new, :create] do
+    @node = load_node(params[:id])
   end
 
   def index
     @nodes_could = Topic.nodes_could
-    @topics = Topic.all.paginate :per_page => 20, :page => params[:page]
+    @topics = Topic.desc(:replied_at, :created_at).paginate :per_page => 20, :page => params[:page]
   end
 
 =begin
@@ -19,8 +17,21 @@ class Forum::NodesController < ApplicationController
   end
 =end
 
+  def new
+    @node = Node.new
+  end
+
+  def create
+    @node = Node.new params[:node]
+    if @node.save
+      redirect_to node_path(@node)
+    else
+      render :new
+    end
+  end
+
   def show
-    @topics = Topic.find_by_nodes(@nodes.collect{|node| node._id }).desc(:replied_at, :created_at).paginate :per_page => 20, :page => params[:page]
+    @topics = @node.topics.desc(:replied_at, :created_at).paginate :per_page => 20, :page => params[:page]
   end
 
   def edit

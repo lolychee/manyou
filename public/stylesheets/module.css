@@ -4,13 +4,12 @@
 .topics-list.mode-summary .topic {
     position:relative;
     overflow:hidden;
-    padding:10px 65px 10px 68px;
+    padding:10px 68px;
     border-top:1px solid #E2E2E2;
 }
 .topics-list.mode-summary .entry-author {
     position:absolute;
     left:5px;
-    top:10px;
 }
 .topics-list.mode-summary .entry-author a {
     display:block;
@@ -31,6 +30,7 @@
     font-weight:normal;
     font-size:16px;
     line-height:140%;
+    margin:0;
 }
 .topics-list.mode-summary .entry-meta {
     margin-top:10px;
@@ -41,29 +41,50 @@
     float:right;
 }
 .topics-list.mode-summary .replies-count {
-    color:#FFF;
-    display:block;
     position:absolute;
-    top:18px;
-    right:15px;
-    text-align:center;
+    right:10px;
+    top:10px;
+    color:#FFF;
+    font-size:14px;
     font-weight:bold;
-    margin:0 0 5px 0;
-    padding:2px 12px;
-    line-height:12px;
-    border-radius:12px;
+    padding:0 12px;
+    /* css3 */
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
 }
+.topics-list.mode-summary .replies-count:after {
+    content:"\00a0";
+    position:absolute;
+    top:13px;
+    right:0;
+    border:6px solid transparent;
+    /* reduce the damage in FF3.0 */
+    display:block;
+    width:0;
+    height:0;
+}
+
 .topics-list.mode-summary .replies-count:link,
 .topics-list.mode-summary .replies-count:active {
     background:#AAB0C6;
 }
+.topics-list.mode-summary .replies-count:link:after,
+.topics-list.mode-summary .replies-count:active:after {
+    border-left-color:#AAB0C6;
+}
 .topics-list.mode-summary .replies-count:visited {
     background:#EEE;
+}
+.topics-list.mode-summary .replies-count:visited:after {
+    border-left-color:#EEE;
 }
 .topics-list.mode-summary .replies-count:hover {
     background:#969CB1;
 }
-
+.topics-list.mode-summary .replies-count:hover:after {
+    border-left-color:#969CB1;
+}
 
 
 .topics-list.mode-title .topic {
@@ -80,7 +101,7 @@
 .nodes-list li a {
     background:#E9E9E9;
     padding:3px 5px;
-    margin:2px;
+    margin-right:3px;
     border-radius: 3px;
     text-shadow:#FFF 0 1px 0;
 }
@@ -229,7 +250,7 @@ form .submit {
 .topics.show #topic .entry-title {
     margin:0 80px 0 0;
     font-weight:normal;
-    font-size:19px;
+    font-size:20px;
     line-height:160%;
     color:#222;
 }

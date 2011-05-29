@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :current_user, :current_user_session, :signed_in?
+  helper_method :current_user, :current_user_session, :logged_in?
 
   before_filter :smart_set_locale
 
@@ -20,12 +20,12 @@ class ApplicationController < ActionController::Base
     @current_user = current_user_session && current_user_session.user
   end
 
-  def signed_in?
+  def logged_in?
     !!current_user
   end
 
   def authenticate_user!
-    redirect_to new_session_path unless signed_in?
+    redirect_to new_session_path unless logged_in?
   end
 
   #page helper methods
@@ -74,6 +74,10 @@ class ApplicationController < ActionController::Base
     @user = User.first(:conditions => { :username => /#{username}/i }) || render_404
   end
 
+  def load_node(node)
+    @node = Node.first(:conditions => { :index => node.downcase}) || render_404
+  end
+
   def load_topic(id)
     @topic = Topic.first(:conditions => { :short_id => id.to_i}) || render_404
   end
@@ -83,13 +87,6 @@ class ApplicationController < ActionController::Base
     @reply = topic.replies.find id
     rescue Mongoid::Errors::DocumentNotFound
       render_404
-  end
-
-  def load_tag(tag)
-    @tag = Tag.find_by_tag tag
-  end
-
-  def load_tags(arr)
   end
 
 

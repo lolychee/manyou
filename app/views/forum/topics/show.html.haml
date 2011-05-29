@@ -43,7 +43,7 @@
 #reply-form.widget
   %h2.widget-title= t '.leave_your_reply'
   .widget-container
-    - if signed_in?
+    - if logged_in?
       = form_for @topic.replies.new, :url => topic_replies_path(@topic) do |form|
         = render :partial => 'forum/replies/form', :object => form
         .field= form.submit t('submit.submit'), :class => 'button submit'

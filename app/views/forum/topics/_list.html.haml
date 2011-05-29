@@ -1,4 +1,17 @@
-- mode = ['title', 'summary', 'image'].include?(params[:mode]) ? params[:mode] : 'summary'
-/= render :partial => 'forum/topics/list_mode_switch', :object => mode
-= render :partial => "forum/topics/list_#{mode}", :object => list
+.topics-list.mode-summary
+  - list.each_with_index do |topic, index|
+    .topic{:class => "#{index%2 == 0 ? 'even' : 'odd'} #{topic_class(topic)}"}
+      .entry-author
+        = link_to_user_avatar topic.author
+      %h1.entry-title
+        = link_to_user topic.author
+        = ':'
+        = link_to_topic(topic, {:length => 90, :omission => '...'})
+      .entry-meta
+        = render :partial => 'forum/nodes/list', :object => topic.tag
+        - if topic.replies != []
+          .last-replied
+            = link_to_user topic.replies.last.author
+            = t 'time.replied_at', :time => readability_time_format(topic.replied_at)
+        = link_to_topic(topic, {:class => 'replies-count'}){|topic| topic.replies.count}
 
