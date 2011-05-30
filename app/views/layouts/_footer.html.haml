@@ -7,7 +7,8 @@
       %ul
     #copyright
       @ Copyright
-      //= link_to APP_CONFIG['site_name'], root_path
+      = link_to AppConfig['app_name'], root_path
+      = "2011 - #{Time.now.year}"
       |
       Power by
       = link_to 'manyou', 'https://github.com/lolychee/manyou', :target => '_blank'

@@ -11,4 +11,4 @@ Gemfile.lock
 *~
 public/uploads/*
 public/javascripts/xheditor/*
-public/javascripts/tinymce/*
+public/javascripts/tiny_mce/*

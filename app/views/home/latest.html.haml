@@ -1,0 +1,6 @@
+.widget.main-list
+  %h2.widget-title= t '.hot_topics'
+  .topics-utility
+    = link_to t('.new_topic'), new_topic_path
+  = render :partial => "forum/topics/list", :object => @topics
+

@@ -1,9 +1,9 @@
 - content_for :title do
-  = @topic.title(30, '...')
+  = @topic.format_title(30, '...')
 
 #topic.widget{:class => " #{topic_class(@topic)}"}
   .head
-    %h1.entry-title=@topic.title
+    %h1.entry-title=@topic.format_title
     .entry-meta
       %span.author= link_to_user(@topic.author)
       %span.date{:title => l(@topic.created_at)}= t 'time.created_at', :time => readability_time_format(@topic.created_at)

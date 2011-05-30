@@ -1,6 +1,6 @@
 .main-column.widget.topic-content
-  .widget-title= 'New Topic'
-  .widget-content
+  %h1.widget-title= 'New Topic'
+  .widget-container
     - if !form.object.errors.blank?
       = render :partial => 'shared/error_messages', :locals => {:target => form.object}
 
@@ -52,10 +52,4 @@
 
   #add-video-dialog{:title => t('.add_video')}
   #add-music-dialog{:title => t('.add_music')}
-
-
-//:javascript
-  jQuery(function($){
-    Manyou.topics.edit('.container');
-  });
 

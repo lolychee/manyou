@@ -28,7 +28,7 @@ module ApplicationHelper
   end
 
   def user_avatar(user, size = :normal)
-    arr = {:small => 16, :normal => 48, :large => 80}
+    arr = {:small => 20, :normal => 48, :large => 80}
     img = user.avatar.send size
     image_tag img.url, :alt => "#{user.name}'s avatar", :class => 'user-avatar', :height => arr[size], :width => arr[size]
     #image_tag(user.gravatar_url(:size => options[:size]), :alt => "#{user.name}'s avatar", :class => 'user-avatar', :height => options[:size], :width => options[:size])
@@ -50,7 +50,7 @@ module ApplicationHelper
     options[:class] ||= 'topic-link'
     options[:length] ||= 90
     options[:omission] ||= '...'
-    link_to (title || topic.title(options[:length], options[:omission] )), topic_path(topic, :anchor => "last#{topic.replies.count}"), :class => options[:class]
+    link_to (title || topic.format_title(options[:length], options[:omission] )), topic_path(topic, :anchor => "last#{topic.replies.count}"), :class => options[:class]
 
   end
 

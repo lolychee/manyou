@@ -1,6 +1,8 @@
 Manyou::Application.routes.draw do
 
-  root :to => 'forum/nodes#index'
+  root :to => 'home#index'
+
+  get   :latest,   :to => 'home#latest',  :as => :latest_home
 
   match "/uploads/*path" => "gridfs#serve"
 
@@ -12,9 +14,16 @@ Manyou::Application.routes.draw do
 
     resource :account
 
-    resources :users do
+    resources :users, :only => [:index, :new, :create, :tagged] do
       collection do
         get 'tagged/:key', :action => :tagged, :constraints => { :key => /[^\/]+/ }, :as => :tagged
+      end
+    end
+
+    resources :users, :path => :user, :except => [:index, :new, :create, :tagged] do
+      member do
+        get :follow
+        get :unfollow
       end
     end
 
@@ -27,20 +36,26 @@ Manyou::Application.routes.draw do
 
     resource :search
 
-    resources :nodes do
-      member do
-        #get 'tagged/:key',  :action => :tagged, :constraints => { :key => /[^\/]+/ },   :as => :tagged
+    resources :nodes, :only => [:index, :new, :create, :tagged] do
+      collection do
+        get 'tagged/:key',  :action => :tagged, :constraints => { :key => /[^\/]+/ },   :as => :tagged
       end
     end
 
-    resources :topics do
+    resources :nodes, :path => :node, :except => [:index, :new, :create, :tagged] do
+    end
+
+    resources :topics, :only => [:index, :new, :create, :tagged] do
       collection do
-        #get 'new/:type',    :action => :new,    :constraints => { :type => /\w+/ },     :as => :new
         get 'tagged/:key',  :action => :tagged, :constraints => { :key => /[^\/]+/ },   :as => :tagged
       end
+    end
+    resources :topics, :path => :topic, :except => [:index, :new, :create, :tagged] do
       member do
-        get :track
-        get :untrack
+        get :voteup
+        get :votedown
+        get :follow
+        get :unfollow
       end
 
       resources :replies do

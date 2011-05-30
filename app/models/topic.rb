@@ -59,7 +59,7 @@ class Topic
     short_id.to_i.to_s
   end
 
-  def title(length = 0, omission = '...')
+  def format_title(length = 0, omission = '...')
     if read_attribute(:title).blank?
       content = sanitize(read_attribute(:content).bbcode_to_html({}), :tags => %w())
       if length == 0
