@@ -320,8 +320,14 @@ color:#fff;
 
 #content {
     clear:both;
-    padding-top:70px;
+    padding-top:45px;
 }
+
+#breadcrumbs {
+    padding:10px;
+    font-size:14px;
+}
+
 #content .container {
     background:#FFF;
     border-radius: 5px;

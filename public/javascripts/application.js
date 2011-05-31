@@ -37,14 +37,14 @@ define(function(require, exports, module){
 
         options.mode        = "textareas";
         options.theme       = "advanced";
-        options.plugins     = "bbcode";
+        //options.plugins     = "bbcode";
 
         options.theme_advanced_toolbar_location     = "top";
         options.theme_advanced_toolbar_align        = "left";
         //options.theme_advanced_statusbar_location   = "bottom";
         //options.theme_advanced_resizing             = true;
 
-        options.theme_advanced_buttons1 = options.theme_advanced_buttons1 || "bold,italic,strikethrough,|,bullist,numlist,blockquote,|,link,unlink,|,undo,redo,|,code";
+        options.theme_advanced_buttons1 = options.theme_advanced_buttons1 || "bold,italic,strikethrough,|,bullist,numlist,blockquote,|,link,unlink,undo,redo,code";
         options.theme_advanced_buttons2 = options.theme_advanced_buttons2 || "";
         options.theme_advanced_buttons3 = options.theme_advanced_buttons3 || "";
 

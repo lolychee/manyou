@@ -1,0 +1,16 @@
+- content_for :title do
+  = @user.name
+
+#user-profile.widget
+  .avatar= link_to_user_avatar(@user, {:size => :large})
+  %h1.name
+    = @user.name
+    %span.username= "(#{@user.username})"
+  .intro= @user.intro
+
+  - @profile = @user.profile
+
+  %dl.meta-information
+    %dt.homepage= t('.homepage') + ':'
+    %dd.homepage!= auto_link(@profile.homepage)
+

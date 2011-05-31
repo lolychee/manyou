@@ -38,8 +38,8 @@ class Topic
   #embeds_many :media,           :class_name => 'TopicMedium'
   #field :media_type,            :type => Array,     :default => []
 
-  has_and_belongs_to_many :track_users, :class_name => 'User'
-  has_and_belongs_to_many :nodes, :class_name => 'Node'
+  has_and_belongs_to_many :followers,   :class_name => 'User'
+  has_and_belongs_to_many :nodes,       :class_name => 'Node'
 
   #has_and_belongs_to_many :meta_tags, :class_name => 'Tag'
 

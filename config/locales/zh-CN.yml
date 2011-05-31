@@ -1,6 +1,6 @@
 zh-CN:
   locale:
-    none: "空(使用浏览器语言设置)"
+    none: "空"
     en: "英语(en)"
     zh-CN: "简体中文(zh-CN)"
     zh-TW: "繁体中文(zh-TW)"
@@ -54,28 +54,28 @@ zh-CN:
 
     accounts:
       edit:
-        account_settings: 账户设置
-        username_label: 用户ID
-        name_label: 昵称
-        name_tips: s
-        email_label: 邮箱
-        email_tips: s
-        locale_label: 语言
-        locale_tips: s
-        intro_label: 个人介绍
-        intro_tips: s
+        account_settings: "账户设置"
+        username_label: "用户ID"
+        name_label: "昵称"
+        name_tips: "s"
+        email_label: "邮箱"
+        email_tips: "s"
+        locale_label: "语言"
+        locale_tips: "留空则使用浏览器语言设置"
+        intro_label: "个人介绍"
+        intro_tips: "s"
 
-        profile_settings: 资料设置
-        homepage_label: 个人主页
-        homepage_tips: s
+        profile_settings: "资料设置"
+        homepage_label: "个人主页"
+        homepage_tips: "s"
 
-        password_settings: 密码设置
-        current_password_label: 当前密码
-        current_password_tips: s
-        password_label: 新密码
-        password_tips: s
-        password_confirmation_label: 确认密码
-        password_confirmation_tips: s
+        password_settings: "密码设置"
+        current_password_label: "当前密码"
+        current_password_tips: "s"
+        password_label: "新密码"
+        password_tips: "s"
+        password_confirmation_label: "确认密码"
+        password_confirmation_tips: "s"
 
 
   forum:
@@ -87,8 +87,8 @@ zh-CN:
       show:
         bookmark: "收藏"
         unbookmark: "取消收藏"
-        track: "关注"
-        untrack: "取消关注"
+        follow: "关注"
+        unfollow: "取消关注"
         tags: "标签"
         edit: "编辑"
         delete: "删除"

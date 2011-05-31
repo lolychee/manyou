@@ -1,4 +1,5 @@
-= editor.text_area field, :id => "#{editor.object.class.name.downcase}-editor", :class => :editor
+- editor = reply_editor
+= editor.text_area field, :id => "#{editor.object.class.name.downcase}-editor", :class => :editor, :rows => 15
 :javascript
   seajs.use('application', function(app){
     app.editor('##{editor.object.class.name.downcase}-editor', {

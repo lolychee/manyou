@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
 
   before_filter do
     @page_info = {}
+    add_breadcrumb AppConfig.app_name, root_path
   end
 
   #authentication methods

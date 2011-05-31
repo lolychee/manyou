@@ -62,13 +62,13 @@ class Forum::TopicsController < ApplicationController
     redirect_to topics_path
   end
 
-  def track
-    @topic.track_users.push current_user
+  def follow
+    @topic.followers.push current_user
     redirect_to topic_path(@topic)
   end
 
-  def untrack
-    @topic.track_user_ids.delete current_user.id
+  def unfollow
+    @topic.follower_ids.delete current_user.id
     @topic.save
     redirect_to topic_path(@topic)
   end

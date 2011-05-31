@@ -23,10 +23,10 @@
     - else
       = link_to t('.bookmark'), create_bookmark_path(topic_path(@topic))
 
-    - if @topic.track_user_ids.include? current_user.id
-      = link_to t('.untrack'), untrack_topic_path(@topic)
+    - if @topic.follower_ids.include? current_user.id
+      = link_to t('.unfollow'), unfollow_topic_path(@topic)
     - else
-      = link_to t('.track'), track_topic_path(@topic)
+      = link_to t('.follow'), follow_topic_path(@topic)
 
     = link_to t('.edit'), edit_topic_path(@topic) if can? :update, @topic
     = link_to t('.delete'), topic_path(@topic), :method => :delete, :confirm => '您真的要删除这个主题吗?' if can? :destroy, @topic

@@ -23,7 +23,7 @@
       .wrapper
         = yield :content_prepend
 
-        #breadcrumbs= render_breadcrumbs
+        #breadcrumbs= render_breadcrumbs({:builder => BreadcrumbsBuilder})
 
         .container.clearfix{:class => "#{content_for?(:aside)? 'column2' : 'column1'}"}
           .article.clearfix= yield
