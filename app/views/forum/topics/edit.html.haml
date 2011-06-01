@@ -1,8 +1,12 @@
 - content_for :title do
   = t('.edit_topic')
 
-= form_for @topic do |form|
-  = render :partial => "form", :object => form
-  .field
-    /= form.submit t('words.create'), :class => 'button'
+- add_breadcrumb t('.edit_topic'), edit_topic_path(@topic)
+
+.widget
+  %h1.widget-title= t '.edit_topic'
+  .widget-container.topic-form
+    = form_for @topic do |form|
+      = render :partial => "form", :object => form
+      .field= form.submit t('submit.update'), :class => 'button submit'
 

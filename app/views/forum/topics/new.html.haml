@@ -1,5 +1,12 @@
-= form_for @topic do |form|
-  = render :partial => "form", :object => form
-  .field
-    /= form.submit t('words.create'), :class => 'button'
+- content_for :title do
+  = t('.new_topic')
+
+- add_breadcrumb t('.new_topic'), new_topic_path
+
+.widget
+  %h1.widget-title= t '.new_topic'
+  .widget-container.topic-form
+    = form_for @topic do |form|
+      = render :partial => "form", :object => form
+      .field= form.submit t('submit.create'), :class => 'button submit'
 

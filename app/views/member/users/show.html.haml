@@ -1,16 +1,31 @@
 - content_for :title do
   = @user.name
 
+- add_breadcrumb @user.name, user_path(@user)
+
 #user-profile.widget
-  .avatar= link_to_user_avatar(@user, {:size => :large})
-  %h1.name
-    = @user.name
-    %span.username= "(#{@user.username})"
-  .intro= @user.intro
+  .widget-container
+    .profile
+      .avatar= link_to_user_avatar(@user, {:size => :large})
+      %h1.name
+        = @user.name
+        %span.username= "(#{@user.username})"
+      .status= t('time.created_at', :time => @user.created_at.strftime("%Y-%m-%d") )
 
-  - @profile = @user.profile
+      - @profile = @user.profile
+      %table.meta-information
+        %tr.odd
+          %th.homepage= t('.homepage') + ':'
+          %td.homepage!= auto_link(@profile.homepage)
 
-  %dl.meta-information
-    %dt.homepage= t('.homepage') + ':'
-    %dd.homepage!= auto_link(@profile.homepage)
+      .intro= @user.intro
 
+    .options
+      - if current_user.follow_ids.include? @user._id
+        .unfollow= link_to t('.unfollow'), unfollow_user_path(@user)
+      - else
+        .follow= link_to t('.follow'), follow_user_path(@user)
+
+- content_for :aside do
+  .widget
+    .widget-container= @user.intro

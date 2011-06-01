@@ -1,6 +1,6 @@
 .replies-list
   - list.each_with_index do |reply, index|
-    .reply{:class => (index%2 == 0 ? 'even' : 'odd')}
+    .reply{:class => cycle('even', 'odd')}
       .reply-author
         = link_to_user_avatar(reply.author)
       .reply-meta

@@ -1,55 +1,17 @@
-.main-column.widget.topic-content
-  %h1.widget-title= 'New Topic'
-  .widget-container
-    - if !form.object.errors.blank?
-      = render :partial => 'shared/error_messages', :locals => {:target => form.object}
+= if !form.object.errors.blank?
+  = render :partial => 'shared/error_messages', :locals => {:target => form.object}
 
-    .block.field-title.type-text{:class => 'can-accordion'}
-      .label= form.label :title
-      .field= form.text_field :title, :maxlength => 50
-    .block.field-content.type-textarea{:class => 'can-accordion'}
-      .label= form.label :content
-      .field= render :partial => 'shared/editor', :object => form, :locals => {:field => :content}
-
-    .media-box
-      - 5.times do |index|
-        /.block.can-move.can-close
-        .d
-          /.field{:style => 'height:50px;'}= index + 1
-          /%a.move-button{:title => '拖动调整照片顺序'}= '移动'
-          /%a.close-button{:title => '移除这个元素'}= '删除'
-
-.side-column
-  .widget.form-utility
-    .field= form.submit t('submit.create'), :class => 'button submit', :id => 'form-submit'
-
-  .widget.form-add-media
-    .widget-content
-      = link_to t('.add_image'), 'javascript:void(0)', :id => 'add-image-button'
-      /=
-      %br
-      = link_to t('.add_video'), 'javascript:void(0)', :id => 'add-video-button'
-      %br
-      = link_to t('.add_music'), 'javascript:void(0)', :id => 'add-music-button'
-
-  .widget
-    .widget-content
-      .label= form.label :tags
-      .field= form.text_area :tag, :class => 'text tags', :cols => nil, :rows => 3
-      .meta= t '.tags_tips'
+.field
+  .label= form.label :title
+  = form.text_field :title, :maxlength => 50
+.field
+  .label= form.label :content
+  = render :partial => 'shared/editor', :object => form, :locals => {:field => :content}
+.field
+  .label= form.label :tags
+  = form.text_field :tag, :class => 'text tags'
+  .tips= t '.tags_tips'
 
 
-
-.hidden
-  #add-image-dialog{:title => t('.add_image')}
-    %ul
-      %li= link_to t('.from_file'), '#add-image-from-file'
-      %li= link_to t('.from_url'), '#add-image-from-url'
-    #add-image-from-file
-      = 'asfsd'
-    #add-image-from-url
-      = 'asf'
-
-  #add-video-dialog{:title => t('.add_video')}
-  #add-music-dialog{:title => t('.add_music')}
-
+= content_for :aside do
+  .widget= 'd'

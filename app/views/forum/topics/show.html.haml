@@ -2,43 +2,45 @@
   = @topic.format_title(30, '...')
 
 #topic.widget{:class => " #{topic_class(@topic)}"}
-  .head
-    %h1.entry-title=@topic.format_title
-    .entry-meta
-      %span.author= link_to_user(@topic.author)
-      %span.date{:title => l(@topic.created_at)}= t 'time.created_at', :time => readability_time_format(@topic.created_at)
-      %span.hits= t 'hits', :hits => @topic.hits
-      .bookmarks
-        %span.sum= @topic.bookmarks
-        %span= t '.bookmark'
-  - if !@topic[:title].blank?
-    .entry-content
-      = rich_content(@topic.content)
-  .entry-tags
-    %span= t('.tags') + ':'
-    = render :partial => 'forum/nodes/list', :object => @topic.tag
-  .entry-utility
-    - if current_user.bookmarks.where(:_id => @topic.id).first != nil
-      = link_to t('.unbookmark'), destroy_bookmark_path(topic_path(@topic))
-    - else
-      = link_to t('.bookmark'), create_bookmark_path(topic_path(@topic))
+  .widget-container
+    .head
+      %h1.entry-title=@topic.format_title
+      .entry-meta
+        %span.author= link_to_user(@topic.author)
+        %span.date{:title => l(@topic.created_at)}= t 'time.created_at', :time => readability_time_format(@topic.created_at)
+        %span.hits= t 'hits', :hits => @topic.hits
+        .bookmarks
+          %span.sum= @topic.bookmarks
+          %span= t '.bookmark'
+    - if !@topic[:title].blank?
+      .entry-content
+        = rich_content(@topic.content)
+    .entry-tags
+      %span= t('.tags') + ':'
+      = render :partial => 'forum/nodes/list', :object => @topic.tag
+    .entry-utility
+      - if current_user.bookmarks.where(:_id => @topic.id).first != nil
+        = link_to t('.unbookmark'), destroy_bookmark_path(topic_path(@topic))
+      - else
+        = link_to t('.bookmark'), create_bookmark_path(topic_path(@topic))
 
-    - if @topic.follower_ids.include? current_user.id
-      = link_to t('.unfollow'), unfollow_topic_path(@topic)
-    - else
-      = link_to t('.follow'), follow_topic_path(@topic)
+      - if @topic.follower_ids.include? current_user.id
+        = link_to t('.unfollow'), unfollow_topic_path(@topic)
+      - else
+        = link_to t('.follow'), follow_topic_path(@topic)
 
-    = link_to t('.edit'), edit_topic_path(@topic) if can? :update, @topic
-    = link_to t('.delete'), topic_path(@topic), :method => :delete, :confirm => '您真的要删除这个主题吗?' if can? :destroy, @topic
+      = link_to t('.edit'), edit_topic_path(@topic) if can? :update, @topic
+      = link_to t('.delete'), topic_path(@topic), :method => :delete, :confirm => '您真的要删除这个主题吗?' if can? :destroy, @topic
 
 - if @replies.blank?
   #replies-blank.widget
 - else
   #replies.widget{:class => ''}
-    .replies-options= ''
-    = will_paginate @replies
-    = render :partial => 'forum/replies/list', :object => @replies
-    = will_paginate @replies
+    .widget-container
+      .replies-options= ''
+      = will_paginate @replies
+      = render :partial => 'forum/replies/list', :object => @replies
+      = will_paginate @replies
 
 #reply-form.widget
   %h2.widget-title= t '.leave_your_reply'

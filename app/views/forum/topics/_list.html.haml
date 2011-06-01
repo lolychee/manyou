@@ -1,6 +1,6 @@
 .topics-list.mode-summary
   - list.each_with_index do |topic, index|
-    .topic{:class => "#{index%2 == 0 ? 'even' : 'odd'} #{topic_class(topic)}"}
+    .topic{ :class => "#{cycle('even', 'odd')} #{topic_class(topic)}" }
       .entry-author
         = link_to_user_avatar topic.author
       %h1.entry-title
@@ -14,4 +14,6 @@
             = link_to_user topic.replies.last.author
             = t 'time.replied_at', :time => readability_time_format(topic.replied_at)
         = link_to_topic(topic, {:class => 'replies-count'}){|topic| topic.replies.count}
+
+  .paginate= will_paginate list
 

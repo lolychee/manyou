@@ -4,16 +4,10 @@ class Forum::TopicsController < ApplicationController
 
   before_filter :except => [:index, :new, :create, :tagged] do
     load_topic(params[:id])
-    #add_breadcrumb 'topics', topics_path
-    #add_breadcrumb @topic.title, topic_path(@topic)
-  end
-
-  before_filter do
-    @page_info[:list_mode] = params[:mode] || 'summary'
+    add_breadcrumb t('breadcrumbs.topics'), topics_path
   end
 
   def index
-    @page_info[:list_mode] = params[:mode] || 'icon'
     @topics = Topic.desc(:replied_at, :created_at).paginate :per_page => 20, :page => params[:page]
   end
 
@@ -40,6 +34,7 @@ class Forum::TopicsController < ApplicationController
   end
 
   def show
+    add_breadcrumb @topic.format_title(30, '...'), topic_path(@topic)
     @replies = @topic.replies.paginate :per_page => 20, :page => (params[:page] ||= (@topic.replies.count/20).to_i+1)
     recent_read @topic
   end

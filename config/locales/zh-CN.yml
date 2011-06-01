@@ -28,6 +28,11 @@ zh-CN:
       login: "登录"
       signup: "注册"
 
+  breadcrumbs:
+    users: "会员"
+    topics: "主题"
+    nodes: "节点"
+
   member:
     sessions:
       new:

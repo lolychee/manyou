@@ -5,7 +5,7 @@
 
     #logo= link_to AppConfig[:app_name], root_path
     #site-search
-      = render :partial => 'layouts/search'
+      = render :partial => 'layouts/search', :object => yield(:search)
     #site-nav
       %ul
         %li{:class => "#{page_class == 'home index'  ? 'active' : nil }"}= link_to t('.home'), root_path

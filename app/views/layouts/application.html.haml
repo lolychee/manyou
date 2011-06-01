@@ -15,13 +15,15 @@
     = yield :head
     = csrf_meta_tag
 
-  %body{ :class => page_class }
+  %body.fixed{ :class => page_class }
     /#header
     = render :partial => 'layouts/header'
 
     #content.clearfix
       .wrapper
         = yield :content_prepend
+
+        #flash-messages= render :partial => 'layouts/flash_messages'
 
         #breadcrumbs= render_breadcrumbs({:builder => BreadcrumbsBuilder})
 

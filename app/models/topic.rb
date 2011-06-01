@@ -47,9 +47,12 @@ class Topic
   scope :find_by_author,    ->(id)  { where(:author_id => id) }
   scope :find_by_nodes,      ->(nodes){ where(:node_ids.in => nodes ) }
 
+  validates_presence_of     :content
+  validates_presence_of     :author
+  validates_presence_of     :tag
+
   #validates_inclusion_of    :type,      :in => TYPE, :allow_blank => true
   validates_inclusion_of    :status,    :in => STATUS, :allow_blank => true
-
 
   before_save do
     nodes.concat Node.find_or_create_nodes(tag) if !tag.blank?
@@ -61,7 +64,8 @@ class Topic
 
   def format_title(length = 0, omission = '...')
     if read_attribute(:title).blank?
-      content = sanitize(read_attribute(:content).bbcode_to_html({}), :tags => %w())
+      content = CGI::unescapeHTML(read_attribute(:content))
+      content = sanitize(content.bbcode_to_html({}), :tags => %w())
       if length == 0
         content
       else
